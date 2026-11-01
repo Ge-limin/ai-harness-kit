@@ -51,7 +51,7 @@ Personal materials are available offline. Company references open on GitHub and 
 The personal instructions, configuration, and workflows are included. Open any source below to read it directly.
 
 - [rules/](rules/): General and Codex working principles, plus the export scripts.
-- [configs/](configs/): actual settings for Codex, Pi, Claude Code, Orca, and Magpie.
+- configs/: actual settings for Codex, Pi, Claude Code, Orca, and Magpie.
 - [Skills and sources](reference/skills/README.en.md): third-party skills from Orca, CodexHost, Lark, and Pi, plus originals of our maintained project skills.
 
 Prepare the [dependencies](docs/DEPENDENCIES.en.md) for your chosen client, adapt paths, accounts, and credentials, then export the rules. See [Chapter 08](#start) for setup steps.
@@ -79,11 +79,11 @@ Optional reference: team engineering standards are listed in the [source index](
 
 | Tool | Purpose | Official website / documentation |
 | --- | --- | --- |
-| Orca | An agent workspace that brings agents, Git worktrees, terminals, a browser, and code review into one app. | [onorca.dev](https://onorca.dev/) · [Read integration settings →](configs/codex/hooks.json) |
-| Pi | An extensible terminal agent that connects to models, reads and edits files, runs commands, and adds capabilities such as search and subagents through extensions. | [pi.dev](https://pi.dev/) · [Read configuration →](configs/pi/settings.json) |
-| Codex | OpenAI’s coding agent for understanding codebases, changing code, running tests, and completing development tasks. | [openai.com/codex](https://openai.com/codex/) · [Read configuration →](configs/codex/config.toml) |
-| Claude Code | Anthropic’s coding agent for reading and changing code, running commands, and extending workflows through tools and skills. | [code.claude.com](https://code.claude.com/docs/en/overview) · [Read configuration →](configs/claude/settings.json) |
-| Magpie | Manage models and providers across agents through a local gateway that translates between APIs. Choose models for Codex, Pi, Claude Code, and other agents, and maintain their configuration and model specifications. | [usemagpie.ai](https://usemagpie.ai/) · [Read configuration →](configs/magpie/codex-gpt-6-astra.spec.txt) |
+| Orca | An agent workspace that brings agents, Git worktrees, terminals, a browser, and code review into one app. | [onorca.dev](https://onorca.dev/) |
+| Pi | An extensible terminal agent that connects to models, reads and edits files, runs commands, and adds capabilities such as search and subagents through extensions. | [pi.dev](https://pi.dev/) |
+| Codex | OpenAI’s coding agent for understanding codebases, changing code, running tests, and completing development tasks. | [openai.com/codex](https://openai.com/codex/) |
+| Claude Code | Anthropic’s coding agent for reading and changing code, running commands, and extending workflows through tools and skills. | [code.claude.com](https://code.claude.com/docs/en/overview) |
+| Magpie | Manage models and providers across agents through a local gateway that translates between APIs. Choose models for Codex, Pi, Claude Code, and other agents, and maintain their configuration and model specifications. | [usemagpie.ai](https://usemagpie.ai/) |
 | OpenLess | A voice-input tool that turns speech into text with a global hotkey, polishes it in your chosen style, and inserts it at the cursor. Its AI-prompt mode helps turn spoken thoughts into requests, context, and feedback for agents. | [openless.top](https://openless.top/) · [GitHub](https://github.com/Open-Less/openless) |
 
 <a id="orca"></a>
@@ -193,19 +193,13 @@ Principles used by this configuration: [General](rules/PRINCIPLES.general.en.md)
 | Context | 380,000 | 380,000 | Model selector includes [1m] |
 | Maximum output | No independent field in the inspected client version | 128,000 | Not explicitly set |
 
-Configuration sources:[Codex →](configs/codex/config.toml) · [Pi →](configs/pi/models.json) · [Claude Code →](configs/claude/settings.json)
-
-[Magpie model specification →](configs/magpie/codex-gpt-6-astra.spec.txt) · [Pi model defaults →](configs/pi/settings.json)
-
 <a id="pi"></a>
 
 ## 07 · Nine Pi plugins and what they do
 
-[Enabled plugins →](configs/pi/settings.json) · [Dependencies and setup requirements →](docs/DEPENDENCIES.en.md)
+[Dependencies and setup requirements →](docs/DEPENDENCIES.en.md)
 
 ### 1. FFF · Repository file and code search
-
-[Search settings →](configs/pi/pi-fff.json)
 
 Provides fuzzy filename search, full-text search, pagination, and smart ranking. File access frequency, recent usage, and Git status help locate relevant code quickly, reducing directory-by-directory browsing and repeated searches.
 
@@ -217,8 +211,6 @@ Reads code by function, class, or method; finds definitions and references; anal
 
 ### 3. Web Access · Web search and content retrieval
 
-[Search settings →](configs/pi/web-search.json)
-
 Supports web search, page-content extraction, video understanding, and GitHub source retrieval, enabling agents to consult technical documentation, research external solutions, and gather references independently.
 
 ### 4. Processes · Background process management
@@ -229,13 +221,9 @@ Starts, monitors, and stops development servers, tests, and other long-running c
 
 ### 5. Subagents · Parallel collaboration across agents
 
-[Subagent settings →](configs/pi/subagents.json)
-
 Creates, manages, and resumes independent subagent sessions, with roles such as Explore, Plan, and general-purpose. Research, planning, implementation, and verification can run in parallel, with the lead agent coordinating and integrating the work.
 
 ### 6. SoL-Pi · Tool-call and token optimization
-
-[Configuration →](configs/pi/sol-pi.json)
 
 Provides four independent optimization mechanisms; the first three are currently enabled:
 
@@ -308,7 +296,7 @@ Team engineering standards are optional references requiring GitHub repository a
 | What to read | Location and purpose |
 | --- | --- |
 | Shared working practices | [general](rules/PRINCIPLES.general.en.md) + [codex](rules/PRINCIPLES.codex.en.md) · [export tools](rules/harness/) |
-| Client settings | [Codex](configs/codex/) · [Pi](configs/pi/) · [Claude Code](configs/claude/) · [Orca hooks](configs/codex/hooks.json) · [Magpie specifications](configs/magpie/) |
+| Client settings | Codex · Pi · Claude Code · Orca hooks · Magpie specifications |
 | Project engineering standards | [GitHub · Engineering tasks, development and validation](https://github.com/StartLinks/AIJobMap/blob/dev/AGENTS.md) |
 | Engineering entry | [GitHub · Team engineering standards](https://github.com/StartLinks/bonjour-engineering-entry-point/blob/main/AGENTS.md) |
 | Project working conventions | [GitHub · Project working standards](https://github.com/StartLinks/BonjourAIO/blob/main/AGENTS.md) |

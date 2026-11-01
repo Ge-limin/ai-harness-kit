@@ -51,7 +51,7 @@
 个人规范、配置与工作流程随包提供，点击即可阅读。
 
 - [rules/](rules/)：General、Codex 两份工作规范和导出脚本。
-- [configs/](configs/)：Codex、Pi、Claude Code、Orca 和 Magpie 的实际配置。
+- configs/：Codex、Pi、Claude Code、Orca 和 Magpie 的实际配置。
 - [技能名单与来源](reference/skills/README.md)：Orca、CodexHost、飞书和 Pi 的第三方技能来源，以及自维护项目技能的原文入口。
 
 使用时按所选客户端准备[依赖](docs/DEPENDENCIES.md)，将配置中的路径、账号和凭据替换为自己的，再导出规范。接入步骤见[第 08 章](#start)。
@@ -79,11 +79,11 @@
 
 | 工具 | 用途 | 官网／官方文档 |
 | --- | --- | --- |
-| Orca | Agent 工作区：把多个 Agent、Git 工作树、终端、浏览器和代码审阅放在同一个应用里。 | [onorca.dev](https://onorca.dev/) · [阅读接入配置 →](configs/codex/hooks.json) |
-| Pi | 可扩展的终端 Agent：连接模型，读取和修改文件、执行命令，并通过插件补充搜索、子任务等能力。 | [pi.dev](https://pi.dev/) · [阅读配置原文 →](configs/pi/settings.json) |
-| Codex | OpenAI 的编程 Agent，可理解代码库、修改代码、运行测试和完成开发任务。 | [openai.com/codex](https://openai.com/codex/) · [阅读配置原文 →](configs/codex/config.toml) |
-| Claude Code | Anthropic 的编程 Agent，可在项目中阅读和修改代码、执行命令，并通过工具和技能扩展工作流程。 | [code.claude.com](https://code.claude.com/docs/en/overview) · [阅读配置原文 →](configs/claude/settings.json) |
-| Magpie | 统一管理多个 Agent 的模型与供应商，通过本机网关适配不同 API。可为 Codex、Pi、Claude Code 等选择模型，并维护对应配置与模型规格。 | [usemagpie.ai](https://usemagpie.ai/) · [阅读配置原文 →](configs/magpie/codex-gpt-6-astra.spec.txt) |
+| Orca | Agent 工作区：把多个 Agent、Git 工作树、终端、浏览器和代码审阅放在同一个应用里。 | [onorca.dev](https://onorca.dev/) |
+| Pi | 可扩展的终端 Agent：连接模型，读取和修改文件、执行命令，并通过插件补充搜索、子任务等能力。 | [pi.dev](https://pi.dev/) |
+| Codex | OpenAI 的编程 Agent，可理解代码库、修改代码、运行测试和完成开发任务。 | [openai.com/codex](https://openai.com/codex/) |
+| Claude Code | Anthropic 的编程 Agent，可在项目中阅读和修改代码、执行命令，并通过工具和技能扩展工作流程。 | [code.claude.com](https://code.claude.com/docs/en/overview) |
+| Magpie | 统一管理多个 Agent 的模型与供应商，通过本机网关适配不同 API。可为 Codex、Pi、Claude Code 等选择模型，并维护对应配置与模型规格。 | [usemagpie.ai](https://usemagpie.ai/) |
 | OpenLess | 语音输入工具：通过全局快捷键把口述转成文字，按所选风格润色后插入当前光标位置。支持将口述整理为 AI 提示词，方便向 Agent 说明需求、补充上下文和反馈修改意见。 | [openless.top](https://openless.top/) · [GitHub](https://github.com/Open-Less/openless) |
 
 <a id="orca"></a>
@@ -193,19 +193,13 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 | 上下文 | 380,000 | 380,000 | 模型选择含 [1m] |
 | 最大输出 | 当前客户端版本无独立字段 | 128,000 | 未显式设置 |
 
-配置原文：[Codex →](configs/codex/config.toml) · [Pi →](configs/pi/models.json) · [Claude Code →](configs/claude/settings.json)
-
-[Magpie 模型规格 →](configs/magpie/codex-gpt-6-astra.spec.txt) · [Pi 默认模型配置 →](configs/pi/settings.json)
-
 <a id="pi"></a>
 
 ## 07 · 九个 Pi 插件及其作用
 
-[插件启用配置 →](configs/pi/settings.json) · [依赖与接入要求 →](docs/DEPENDENCIES.md)
+[依赖与接入要求 →](docs/DEPENDENCIES.md)
 
 ### 1. FFF · 仓库文件与代码搜索
-
-[搜索配置 →](configs/pi/pi-fff.json)
 
 提供模糊文件名搜索、全文检索、结果分页和智能排序，结合文件访问频率、最近使用记录及 Git 状态快速定位相关代码，减少逐目录查找和重复搜索。
 
@@ -217,8 +211,6 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 
 ### 3. Web Access · 网页搜索与内容获取
 
-[搜索配置 →](configs/pi/web-search.json)
-
 支持互联网搜索、网页正文提取、视频内容理解及 GitHub 源码获取，方便 Agent 自主查阅技术文档、调研外部方案和获取参考资料。
 
 ### 4. Processes · 后台进程管理
@@ -229,13 +221,9 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 
 ### 5. Subagents · 多 Agent 并行协作
 
-[协作配置 →](configs/pi/subagents.json)
-
 支持创建、管理和恢复独立子 Agent 会话，提供 Explore、Plan 和 general-purpose 等角色，可并行执行调查、规划、实现和验证任务，由主 Agent 统一协调与集成。
 
 ### 6. SoL-Pi · 工具调用与 Token 优化
-
-[配置原文 →](configs/pi/sol-pi.json)
 
 提供四项独立优化机制，当前启用前三项：
 
@@ -308,7 +296,7 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 | 要看什么 | 入口与用途 |
 | --- | --- |
 | 共享工作方式 | [general](rules/PRINCIPLES.general.md) + [codex](rules/PRINCIPLES.codex.md) · [export tools](rules/harness/) |
-| 客户端配置 | [Codex](configs/codex/) · [Pi](configs/pi/) · [Claude Code](configs/claude/) · [Orca hooks](configs/codex/hooks.json) · [Magpie specifications](configs/magpie/) |
+| 客户端配置 | Codex · Pi · Claude Code · Orca hooks · Magpie specifications |
 | 项目工程规范 | [GitHub · 工程任务、开发与验证入口](https://github.com/StartLinks/AIJobMap/blob/dev/AGENTS.md) |
 | 工程入口 | [GitHub · 团队工程规范](https://github.com/StartLinks/bonjour-engineering-entry-point/blob/main/AGENTS.md) |
 | 项目协作约定 | [GitHub · 项目工作规范](https://github.com/StartLinks/BonjourAIO/blob/main/AGENTS.md) |
