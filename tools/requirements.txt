@@ -1,0 +1,4 @@
+Markdown>=3.7,<4
+Pygments>=2.18,<3
+lxml>=5,<7
+markdownify>=1.2,<2

@@ -1,0 +1,24 @@
+{
+  "workflow": "none",
+  "searchRouting": {
+    "providers": [
+      "openai"
+    ],
+    "useCurrentModel": true,
+    "fallbackOn": [
+      "unsupported"
+    ]
+  },
+  "allowBrowserCookies": false,
+  "fetchRouting": {
+    "providers": [
+      "http"
+    ],
+    "allowRemoteHostedProviders": false
+  },
+  "ssrf": {
+    "trustEnvProxy": true
+  },
+  "summaryModel": "openai-codex/gpt-6.1-sol",
+  "searchModel": "gemini-3.8-flash"
+}

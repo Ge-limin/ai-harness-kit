@@ -1,0 +1,378 @@
+[
+  {
+    "name": "pi-web-access",
+    "version": "0.44.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/nicobailon/pi-web-access.git"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "author": "Nico Bailon",
+    "homepage": "https://github.com/nicobailon/pi-web-access#readme",
+    "dependencies": {
+      "@modelcontextprotocol/sdk": "1.32.1",
+      "@mozilla/readability": "^0.6.0",
+      "defuddle": "0.19.3",
+      "linkedom": "^0.16.0",
+      "p-limit": "^6.1.0",
+      "promise.try": "^2.0.1",
+      "turndown": "^7.2.0",
+      "undici": "^8.11.2",
+      "unpdf": "^1.6.2"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-ai": "*",
+      "@earendil-works/pi-coding-agent": "*",
+      "@earendil-works/pi-tui": "*",
+      "typebox": "*"
+    },
+    "peerDependenciesMeta": {
+      "@earendil-works/pi-ai": {
+        "optional": true
+      },
+      "@earendil-works/pi-coding-agent": {
+        "optional": true
+      },
+      "@earendil-works/pi-tui": {
+        "optional": true
+      }
+    },
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "pi": {
+      "extensions": [
+        "./dist"
+      ]
+    },
+    "license_text": "MIT License\n\nCopyright (c) 2025 Nico Bailon\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "pi-web-access@0.44.0",
+      "resolved": "https://registry.npmjs.org/pi-web-access/-/pi-web-access-0.44.0.tgz",
+      "integrity": "sha512-8YK2Nb0P7ezRL0FS7P1cPYu7gDUOuhXWA3FOBev0bKsuPtG2QrDVm2GriKBgZI1Sq7SC8QRsfVFYYP8huUEo8w=="
+    }
+  },
+  {
+    "name": "@aliou/pi-processes",
+    "version": "0.13.2",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/aliou/pi-processes"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "private": false,
+    "dependencies": {
+      "@aliou/pi-utils-settings": "^0.19.1",
+      "@aliou/pi-utils-ui": "^0.5.0",
+      "@aliou/sh": "^0.2.2"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-ai": "*",
+      "@earendil-works/pi-coding-agent": "*",
+      "@earendil-works/pi-tui": "*",
+      "typebox": "*"
+    },
+    "peerDependenciesMeta": {
+      "@earendil-works/pi-ai": {
+        "optional": true
+      },
+      "@earendil-works/pi-coding-agent": {
+        "optional": true
+      },
+      "@earendil-works/pi-tui": {
+        "optional": true
+      },
+      "typebox": {
+        "optional": true
+      }
+    },
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "pi": {
+      "extensions": [
+        "./extensions/processes/index.ts",
+        "./extensions/processes-logs/index.ts",
+        "./extensions/processes-dock/index.ts"
+      ],
+      "skills": [
+        "./skills/pi-processes"
+      ]
+    },
+    "license_text": null,
+    "license_status": "declared_only",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "@aliou/pi-processes@0.13.2",
+      "resolved": "https://registry.npmjs.org/@aliou/pi-processes/-/pi-processes-0.13.2.tgz",
+      "integrity": "sha512-Bl3PDxYDTiljd9mp6U/nZYPD+yRupcJBVAKDyZSqrStmU7DEyHbHUTp529nHXfmpf+IFAkN3S7Nl9dNrNjiuYg=="
+    }
+  },
+  {
+    "name": "@gotgenes/pi-subagents",
+    "version": "25.0.1",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/gotgenes/pi-packages.git",
+      "directory": "packages/pi-subagents"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "author": {
+      "name": "Chris Lasher"
+    },
+    "homepage": "https://github.com/gotgenes/pi-packages/tree/main/packages/pi-subagents#readme",
+    "peerDependencies": {
+      "@earendil-works/pi-ai": ">=1.0.0",
+      "@earendil-works/pi-coding-agent": ">=1.0.0",
+      "@earendil-works/pi-tui": ">=1.0.0",
+      "typebox": "*"
+    },
+    "engines": {
+      "node": ">=22"
+    },
+    "pi": {
+      "extensions": [
+        "./src/index.ts"
+      ]
+    },
+    "license_text": "MIT License\n\nCopyright (c) 2026 tintinweb\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "@gotgenes/pi-subagents@25.0.1",
+      "resolved": "https://registry.npmjs.org/@gotgenes/pi-subagents/-/pi-subagents-25.0.1.tgz",
+      "integrity": "sha512-k9dYoRYCrJtMap58ziHtld7Jvp48L+iUqsO6ZNMp+p7syMS2FFtnz9BeamBlZjDb2G8ERyHZRExGl+OiOomBQQ=="
+    }
+  },
+  {
+    "name": "pi-lens",
+    "version": "4.4.4",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/apmantza/pi-lens.git"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "author": "Apostolos Mantzaris",
+    "dependencies": {
+      "@ast-grep/cli": "0.50.0",
+      "@ast-grep/napi": "^0.50.0",
+      "js-yaml": "^5.2.2",
+      "minimatch": "^10.2.6",
+      "pidusage": "^4.0.1",
+      "vscode-jsonrpc": "^9.0.0"
+    },
+    "optionalDependencies": {
+      "jiti": "^2.7.0",
+      "web-tree-sitter": "0.25.10"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-coding-agent": "*",
+      "@earendil-works/pi-tui": "*",
+      "typebox": "^1.0.0"
+    },
+    "peerDependenciesMeta": {
+      "@earendil-works/pi-coding-agent": {
+        "optional": true
+      },
+      "@earendil-works/pi-tui": {
+        "optional": true
+      },
+      "typebox": {
+        "optional": true
+      }
+    },
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "pi": {
+      "extensions": [
+        "./dist/index.js"
+      ],
+      "skills": [
+        "./skills"
+      ]
+    },
+    "license_text": "MIT License\n\nCopyright (c) 2026 Apostolos Mantzaris and pi-lens contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "pi-lens@4.4.4",
+      "resolved": "https://registry.npmjs.org/pi-lens/-/pi-lens-4.4.4.tgz",
+      "integrity": "sha512-n9utYDhpOKxGBDus8RpJRLvlqWLAn4htpUgwC73bLDgE8CtpdWOUKRAR2lP6Rb2bXDqGoh2Xnbt0iCS+uSQV1Q=="
+    }
+  },
+  {
+    "name": "@ff-labs/pi-fff",
+    "version": "0.11.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/dmtrKovalenko/fff.git",
+      "directory": "packages/pi-fff"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "homepage": "https://github.com/dmtrKovalenko/fff/tree/main/packages/pi-fff",
+    "dependencies": {
+      "@ff-labs/fff-bun": "0.11.0",
+      "@ff-labs/fff-node": "0.11.0"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-coding-agent": "*",
+      "@earendil-works/pi-tui": "*",
+      "@sinclair/typebox": "*"
+    },
+    "pi": {
+      "extensions": [
+        "./src/index.ts"
+      ]
+    },
+    "license_text": null,
+    "license_status": "declared_only",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "@ff-labs/pi-fff@0.11.0",
+      "resolved": "https://registry.npmjs.org/@ff-labs/pi-fff/-/pi-fff-0.11.0.tgz",
+      "integrity": "sha512-RNYBSnmRaGxYF9/R5KO4Uq0q1Prtbe6CmltK7i3efD0+JEwR2h69sL+p6UIXNDrVANSXEWM8ehagQefbskoGwg=="
+    }
+  },
+  {
+    "name": "sol-pi",
+    "version": "0.1.1",
+    "repository": null,
+    "license": "MIT",
+    "runtime_bundled": false,
+    "private": true,
+    "peerDependencies": {
+      "@earendil-works/pi-agent-core": ">=0.84.2",
+      "@earendil-works/pi-ai": ">=0.84.2",
+      "@earendil-works/pi-coding-agent": ">=0.84.2",
+      "@earendil-works/pi-tui": ">=0.84.2",
+      "typebox": "*"
+    },
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "pi": {
+      "extensions": [
+        "./src/sol-pi/index.ts"
+      ]
+    },
+    "license_text": "Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the \"Software\"),\nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\nTHE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "local_implementation",
+      "portable_source": null,
+      "requirements": {
+        "zh": "Obtain the matching local customized implementation from its maintainer and configure its actual installation path. No portable source is recorded; an upstream package or current repository revision must not be assumed equivalent.",
+        "en": "Obtain the matching local customized implementation from its maintainer and configure its actual installation path. No portable source is recorded; an upstream package or current repository revision must not be assumed equivalent."
+      }
+    }
+  },
+  {
+    "name": "pi-compact-ui",
+    "version": "0.1.3",
+    "repository": null,
+    "license": null,
+    "runtime_bundled": false,
+    "peerDependencies": {
+      "@earendil-works/pi-coding-agent": "*",
+      "@earendil-works/pi-tui": "*"
+    },
+    "pi": {
+      "extensions": [
+        "./index.ts"
+      ]
+    },
+    "license_text": null,
+    "license_status": "not_declared",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "pi-compact-ui@0.1.3",
+      "resolved": "https://registry.npmjs.org/pi-compact-ui/-/pi-compact-ui-0.1.3.tgz",
+      "integrity": "sha512-oBkjTN587wid952T2sY7pDxF9RraXQQfSSaIFxhV2o60wD3eQYUG+7vkq5G3TsdOdhC5ukMYA/03XLerFzI6Hw=="
+    }
+  },
+  {
+    "name": "pi-local-file-links",
+    "version": "0.1.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Ge-limin/pi-local-file-links.git"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "author": "Limin Ge",
+    "homepage": "https://github.com/Ge-limin/pi-local-file-links#readme",
+    "dependencies": {
+      "mdast-util-from-markdown": "2.0.3",
+      "mdast-util-gfm": "3.1.0",
+      "micromark-extension-gfm": "3.0.0",
+      "micromark-util-decode-string": "2.0.1"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-coding-agent": ">=0.86.0 <0.88.0"
+    },
+    "peerDependenciesMeta": {
+      "@earendil-works/pi-coding-agent": {
+        "optional": true
+      }
+    },
+    "engines": {
+      "node": ">=22"
+    },
+    "pi": {
+      "extensions": [
+        "./index.js"
+      ]
+    },
+    "license_text": "MIT License\n\nCopyright (c) 2026 Limin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "local_implementation",
+      "portable_source": null,
+      "requirements": {
+        "zh": "Obtain the matching local customized implementation from its maintainer and configure its actual installation path. No portable source is recorded; an upstream package or current repository revision must not be assumed equivalent.",
+        "en": "Obtain the matching local customized implementation from its maintainer and configure its actual installation path. No portable source is recorded; an upstream package or current repository revision must not be assumed equivalent."
+      }
+    }
+  },
+  {
+    "name": "@narumitw/pi-btw",
+    "version": "0.62.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/narumiruna/pi-extensions",
+      "directory": "packages/pi-btw"
+    },
+    "license": "MIT",
+    "runtime_bundled": false,
+    "private": false,
+    "dependencies": {
+      "@narumitw/pi-tui-kit": "^0.64.0"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-ai": "*",
+      "@earendil-works/pi-coding-agent": "*",
+      "@earendil-works/pi-tui": "*"
+    },
+    "pi": {
+      "extensions": [
+        "./dist/index.ts"
+      ]
+    },
+    "license_text": "MIT License\n\nCopyright (c) 2026 narumiruna\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "@narumitw/pi-btw@0.62.0",
+      "resolved": "https://registry.npmjs.org/@narumitw/pi-btw/-/pi-btw-0.62.0.tgz",
+      "integrity": "sha512-9bifAqcnQSeV7E0hBQ87h1CTmxbqVVTRVeB2QGIyKlPR7YbXoOG1z3gbAbogJLWY5ffOjSuHpTMYZ/5TPdr8AA=="
+    }
+  }
+]

@@ -1,0 +1,249 @@
+[
+  {
+    "source": "Personal standards / PRINCIPLES.general.md",
+    "package": "rules/PRINCIPLES.general.md",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / PRINCIPLES.general.md"
+  },
+  {
+    "source": "Personal standards / PRINCIPLES.codex.md",
+    "package": "rules/PRINCIPLES.codex.md",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / PRINCIPLES.codex.md"
+  },
+  {
+    "source": "Personal standards / harness/sync.py",
+    "package": "rules/harness/sync.py",
+    "status": "adapted",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / harness/sync.py"
+  },
+  {
+    "source": "Personal standards / harness/sync.sh",
+    "package": "rules/harness/sync.sh",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / harness/sync.sh"
+  },
+  {
+    "source": "Personal standards / harness/targets.yaml",
+    "package": "rules/harness/targets.yaml",
+    "status": "adapted",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / harness/targets.yaml"
+  },
+  {
+    "source": "Personal standards / harness/requirements.txt",
+    "package": "rules/harness/requirements.txt",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / harness/requirements.txt"
+  },
+  {
+    "source": "Personal standards / harness/test_sync.py",
+    "package": "rules/harness/test_sync.py",
+    "status": "adapted",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / harness/test_sync.py"
+  },
+  {
+    "source": "Personal settings / codex/config.toml",
+    "package": "configs/codex/config.toml",
+    "status": "adapted",
+    "redacted_fields": [
+      "model_providers.sub2api.experimental_bearer_token",
+      "model_providers.magpie.experimental_bearer_token",
+      "model_providers.magpie.http_headers.x-openai-actor-authorization"
+    ],
+    "source_zh": "个人配置 / codex/config.toml"
+  },
+  {
+    "source": "Personal settings / codex/hooks.json",
+    "package": "configs/codex/hooks.json",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / codex/hooks.json"
+  },
+  {
+    "source": "Personal settings / pi/settings.json",
+    "package": "configs/pi/settings.json",
+    "status": "adapted",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / pi/settings.json"
+  },
+  {
+    "source": "Personal settings / pi/models.json",
+    "package": "configs/pi/models.json",
+    "status": "adapted",
+    "redacted_fields": [
+      "providers.magpie.apiKey",
+      "providers.deepseek.apiKey"
+    ],
+    "source_zh": "个人配置 / pi/models.json"
+  },
+  {
+    "source": "Personal settings / pi/subagents.json",
+    "package": "configs/pi/subagents.json",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / pi/subagents.json"
+  },
+  {
+    "source": "Personal settings / pi/pi-fff.json",
+    "package": "configs/pi/pi-fff.json",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / pi/pi-fff.json"
+  },
+  {
+    "source": "Personal settings / pi/sol-pi.json",
+    "package": "configs/pi/sol-pi.json",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / pi/sol-pi.json"
+  },
+  {
+    "source": "Personal settings / pi/web-search.json",
+    "package": "configs/pi/web-search.json",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / pi/web-search.json"
+  },
+  {
+    "source": "Personal settings / claude/settings.json",
+    "package": "configs/claude/settings.json",
+    "status": "adapted",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / claude/settings.json"
+  },
+  {
+    "source": "Personal settings / claude/statusline.sh",
+    "package": "configs/claude/statusline.sh",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / claude/statusline.sh"
+  },
+  {
+    "source": "Personal settings / claude/commands/hand-off.md",
+    "package": "configs/claude/commands/hand-off.md",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / claude/commands/hand-off.md"
+  },
+  {
+    "source": "Personal settings / magpie/codex-gpt-6-astra.spec.txt",
+    "package": "configs/magpie/codex-gpt-6-astra.spec.txt",
+    "status": "original",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / magpie/codex-gpt-6-astra.spec.txt"
+  },
+  {
+    "source": "Bilingual package documentation / reference/skills/README.md",
+    "source_zh": "包内双语说明 / reference/skills/README.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "reference/skills/README.md",
+    "status": "adapted",
+    "redacted_fields": []
+  },
+  {
+    "source": "Bilingual package documentation / reference/skills/README.md",
+    "source_zh": "包内双语说明 / reference/skills/README.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "reference/skills/README.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "translation_of": "reference/skills/README.md"
+  },
+  {
+    "source": "Bilingual package documentation / docs/DEPENDENCIES.md",
+    "source_zh": "包内双语说明 / docs/DEPENDENCIES.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "docs/DEPENDENCIES.md",
+    "status": "adapted",
+    "redacted_fields": []
+  },
+  {
+    "source": "Bilingual package documentation / docs/DEPENDENCIES.md",
+    "source_zh": "包内双语说明 / docs/DEPENDENCIES.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "docs/DEPENDENCIES.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "translation_of": "docs/DEPENDENCIES.md"
+  },
+  {
+    "source": "Bilingual package documentation / docs/SOURCES.md",
+    "source_zh": "包内双语说明 / docs/SOURCES.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "docs/SOURCES.md",
+    "status": "adapted",
+    "redacted_fields": []
+  },
+  {
+    "source": "Bilingual package documentation / docs/SOURCES.md",
+    "source_zh": "包内双语说明 / docs/SOURCES.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "docs/SOURCES.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "translation_of": "docs/SOURCES.md"
+  },
+  {
+    "source": "Bilingual package documentation / docs/validation.md",
+    "source_zh": "包内双语说明 / docs/validation.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "docs/validation.md",
+    "status": "adapted",
+    "redacted_fields": []
+  },
+  {
+    "source": "Bilingual package documentation / docs/validation.md",
+    "source_zh": "包内双语说明 / docs/validation.md",
+    "source_commit": "aba2be79b117a292c26d0f1f6937595b37caae24",
+    "package": "docs/validation.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "translation_of": "docs/validation.md"
+  },
+  {
+    "source": "Package documentation / README.md",
+    "source_zh": "包内说明 / README.md",
+    "package": "README.md",
+    "status": "adapted",
+    "redacted_fields": []
+  },
+  {
+    "source": "Package documentation / README.md",
+    "source_zh": "包内说明 / README.md",
+    "package": "README.en.md",
+    "status": "translated",
+    "translation_of": "README.md",
+    "redacted_fields": []
+  },
+  {
+    "source": "Personal standards / PRINCIPLES.general.md",
+    "package": "rules/PRINCIPLES.general.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / PRINCIPLES.general.md",
+    "translation_of": "rules/PRINCIPLES.general.md"
+  },
+  {
+    "source": "Personal standards / PRINCIPLES.codex.md",
+    "package": "rules/PRINCIPLES.codex.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "source_zh": "个人工作规范 / PRINCIPLES.codex.md",
+    "translation_of": "rules/PRINCIPLES.codex.md"
+  },
+  {
+    "source": "Personal settings / claude/commands/hand-off.md",
+    "package": "configs/claude/commands/hand-off.en.md",
+    "status": "translated",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / claude/commands/hand-off.md",
+    "translation_of": "configs/claude/commands/hand-off.md"
+  }
+]
