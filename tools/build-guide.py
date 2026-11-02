@@ -258,7 +258,11 @@ GitHub 默认展示英文 `README.md`，中文入口为 `README.zh-CN.md`；子�
 
 来源记录和英文对应关系维护在 `docs/manifest.json`，构建时同步生成两种语言的来源表。英文译文标记为 `translated`，通过 `translation_of` 指向中文源文件；离线附件中的对应字段为 `translationOf`。插件元数据维护在 `docs/DEPENDENCIES.json`。
 
-生成器先生成 README，再嵌入全部随包文件，保留复制与下载所用原文。只有单个 HTML 时，可用标准 HTML/JSON 工具提取 `script#guide-files` 中的 `files`，按每项 `path`、`source` 保存到独立目录后接入。"""
+生成器先生成 README，再嵌入全部随包文件，保留复制与下载所用原文。只有单个 HTML 时，可用标准 HTML/JSON 工具提取 `script#guide-files` 中的 `files`，按每项 `path`、`source` 保存到独立目录后接入。
+
+## 相关理念
+
+[AI 原生工程宣言](https://github.com/Ge-limin/ai-native-engineering-manifesto/blob/main/readme-zh.md) 记录我的工程理念与原则；AI Harness Kit 汇集我日常实际使用的规范、配置与流程。"""
     return """## Repository use and maintenance
 
 Repository: [Ge-limin/ai-harness-kit](https://github.com/Ge-limin/ai-harness-kit). This is a private repository review edition; access it through a locally authorized GitHub identity. Give your agent the repository URL, a local clone, or `guide.html`, then follow chapter 08 for setup and verification through a real task. Supply credentials and installation paths for the target environment.
@@ -276,7 +280,11 @@ GitHub displays the English `README.md` by default; the Chinese edition is `READ
 
 Maintain provenance and language pairs in `docs/manifest.json`; the build updates both source tables. English translations have status `translated` and a `translation_of` field pointing to their Chinese source; the embedded attachment field is `translationOf`. Maintain plugin metadata in `docs/DEPENDENCIES.json`.
 
-The builder generates the READMEs before embedding every bundled file, preserving the full source for copy and download. If only the HTML is available, use standard HTML/JSON tools to extract `files` from `script#guide-files`, saving each `path` and `source` into a separate directory before setup."""
+The builder generates the READMEs before embedding every bundled file, preserving the full source for copy and download. If only the HTML is available, use standard HTML/JSON tools to extract `files` from `script#guide-files`, saving each `path` and `source` into a separate directory before setup.
+
+## Engineering philosophy
+
+The [AI-Native Engineering Manifesto](https://github.com/Ge-limin/ai-native-engineering-manifesto) sets out my engineering philosophy and principles; AI Harness Kit collects the working rules, configurations, and workflows I use in my daily work."""
 
 def build():
     manifest = json.loads((ROOT / "docs/manifest.json").read_text())

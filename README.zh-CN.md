@@ -336,3 +336,7 @@ GitHub 默认展示英文 `README.md`，中文入口为 `README.zh-CN.md`；子�
 来源记录和英文对应关系维护在 `docs/manifest.json`，构建时同步生成两种语言的来源表。英文译文标记为 `translated`，通过 `translation_of` 指向中文源文件；离线附件中的对应字段为 `translationOf`。插件元数据维护在 `docs/DEPENDENCIES.json`。
 
 生成器先生成 README，再嵌入全部随包文件，保留复制与下载所用原文。只有单个 HTML 时，可用标准 HTML/JSON 工具提取 `script#guide-files` 中的 `files`，按每项 `path`、`source` 保存到独立目录后接入。
+
+## 相关理念
+
+[AI 原生工程宣言](https://github.com/Ge-limin/ai-native-engineering-manifesto/blob/main/readme-zh.md) 记录我的工程理念与原则；AI Harness Kit 汇集我日常实际使用的规范、配置与流程。

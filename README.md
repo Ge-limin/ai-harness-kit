@@ -336,3 +336,7 @@ GitHub displays the English `README.md` by default; the Chinese edition is `READ
 Maintain provenance and language pairs in `docs/manifest.json`; the build updates both source tables. English translations have status `translated` and a `translation_of` field pointing to their Chinese source; the embedded attachment field is `translationOf`. Maintain plugin metadata in `docs/DEPENDENCIES.json`.
 
 The builder generates the READMEs before embedding every bundled file, preserving the full source for copy and download. If only the HTML is available, use standard HTML/JSON tools to extract `files` from `script#guide-files`, saving each `path` and `source` into a separate directory before setup.
+
+## Engineering philosophy
+
+The [AI-Native Engineering Manifesto](https://github.com/Ge-limin/ai-native-engineering-manifesto) sets out my engineering philosophy and principles; AI Harness Kit collects the working rules, configurations, and workflows I use in my daily work.
