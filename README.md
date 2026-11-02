@@ -336,3 +336,27 @@ GitHub displays the English `README.md` by default; the Chinese edition is `READ
 Maintain provenance and language pairs in `docs/manifest.json`; the build updates both source tables. English translations have status `translated` and a `translation_of` field pointing to their Chinese source; the embedded attachment field is `translationOf`. Maintain plugin metadata in `docs/DEPENDENCIES.json`.
 
 The builder generates the READMEs before embedding every bundled file, preserving the full source for copy and download. If only the HTML is available, use standard HTML/JSON tools to extract `files` from `script#guide-files`, saving each `path` and `source` into a separate directory before setup.
+
+## Engineering philosophy
+
+The [AI-Native Engineering Manifesto](https://github.com/Ge-limin/ai-native-engineering-manifesto) sets out my engineering philosophy and principles; AI Harness Kit collects the working rules, configurations, and workflows I use in my daily work.
+
+### AI-Native Engineering: 11 Hard Truths for 2025 (excerpts)
+
+> - Your codebase, your docs, your meeting notes — none of these are your backbone. Your only reliable, compounding asset is your test case library.
+> - To truly understand AI, you must understand its nature: AI is completely, fundamentally stateless.
+> - The context window is the most critical computational resource every engineer must master.
+> - Plan–Act, Test–Code, and Doc–Code–Doc are the new operating system of engineering.
+> - The future of code isn’t abstraction — it’s tiny, isolated, AI-readable units that stand on their own.
+> - AI-generated Artifacts are not side effects. They are a new software modality — and they become part of your engineering assets.
+> - The real power of AI IDEs and Agents is not generation —   it's ruthless, intelligent context selection.
+
+### May 2026 Revision (excerpt)
+
+> **SSOT is the root principle behind software engineering.**
+>
+> The May 2026 SSOT essays argue that DRY, KISS, SOLID, domain modeling, testing, observability, CICD, and documentation governance all collapse into one deeper discipline: every important fact needs one authoritative home, one owner, and one evidence path. The core problem in complex software is not lack of content. It is not knowing which content still counts.
+
+## License
+
+The text of this manifesto (README and all chapters) is licensed under [CC BY 4.0](LICENSE) — share and adapt freely with attribution. Code snippets embedded in the text are MIT.

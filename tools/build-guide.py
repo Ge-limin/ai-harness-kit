@@ -258,7 +258,29 @@ GitHub 默认展示英文 `README.md`，中文入口为 `README.zh-CN.md`；子�
 
 来源记录和英文对应关系维护在 `docs/manifest.json`，构建时同步生成两种语言的来源表。英文译文标记为 `translated`，通过 `translation_of` 指向中文源文件；离线附件中的对应字段为 `translationOf`。插件元数据维护在 `docs/DEPENDENCIES.json`。
 
-生成器先生成 README，再嵌入全部随包文件，保留复制与下载所用原文。只有单个 HTML 时，可用标准 HTML/JSON 工具提取 `script#guide-files` 中的 `files`，按每项 `path`、`source` 保存到独立目录后接入。"""
+生成器先生成 README，再嵌入全部随包文件，保留复制与下载所用原文。只有单个 HTML 时，可用标准 HTML/JSON 工具提取 `script#guide-files` 中的 `files`，按每项 `path`、`source` 保存到独立目录后接入。
+
+## 相关理念
+
+[AI 原生工程宣言](https://github.com/Ge-limin/ai-native-engineering-manifesto/blob/main/readme-zh.md) 记录我的工程理念与原则；AI Harness Kit 汇集我日常实际使用的规范、配置与流程。
+
+### AI-Native的软件工程：2025 年的 11 条真相（节选）
+
+> - 你的代码库、文档库、会议纪要、会议录音、团队的记忆、直觉都不是项目真正可依赖的核心资产，唯一可依赖的核心资产有且只有你的测试案例库。
+> - 理解AI的关键在于理解**无状态性**。
+> - AI的context window 的上限，将是新时代程序员最需要关心的资源。
+> - Plan–Act、Test–Code、Doc–Code–Doc 是新工程时代的工程循环。
+> - 代码的未来不是复用和抽象，而是海量彼此独立、足够小、AI 可直接理解的单元。
+> - AI 生成的 Artifact 是一种新的模态。
+> - AI IDE 或 AI Agent 卖的是 Context 选择的能力。
+
+### May 2026 修订（节选）
+
+> SSOT 是软件工程的根原则。2026 年 5 月写的两篇 SSOT 文章里，我把 DRY、KISS、SOLID、领域建模、测试、可观测性、CICD、文档治理一路往下归并，发现它们最后都在谈同一件事：每个重要事实都得有一个权威位置、一个 owner，外加一条 evidence 路径。复杂软件缺的从来不是更多内容，而是“哪个内容算数”。
+
+## License
+
+本宣言的正文（README 与全部章节）以 [CC BY 4.0](LICENSE) 授权——注明出处即可自由转载、翻译、改编。正文中内嵌的代码片段为 MIT 授权。"""
     return """## Repository use and maintenance
 
 Repository: [Ge-limin/ai-harness-kit](https://github.com/Ge-limin/ai-harness-kit). This is a private repository review edition; access it through a locally authorized GitHub identity. Give your agent the repository URL, a local clone, or `guide.html`, then follow chapter 08 for setup and verification through a real task. Supply credentials and installation paths for the target environment.
@@ -276,7 +298,31 @@ GitHub displays the English `README.md` by default; the Chinese edition is `READ
 
 Maintain provenance and language pairs in `docs/manifest.json`; the build updates both source tables. English translations have status `translated` and a `translation_of` field pointing to their Chinese source; the embedded attachment field is `translationOf`. Maintain plugin metadata in `docs/DEPENDENCIES.json`.
 
-The builder generates the READMEs before embedding every bundled file, preserving the full source for copy and download. If only the HTML is available, use standard HTML/JSON tools to extract `files` from `script#guide-files`, saving each `path` and `source` into a separate directory before setup."""
+The builder generates the READMEs before embedding every bundled file, preserving the full source for copy and download. If only the HTML is available, use standard HTML/JSON tools to extract `files` from `script#guide-files`, saving each `path` and `source` into a separate directory before setup.
+
+## Engineering philosophy
+
+The [AI-Native Engineering Manifesto](https://github.com/Ge-limin/ai-native-engineering-manifesto) sets out my engineering philosophy and principles; AI Harness Kit collects the working rules, configurations, and workflows I use in my daily work.
+
+### AI-Native Engineering: 11 Hard Truths for 2025 (excerpts)
+
+> - Your codebase, your docs, your meeting notes — none of these are your backbone. Your only reliable, compounding asset is your test case library.
+> - To truly understand AI, you must understand its nature: AI is completely, fundamentally stateless.
+> - The context window is the most critical computational resource every engineer must master.
+> - Plan–Act, Test–Code, and Doc–Code–Doc are the new operating system of engineering.
+> - The future of code isn’t abstraction — it’s tiny, isolated, AI-readable units that stand on their own.
+> - AI-generated Artifacts are not side effects. They are a new software modality — and they become part of your engineering assets.
+> - The real power of AI IDEs and Agents is not generation —   it's ruthless, intelligent context selection.
+
+### May 2026 Revision (excerpt)
+
+> **SSOT is the root principle behind software engineering.**
+>
+> The May 2026 SSOT essays argue that DRY, KISS, SOLID, domain modeling, testing, observability, CICD, and documentation governance all collapse into one deeper discipline: every important fact needs one authoritative home, one owner, and one evidence path. The core problem in complex software is not lack of content. It is not knowing which content still counts.
+
+## License
+
+The text of this manifesto (README and all chapters) is licensed under [CC BY 4.0](LICENSE) — share and adapt freely with attribution. Code snippets embedded in the text are MIT."""
 
 def build():
     manifest = json.loads((ROOT / "docs/manifest.json").read_text())
