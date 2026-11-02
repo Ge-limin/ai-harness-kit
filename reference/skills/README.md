@@ -15,9 +15,9 @@
 
 ## CodexHost
 
-来源：[BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host)，由 `@codexhost/cli` 提供。
+来源：[BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host)，由 `@codexhost/cli` 提供。CodexHost 将 Pi 等 Harness 接入 Codex Desktop；安装、启动与本机验收范围见[指南接入步骤](../../README.zh-CN.md#codex-desktop-pi)。
 
-- `codexhost-delegation`：委派 Agent 任务、读取及跟进外部会话。
+- `codexhost-delegation`：在这套桌面接入中委派 Agent 任务、读取及跟进外部会话；本机已验证 Pi 委派原生 Codex 执行浏览器任务并收回结果。
 
 ## Lark CLI
 
