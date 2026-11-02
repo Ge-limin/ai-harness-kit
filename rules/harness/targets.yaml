@@ -1,0 +1,29 @@
+# Distribution targets
+# sources merges corresponding sections by number; single-source exports preserve the original bytes
+# Relative paths are resolved from this configuration file's directory
+
+targets:
+  - name: pi-codex
+    sources:
+      - ../PRINCIPLES.general.md
+      - ../PRINCIPLES.codex.md
+    path: ~/.pi/agent/AGENTS.md
+    note: Pi-Codex harness uses general + codex
+
+  - name: codex
+    sources:
+      - ../PRINCIPLES.general.md
+      - ../PRINCIPLES.codex.md
+    path: ~/.codex/AGENTS.md
+    note: Codex CLI + Desktop uses general + codex
+
+  - name: claude-code
+    sources:
+      - ../PRINCIPLES.general.md
+    path: ~/.claude/rules/global-principles.md
+    note: Claude Code uses general; projects read AGENTS.md directly
+
+# Explicitly excluded:
+# - OpenCode: no separate source is maintained, and global instructions are no longer exported.
+# - Claude Desktop app (Claude.app): no user-level CLAUDE.md entry point; the only file entry point is
+#   ~/Library/Application Support/Claude/claude_desktop_config.json (MCP only)

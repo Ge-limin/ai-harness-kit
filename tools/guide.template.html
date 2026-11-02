@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Limin 日常使用、已调通并持续维护的 AI 配置、个人偏好与工作流程。">
+<title>AI Harness Kit · 使用指南</title>
+<style>
+/* Offline editorial guide. Visual sources: personal-website typography.css,
+   sections.css, longform.css, bands.css, ArticleHeader and HomeHero.
+   System fallbacks keep this standalone; no network fonts are requested. */
+:root{color-scheme:light;--paper:#fff;--ink:#171717;--muted:#525252;--subtle:#737373;--line:rgb(0 0 0 / 12%);--accent:#2f5bd3;--pale:#ecf0fb;--white:#fff;--hover:#f3f5fc;--mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:Manrope,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;--heading:Sora,"PingFang SC","Microsoft YaHei",sans-serif;--display:"Bricolage Grotesque",Manrope,system-ui,sans-serif;--serif:"Noto Serif SC","Songti SC",STSong,"Noto Serif CJK SC",serif;--rail:264px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:40px}
+body{margin:0;background:var(--paper);color:var(--muted);font:16px/1.85 var(--sans);-webkit-font-smoothing:antialiased}
+html[lang=zh-CN] body{line-height:2}
+::selection{background:#dbe4ff;color:#2446a3}
+a{color:var(--ink);text-decoration-color:#a3a3a3;text-underline-offset:4px;text-decoration-thickness:1px;overflow-wrap:anywhere;transition:color .15s,text-decoration-color .15s}
+a:hover{color:var(--accent);text-decoration-color:currentColor}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+body [lang=en]{display:none}html[lang=en] body [lang=zh-CN]{display:none}html[lang=en] body [lang=en]{display:revert}
+.skip{position:fixed;left:16px;top:-100px;background:#fff;border:1px solid var(--accent);padding:10px 16px;z-index:100}.skip:focus{top:12px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--rail);padding:32px 20px 36px;overflow-y:auto;overscroll-behavior:contain;background:#fff;border-right:1px solid var(--line);z-index:30}
+.brand{display:block;padding:0 10px 12px;font:600 20px/1.4 var(--heading);letter-spacing:-.6px;text-decoration:none;color:var(--ink)}
+.edition{padding:0 10px;font:10px/1.9 var(--mono);letter-spacing:.06em;color:var(--subtle);margin:0 0 26px}
+.controls{display:flex;gap:0;margin:0 10px 30px;width:fit-content;border:1px solid var(--line);border-radius:4px;padding:3px;background:#fafafa}
+.controls button{border:0;border-radius:2px;padding:5px 12px;background:transparent;color:var(--muted);font-size:12px;line-height:20px}
+.controls button[aria-pressed=true]{background:var(--ink);color:#fff}
+.nav-label{padding:0 10px;margin:0 0 12px;color:var(--accent);font-size:11px;font-weight:600}
+.sidebar nav{display:flex;flex-direction:column;gap:3px}
+.sidebar nav a{display:flex;align-items:baseline;gap:10px;text-decoration:none;padding:9px 10px;border-left:2px solid transparent;color:var(--muted);font-size:12px;line-height:1.65}
+.sidebar nav a:hover{background:#fafafa;color:var(--ink)}.sidebar nav a.active{border-left-color:var(--accent);background:var(--pale);color:#2446a3;font-weight:600}
+.navnum{flex:0 0 20px;font:10px/20px var(--mono);color:var(--subtle)}.sidebar nav a.active .navnum{color:var(--accent)}
+.sidebar footer{font-size:11px;line-height:1.8;color:var(--subtle);padding:22px 10px 0;margin-top:28px;border-top:1px solid var(--line)}
+main{margin-left:var(--rail);padding:0 64px 96px;min-width:0}main>*{max-width:820px;margin-left:auto;margin-right:auto}
+.hero{position:relative;padding:64px 0 48px;border-bottom:1px solid var(--ink);isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0 -64px;z-index:-1;background:#ecf0fb;border-top:4px solid var(--accent)}
+.eyebrow{font:11px/1.6 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--accent);padding-right:84px;margin:0 0 24px}
+h1,h2,h3,h4,b,strong{color:var(--ink)}
+h1{font:300 clamp(42px,4.5vw,66px)/1.12 var(--display);letter-spacing:-.035em;margin:0 0 26px;max-width:760px;text-wrap:balance}
+html[lang=zh-CN] h1{font-family:var(--serif);font-weight:300;letter-spacing:0;line-height:1.35}
+h2{font:600 clamp(24px,2.3vw,30px)/1.4 var(--heading);letter-spacing:-.025em;margin:12px 0 28px;text-wrap:balance}
+h3{font:600 19px/1.55 var(--heading);letter-spacing:-.015em;margin:32px 0 12px}
+h4{font:600 16px/1.6 var(--heading);margin:24px 0 8px}
+html[lang=zh-CN] :is(h2,h3,h4){letter-spacing:0}
+p{margin:0 0 20px}.lead{font-size:18px;line-height:1.9;color:#404040;max-width:700px;margin-bottom:28px}
+strong,b{font-weight:650}
+.hero .small{max-width:680px;margin-top:24px;margin-bottom:0;color:#64748b;font-size:12px;line-height:1.8}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.tag{border:1px solid #2f5bd333;border-radius:3px;padding:3px 9px;font:11px/1.8 var(--mono);color:var(--accent)}
+.hero-links{display:flex;gap:12px 24px;flex-wrap:wrap;margin-top:28px}.hero-links a{font-size:13px;font-weight:600;text-decoration-color:#2f5bd366}
+section{padding:48px 0 52px;scroll-margin-top:24px;border-bottom:1px solid var(--line)}
+.section-no{display:inline-block;font:11px/1.6 var(--mono);letter-spacing:.08em;color:var(--accent)}
+.section-no:before{content:"";display:inline-block;width:24px;height:2px;vertical-align:middle;background:var(--accent);margin-right:10px}
+section>ul,section>ol{margin-top:22px;margin-bottom:26px}
+ul,ol{padding-left:24px}li{margin:12px 0;padding-left:3px}li::marker{color:var(--accent);font-size:.8em}
+li>ul,li>ol{margin:10px 0}li p:last-child{margin-bottom:0}
+.core-values{list-style:none;padding:26px 32px;margin:26px 0 40px;background:#0c0c0c;color:#fafafa;counter-reset:value}.core-values>li{position:relative;margin:0;padding:13px 0 13px 40px;border-bottom:1px solid #2c2c2c;counter-increment:value}.core-values>li:last-child{border-bottom:0}.core-values>li:before{content:counter(value,decimal-leading-zero);position:absolute;left:0;top:15px;color:#f4895f;font:11px/24px var(--mono)}
+#why,#rules{--accent:#b93f1b;--pale:#f9eeea}
+#why>.section-no,#rules>.section-no{color:var(--accent)}
+.sidebar nav a[href="#why"],.sidebar nav a[href="#rules"]{--accent:#b93f1b;--pale:#f9eeea}.sidebar nav a.active{color:var(--accent)}
+.principle-list>li>div>p{margin:6px 0 0}.principle-list>li{margin:18px 0}
+html[lang=zh-CN] .eyebrow,html[lang=zh-CN] .nav-label{letter-spacing:0}
+/* Plugin and workflow content stays a continuous reading list. */
+.grid{display:flex;flex-direction:column;gap:0;margin:26px 0}.card{min-width:0;padding:22px 0;border-bottom:1px solid var(--line);background:transparent;box-shadow:none;border-radius:0}.card:first-child{padding-top:0}.card:last-child{border-bottom:0}.card h3{margin:0 0 10px}.card p:last-child{margin-bottom:0}
+.note{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:28px 0;color:#475569}.note p:last-child{margin-bottom:0}.note p:first-child{margin-top:0}
+.table-wrap{overflow-x:auto;overscroll-behavior-x:contain;margin:28px 0;max-width:100%;border-top:2px solid var(--accent);border-bottom:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.85;text-align:left}
+th,td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--pale);font-weight:600;color:var(--accent)}td:first-child{font-weight:600;color:var(--ink)}tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafafa}
+code{font:12px/1.8 var(--mono);background:#f4f4f5;padding:3px 5px;border-radius:3px;overflow-wrap:anywhere;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;tab-size:2}pre code{background:none;padding:0;color:inherit;font-size:13px;line-height:1.8}
+.command{background:#f6f7fa;color:var(--ink);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:4px;padding:24px 28px;margin:24px 0}
+.command-head{display:flex;justify-content:space-between;align-items:center;gap:12px;font:11px/1.8 var(--mono);color:var(--muted);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.copy,.print-button{border:1px solid var(--line);border-radius:4px;padding:6px 13px;background:#fff;color:var(--ink);font-size:12px;line-height:20px;flex-shrink:0}
+.copy{border-color:#484848;background:#1c1c1c;color:#fafafa}.copy:hover{background:#333}.copy:active{background:#444}.print-button:hover{background:var(--pale);border-color:var(--accent)}.print-button{margin-top:18px}
+.copy-status{font-size:12px;display:block;min-height:20px;color:var(--accent);margin-top:10px}.copy-status:empty{display:none}
+.flow{display:flex;align-items:stretch;gap:12px;margin:28px 0;flex-wrap:wrap}.flow .node{flex:1;min-width:155px;border-left:2px solid var(--accent);padding:4px 14px}.node b{display:block;font-weight:600}.node small{display:block;color:var(--muted);font-size:12px;line-height:1.8;margin-top:6px}.arrow{align-self:center;color:var(--accent)}
+.steps{list-style:none;padding:0;counter-reset:step}.steps>li{counter-increment:step;position:relative;padding:0 0 28px 44px;margin:24px 0 0;border-bottom:1px solid var(--line)}.steps>li:last-child{border-bottom:0;padding-bottom:0}.steps>li:before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:4px;font:12px/20px var(--mono);color:var(--accent)}.steps h3{margin:0 0 12px}.steps p{margin:0 0 14px}
+.muted{color:var(--muted)}.small{font-size:13px;line-height:1.85}.review-mark{color:var(--subtle);font-size:13px}.file-map a{overflow-wrap:anywhere}
+.closing{padding:30px 0 0;border-top:1px solid var(--ink);font:11px/1.85 var(--mono);color:var(--subtle)}.closing>a{display:inline-block;margin-top:14px;color:var(--accent)}
+.mobile-header,.nav-backdrop,.nav-close{display:none}
+@media(min-width:1600px){main{padding-left:80px;padding-right:80px}.hero:before{left:-80px;right:-80px}}
+@media(max-width:1199px) and (min-width:1024px){main{padding-left:40px;padding-right:40px}.hero:before{left:-40px;right:-40px}}
+/* Keep this breakpoint identical to the guide's matchMedia/inert contract. */
+@media(max-width:1023px){
+ html{scroll-padding-top:88px}
+ .mobile-header{display:flex;position:sticky;top:0;z-index:20;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:12px 32px;border-bottom:1px solid var(--line)}.mobile-header>a{font:600 16px/1.5 var(--heading);text-decoration:none}
+ .menu-button,.nav-close{border:1px solid var(--line);background:#fff;border-radius:3px;min-height:40px;padding:6px 12px;font-size:13px;line-height:24px;color:var(--ink)}
+ .sidebar{width:296px;max-width:calc(100vw - 40px);visibility:hidden;transform:translateX(-100%);transition:transform .18s ease,visibility .18s}.sidebar .brand{padding-right:32px}.nav-close{display:block;position:absolute;top:22px;right:12px;font-size:20px;padding:4px 10px}
+ .nav-backdrop{position:fixed;inset:0;z-index:25;background:rgb(0 0 0 / 28%)}body.nav-open{overflow:hidden}body.nav-open .sidebar{visibility:visible;transform:translateX(0)}body.nav-open .nav-backdrop{display:block}
+ main{margin:0;padding:0 40px 72px}main>*{margin-left:auto;margin-right:auto}.hero{padding-top:48px}.hero:before{left:-40px;right:-40px}
+}
+@media(max-width:639px){
+ body{font-size:15px}.mobile-header{padding:10px 20px}main{padding:0 22px 56px}.hero{padding-top:36px;padding-bottom:32px}.hero:before{left:-22px;right:-22px}.hero:after{width:32px;height:32px;top:32px}.eyebrow{font-size:10px;padding-right:48px;letter-spacing:.06em;margin-bottom:20px}h1{font-size:40px;line-height:1.15}html[lang=zh-CN] h1{font-size:38px}.lead{font-size:16px}h2{font-size:24px}h3{font-size:18px}section{padding:34px 0 38px}.hero-links{gap:10px 18px}.flow{display:block}.node{margin:14px 0}.arrow{display:block;text-align:center;transform:rotate(90deg)}th,td{padding:12px;min-width:120px}.command{padding:18px 16px}.command-head{flex-wrap:wrap}.steps>li{padding-left:34px}.note{padding-left:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+@media print{
+ .core-values{background:#fff;color:#171717;border-block:1px solid #aaa}.core-values>li{border-color:#ddd}.core-values>li:before{color:#555} @page{margin:16mm}body{background:white;font-size:10pt;line-height:1.6;color:black}html[lang=zh-CN] body{line-height:1.7}body.nav-open{overflow:visible}.sidebar,.mobile-header,.nav-backdrop,.copy,.copy-status,.print-button,.skip{display:none!important}main{margin:0;padding:0;max-width:none}main>*{max-width:none;margin-left:0;margin-right:0}.hero{padding:0 0 20px}.hero:before,.hero:after{display:none}h1,html[lang=zh-CN] h1{font-size:28pt;line-height:1.3}h2{font-size:17pt}h3{font-size:12pt}.lead{font-size:11pt}section{padding:22px 0}.card{margin:10px 0}.command{background:#f3f3f3;color:black;border-color:#ccc;break-inside:avoid}.command-head{color:black;border-color:#ccc}a{color:inherit}.table-wrap{overflow:visible;border-top-color:#555}table{font-size:9pt;table-layout:fixed}th,td{min-width:0;overflow-wrap:anywhere;padding:8px}thead{display:table-header-group}tr{break-inside:avoid}h2,h3,h4{break-after:avoid}p,li{orphans:3;widows:3}.flow{display:block}.node{break-inside:avoid}.arrow{display:none}.closing{font-size:8pt}
+}
+
+/* Full-window reader keeps file text, source, and navigation in separate scroll areas. */
+#file-reader{position:fixed;inset:72px 0 0;z-index:30;background:var(--bg);display:grid;grid-template-columns:280px minmax(0,1fr) 200px;grid-template-rows:auto minmax(0,1fr)}.reader-top{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:12px 24px;background:var(--surface);border-bottom:1px solid var(--line)}.reader-top strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:500}.reader-top .reader-count{margin-left:auto;font-size:13px;color:var(--secondary);white-space:nowrap}.file-browser{overflow:auto;border-right:1px solid var(--line);padding:24px 12px;background:var(--surface)}.file-filters{display:grid;gap:8px;margin:0 4px 16px}.file-filters input,.file-filters select{width:100%;min-width:0;height:40px;border:1px solid var(--line);padding:8px 10px;border-radius:12px;background:var(--surface);color:var(--ink);font-size:13px;line-height:20px}.file-filters input::placeholder{color:var(--secondary)}.file-filter-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}#file-list{display:grid;gap:4px}#file-list button{display:block;text-align:left;border:0;padding:6px 12px;border-radius:8px;overflow-wrap:anywhere;font-size:13px;line-height:20px;background:transparent;box-shadow:none;color:var(--secondary)}#file-list button small{display:block;font-size:11px;line-height:16px;color:var(--secondary);margin-top:4px;font-weight:400}#file-list button:hover,#file-list button[aria-current=page]{background:var(--hover);color:var(--ink)}#file-list button[aria-current=page]{font-weight:500}.file-document{overflow:auto;min-width:0;padding:32px clamp(20px,4vw,64px) 80px;scroll-padding-top:24px;overscroll-behavior:contain}.file-document-header{max-width:1000px;margin:0 auto 32px;border-bottom:1px solid var(--line);padding-bottom:24px}.file-document-header h1{font-size:28px;line-height:36px;font-weight:600;overflow-wrap:anywhere;margin:0 0 8px}.file-path{font:12px/20px var(--mono);color:var(--secondary);overflow-wrap:anywhere}.file-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.file-actions button,.file-actions a{font-size:13px}#file-content{max-width:1000px;margin:auto;overflow-wrap:anywhere}#file-content h1{font-size:28px;line-height:36px;margin:32px 0 16px}#file-content h2{font-size:18px;line-height:28px;font-weight:600;margin:48px 0 16px}#file-content h3{margin:32px 0 12px}#file-content h4,#file-content h5,#file-content h6{font-size:14px;line-height:24px;margin:24px 0 12px}#file-content [id]{scroll-margin-top:24px}#file-content img{max-width:100%;height:auto}#file-content li{margin:6px 0}#file-content pre{max-width:100%;white-space:pre;overflow-wrap:normal}#file-content table{display:block;overflow-x:auto}#file-content pre.highlight{background:#fafafa;padding:16px;font:13px/22px var(--mono)}#file-content .highlight pre{margin:0}#file-content .file-frontmatter{margin:0 0 32px;border-radius:12px;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.1);padding:12px 16px;color:var(--secondary);font-size:14px;line-height:24px;background:var(--surface)}.file-frontmatter summary{cursor:pointer;font-weight:500;color:var(--secondary)}.file-frontmatter[open] summary{margin-bottom:16px}.file-frontmatter pre{margin:0!important}.file-frontmatter table{margin:0!important}#file-source{max-width:1000px;margin:auto;white-space:pre;overflow:auto;font:13px/22px var(--mono);background:#fafafa}.file-toc{overflow:auto;padding:32px 16px;border-left:1px solid var(--line)}.file-toc>strong{font-size:12px;line-height:20px;color:var(--muted);font-weight:500}.file-toc a{display:block;font-size:13px;line-height:20px;padding:4px 0;margin:4px 0;text-decoration:none;color:var(--secondary);overflow-wrap:anywhere}.file-toc a:hover,.file-toc a[aria-current=location]{color:var(--accent)}.file-toc a[data-level="3"]{padding-left:12px}.file-toc a[data-level="4"]{padding-left:24px}.empty-state{padding:48px 12px;color:var(--secondary)}#reader-message{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:60;max-width:min(90vw,680px);background:var(--ink);color:#fff;border-radius:12px;padding:12px 16px;font-size:14px;line-height:24px;box-shadow:var(--shadow)}body.reader-open{overflow:hidden}
+
+/* Reader adopts the guide's typography and quiet editorial controls. */
+#file-reader{--bg:var(--paper);--surface:var(--paper);--secondary:var(--muted);inset:0;z-index:60;color:var(--muted);line-height:1.85}
+#file-reader button,#file-reader .file-actions a,.reader-entry{border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink);padding:7px 12px;font:12px/1.6 var(--sans);text-decoration:none;cursor:pointer}
+#file-reader button:hover,#file-reader button[aria-pressed=true]{background:var(--pale);color:var(--accent)}
+#file-reader h1,#file-reader h2,#file-reader h3{font-family:var(--heading);color:var(--ink)}
+#file-reader .file-filters input,#file-reader .file-filters select{border-radius:4px;font-family:var(--sans)}
+#file-reader pre,#file-reader .file-frontmatter{border-radius:4px;line-height:1.7}
+#reader-message{z-index:70;background:var(--ink);border-radius:4px}
+[hidden]{display:none!important}
+@media(max-width:1100px){#file-reader{grid-template-columns:250px minmax(0,1fr)}.file-toc{display:none}}
+@media(max-width:720px){#file-reader{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}.reader-top{padding:10px 12px;gap:8px;flex-wrap:wrap}.reader-top strong{flex:1 0 100%;order:3}.reader-count{display:none}.file-browser{grid-column:1;grid-row:2;border:0}#file-reader.has-file .file-browser{display:none}#file-reader:not(.has-file) .file-document{display:none}.file-document{grid-column:1;grid-row:2;padding:24px 20px 60px}.file-actions{gap:6px}}
+@media print{body.reader-open>main,body.reader-open>.sidebar,body.reader-open>.mobile-header{display:none!important}#file-reader{position:static;display:block}.file-browser,.file-toc,.reader-top,.file-actions{display:none!important}.file-document{overflow:visible;padding:0}body.reader-open{overflow:visible}}
+.source-actions{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 18px}.source-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:32px 0 16px}.source-heading h3{margin:0}.source-button{display:inline;padding:0;border:0;background:none;color:var(--accent);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 35%,transparent);text-underline-offset:4px;font:inherit;font-weight:500;line-height:inherit}.source-button:hover{text-decoration-color:currentColor}.source-actions .source-button{font-size:13px}.source-heading .source-button{display:inline-flex;align-items:center;min-height:32px;padding:5px 10px;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);border-radius:4px;font-size:13px;line-height:1.5;text-decoration:none}.source-heading .source-button:hover{background:var(--pale);border-color:var(--accent)}td a+.source-button{margin-inline-start:8px}th .source-button{display:block;margin-top:4px;font-size:12px;font-weight:400}li>.source-actions{margin:8px 0 14px}#file-content a{overflow-wrap:anywhere}@media print{.source-button{color:#171717;text-decoration-color:#aaa}.source-heading{break-after:avoid}}
+#file-reader{padding:0;border:0}.file-document:focus-visible{outline:none}#file-name{font:500 14px/1.5 var(--mono);letter-spacing:0}.file-document-header{max-width:900px;margin-bottom:18px;padding-bottom:14px}.file-actions{margin-top:10px}#file-content{max-width:900px;color:#333;font:14px/1.7 var(--sans)}#file-content :is(h1,h2,h3,h4,h5,h6){font-family:inherit;font-weight:600;line-height:1.45;letter-spacing:0;color:inherit;margin:20px 0 8px}#file-content h1{font-size:21px}#file-content h2{font-size:18px}#file-content h3{font-size:16px}#file-content :is(h4,h5,h6){font-size:14px}#file-content>div>:first-child{margin-top:0}#file-content p{margin:8px 0}#file-content ul,#file-content ol{margin:8px 0;padding-left:22px}#file-content li{margin:4px 0;padding-left:0}#file-content li::marker{color:inherit;font-size:1em}#file-content strong{color:inherit;font-weight:600}#file-content table{font-size:13px;line-height:1.6;margin:12px 0}#file-content th,#file-content td{padding:8px 10px;font-weight:400;color:inherit}#file-content th{background:#f5f5f5;font-weight:600}#file-content code{font-size:.9em;padding:1px 4px}#file-content pre{padding:12px;font-size:13px;line-height:1.6;background:#f7f7f7}#file-content pre code{background:none;padding:0;font-size:inherit}#file-content blockquote{margin:12px 0;padding:0 12px;border-left:2px solid #ddd;color:#555}#file-content .file-frontmatter{margin:0 0 16px;padding:8px 12px;border:1px solid #e5e5e5;border-radius:2px;box-shadow:none;font-size:13px}.file-frontmatter dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 12px}.file-frontmatter dt{font-weight:600}.file-frontmatter dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}#file-list button{border:0;border-radius:2px;box-shadow:none;background:transparent}#file-list button:hover,#file-list button[aria-current=page]{background:#f2f3f5}
+/* Compact guide typography, independent of the source reader and print layout. */
+@media screen{
+main{font-size:15px;line-height:1.8}html[lang=zh-CN] main{line-height:1.85}
+main>.hero{padding:40px 0 32px}main h1{font-size:clamp(36px,4vw,52px);margin-bottom:18px}html[lang=zh-CN] main h1{line-height:1.25}
+main .eyebrow{margin-bottom:16px}main .lead{font-size:16px;line-height:1.8;margin-bottom:18px}main .hero-links{margin-top:20px}main .hero .small{margin-top:16px}
+main>section{padding:30px 0 34px}main h2{font-size:24px;margin:8px 0 16px}main h3{font-size:18px;margin:22px 0 10px}main p{margin-bottom:12px}main li{margin:8px 0}
+main .core-values{padding:16px 24px;margin:18px 0 28px}main .core-values>li{margin:0;padding:9px 0 9px 32px}main .core-values>li:before{top:10px}
+main .principle-list>li{margin:12px 0}main .table-wrap{margin:20px 0}main th,main td{padding:11px 14px}
+main .source-heading{margin:22px 0 12px}main .source-heading h3{margin:0}main .source-actions{margin:8px 0 14px}main li>.source-actions{margin:6px 0 10px}
+main .steps>li{margin-top:18px;padding-bottom:20px}main .steps h3{margin:0 0 10px}main .steps p{margin-bottom:12px}main .command{margin:18px 0;padding:20px 22px}
+}
+@media screen and (max-width:767px){main>.hero{padding:26px 0 24px}main h1,html[lang=zh-CN] main h1{font-size:34px}main>section{padding:24px 0 28px}main h2{font-size:22px}main .core-values{padding:12px 18px}main th,main td{padding:10px}main .command{padding:16px}}
+main strong,main b{font-weight:500;color:inherit}
+#models th{text-align:left;vertical-align:middle;font-weight:500}
+.sidebar nav .nav-divider{border:0;border-top:1px solid var(--line);margin:12px 0;}
+.plugin-heading{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 14px}
+main .source-link{font-size:13px;font-weight:400;line-height:1.5;color:inherit;text-decoration:underline;text-underline-offset:3px}
+#pi .plugin-heading .source-link{font-size:12px}
+#pi .plugin-entry{margin-top:10px}#pi .plugin-heading h3{margin:0;color:inherit;font-size:15px;font-weight:500;line-height:1.6}#pi .plugin-entry>p{margin:4px 0 0;line-height:1.7}#pi .plugin-mechanisms{margin:6px 0 0;padding-left:20px;line-height:1.7}#pi .plugin-mechanisms li{margin:6px 0}
+<!-- SYNTAX_CSS -->
+#engineering > :is(p,ul,ol), #rules > :is(p,ul,ol) {max-width:48rem;line-height:1.8;}
+#engineering > :is(ul,ol)>li, #rules > :is(ul,ol)>li {line-height:1.8;margin-block:.875rem;}
+</style>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="zh-CN">跳转正文</span><span lang="en">Skip to content</span></a>
+<header class="mobile-header"><a href="#top">AI Harness Kit</a><button class="menu-button" type="button" aria-controls="guide-navigation" aria-expanded="false"><span lang="zh-CN">目录</span><span lang="en">Contents</span> <span aria-hidden="true">☰</span></button></header>
+<div class="nav-backdrop" aria-hidden="true"></div>
+<aside class="sidebar" id="guide-navigation" aria-label="Guide navigation">
+<button class="nav-close" type="button" aria-label="关闭目录 / Close navigation">×</button>
+<a class="brand" href="#top">AI Harness Kit<span style="color:var(--accent)">.</span></a>
+<div class="edition">LIMIN’S WORKING SETUP<br>2026-10-29 · REVIEW EDITION</div>
+<div class="controls" aria-label="Language"><button type="button" data-language="zh-CN" aria-pressed="true">中文</button><button type="button" data-language="en" aria-pressed="false">English</button></div>
+<p class="nav-label"><span lang="zh-CN">使用指南</span><span lang="en">Working guide</span></p>
+<nav aria-label="Contents">
+<a href="#why"><span class="navnum">01</span><span lang="zh-CN">整套 Harness，直接使用</span><span lang="en">Adopt the complete harness</span></a>
+<a href="#stack"><span class="navnum">02</span><span lang="zh-CN">全套工具栈</span><span lang="en">Complete tool stack</span></a>
+<a href="#orca"><span class="navnum">03</span><span lang="zh-CN">Orca 的优势</span><span lang="en">Orca features</span></a>
+<a href="#rules"><span class="navnum">04</span><span lang="zh-CN">两份工作规范</span><span lang="en">Working principles</span></a>
+<a href="#engineering"><span class="navnum">05</span><span lang="zh-CN">工程哲学与自主工作</span><span lang="en">Engineering philosophy</span></a>
+<a href="#models"><span class="navnum">06</span><span lang="zh-CN">模型配置</span><span lang="en">Model settings</span></a>
+<a href="#pi"><span class="navnum">07</span><span lang="zh-CN">Pi 的九个扩展</span><span lang="en">Nine Pi extensions</span></a>
+<a href="#start"><span class="navnum">08</span><span lang="zh-CN">交给 Agent 接入</span><span lang="en">Agent-led setup</span></a>
+
+<a href="#sources"><span class="navnum">09</span><span lang="zh-CN">资料地图与来源</span><span lang="en">Files and sources</span></a>
+<hr class="nav-divider">
+<a href="rules/PRINCIPLES.general.md" data-file-shortcut><span class="navnum">10</span><span lang="zh-CN">General · 个人工作规范</span><span lang="en">General · Personal working principles</span></a>
+<a href="rules/PRINCIPLES.codex.md" data-file-shortcut><span class="navnum">11</span><span lang="zh-CN">GPT · 模型行为纠偏规范</span><span lang="en">GPT · Model behavior guidelines</span></a>
+</nav>
+<footer><span lang="zh-CN">明确选择 · 已调通 · 持续维护<br>可沿用的配置与工作流程。</span><span lang="en">Opinionated. In daily use. Maintained.<br>Configuration and workflows to adopt.</span><br><a href="README.md">README</a><br><button class="print-button" type="button" id="print"><span lang="zh-CN">打印 / 保存 PDF</span><span lang="en">Print / Save PDF</span></button></footer>
+</aside>
+<main id="main">
+<header class="hero" id="top">
+<div class="eyebrow">AI Harness Kit</div>
+<h1><span lang="zh-CN">我的 AI 配置与工作流程</span><span lang="en">My AI configuration and workflows</span></h1>
+<p class="lead" lang="zh-CN">这是我日常使用的整套 Harness：规范、工具、配置与工作流程。直接阅读原文，或交给 Agent 照搬并按你的环境采用。</p>
+<p class="lead" lang="en">This is my complete everyday harness: instructions, tools, configuration, and workflows. Read the originals, or ask your agent to copy and adapt the setup to your environment.</p>
+<div class="hero-links"><button class="reader-entry" id="open-files" type="button"><span lang="zh-CN">查看 harness 原文</span><span lang="en">View harness sources</span></button><a href="#start"><span lang="zh-CN">交给 Agent 接入 →</span><span lang="en">Delegate setup →</span></a><a href="rules/PRINCIPLES.general.md"><span lang="zh-CN">直接阅读规范 ↗</span><span lang="en">Read the original rules ↗</span></a><a href="docs/SOURCES.md"><span lang="zh-CN">文件来源 ↗</span><span lang="en">File provenance ↗</span></a></div>
+<p class="small muted" lang="zh-CN">个人资料可离线阅读；公司资料通过 GitHub 链接访问，需要相应仓库权限。</p><p class="small muted" lang="en">Personal materials are available offline. Company references open on GitHub and require repository access.</p>
+</header>
+<section id="why"><div class="section-no">01 / CONTENTS</div><h2><span lang="zh-CN">整套 Harness，直接使用</span><span lang="en">Adopt the complete harness</span></h2>
+<div class="source-actions"><a href="README.md" class="source-button"><span lang="zh-CN">本包说明 →</span><span lang="en">Package overview →</span></a><a href="rules/PRINCIPLES.general.md" class="source-button"><span lang="zh-CN">个人工作规范原文 →</span><span lang="en">Original working standards →</span></a></div>
+<h3><span lang="zh-CN">直接阅读整套原文</span><span lang="en">Read the complete source materials</span></h3>
+<p lang="zh-CN">个人规范、配置与工作流程随包提供，点击即可阅读。</p><p lang="en">The personal instructions, configuration, and workflows are included. Open any source below to read it directly.</p>
+<ul>
+<li><span lang="zh-CN"><a href="rules/" class="source-button">rules/</a>：General、Codex 两份工作规范和导出脚本。</span><span lang="en"><a href="rules/" class="source-button">rules/</a>: General and Codex working principles, plus the export scripts.</span></li>
+<li><span lang="zh-CN">configs/：Codex、Pi、Claude Code、Orca 和 Magpie 的实际配置。</span><span lang="en">configs/: actual settings for Codex, Pi, Claude Code, Orca, and Magpie.</span></li>
+<li><span lang="zh-CN"><a href="reference/skills/README.md" class="source-button">技能名单与来源</a>：Orca、CodexHost、飞书和 Pi 的第三方技能来源，以及自维护项目技能的原文入口。</span><span lang="en"><a href="reference/skills/README.md" class="source-button">Skills and sources</a>: third-party skills from Orca, CodexHost, Lark, and Pi, plus originals of our maintained project skills.</span></li>
+</ul>
+<p lang="zh-CN">使用时按所选客户端准备<a href="docs/DEPENDENCIES.md" class="source-button">依赖</a>，将配置中的路径、账号和凭据替换为自己的，再导出规范。接入步骤见<a href="#start">第 08 章</a>。</p><p lang="en">Prepare the <a href="docs/DEPENDENCIES.md" class="source-button">dependencies</a> for your chosen client, adapt paths, accounts, and credentials, then export the rules. See <a href="#start">Chapter 08</a> for setup steps.</p>
+<p class="small" lang="zh-CN">可选参考：团队工程规范见<a href="docs/SOURCES.md" class="source-button">来源索引</a>，相关 GitHub 材料需要仓库访问权限。</p><p class="small" lang="en">Optional reference: team engineering standards are listed in the <a href="docs/SOURCES.md" class="source-button">source index</a>. Their GitHub materials require repository access.</p>
+<details><summary><span lang="zh-CN">工程原则</span><span lang="en">Engineering principles</span></summary>
+<ul class="core-values">
+<li><span lang="zh-CN">务实工程决策，平衡迭代速度与技术债务</span><span lang="en">Pragmatic engineering decisions that balance iteration speed and technical debt</span></li>
+<li><span lang="zh-CN">QoL 与 DX 优先，降低认知与操作负担</span><span lang="en">Prioritize QoL and DX to reduce cognitive and operational burden</span></li>
+<li><span lang="zh-CN">Agent Swarm 自主驱动与高效协同</span><span lang="en">Autonomous execution and efficient coordination through Agent Swarm</span></li>
+<li><span lang="zh-CN">任务主动拆分隔离与自主集成</span><span lang="en">Proactive task decomposition, isolation, and autonomous integration</span></li>
+<li><span lang="zh-CN">高效语义集成与上下文贯通</span><span lang="en">Efficient semantic integration and continuity of context</span></li>
+<li><span lang="zh-CN">Codex Token 耐用度提升 100%+</span><span lang="en">100%+ improvement in Codex token efficiency</span></li>
+<li><span lang="zh-CN">克服 GPT 过度防御与保守倾向</span><span lang="en">Overcome GPT’s tendency toward excessive defensiveness and caution</span></li>
+<li><span lang="zh-CN">Agent 自然表达，告别机器腔</span><span lang="en">Natural agent communication without robotic phrasing</span></li>
+</ul>
+</details>
+</section>
+
+<section id="stack"><div class="section-no">02 / TOOLS</div><h2><span lang="zh-CN">全套工具栈</span><span lang="en">Complete tool stack</span></h2>
+<div class="table-wrap"><table><thead><tr><th><span lang="zh-CN">工具</span><span lang="en">Tool</span></th><th><span lang="zh-CN">用途</span><span lang="en">Purpose</span></th><th><span lang="zh-CN">官网／官方文档</span><span lang="en">Official website / documentation</span></th></tr></thead><tbody>
+<tr><td>Orca</td><td><span lang="zh-CN">Agent 工作区：把多个 Agent、Git 工作树、终端、浏览器和代码审阅放在同一个应用里。</span><span lang="en">An agent workspace that brings agents, Git worktrees, terminals, a browser, and code review into one app.</span></td><td><a href="https://onorca.dev/">onorca.dev</a></td></tr>
+<tr><td>Pi</td><td><span lang="zh-CN">可扩展的终端 Agent：连接模型，读取和修改文件、执行命令，并通过插件补充搜索、子任务等能力。</span><span lang="en">An extensible terminal agent that connects to models, reads and edits files, runs commands, and adds capabilities such as search and subagents through extensions.</span></td><td><a href="https://pi.dev/">pi.dev</a></td></tr>
+<tr><td>Codex</td><td><span lang="zh-CN">Codex GUI 的一些功能很好用，例如可视化，因此仍然保留。日常开发通常用 Pi 替代，以减少 Codex 的防御性编程倾向。</span><span lang="en">I keep Codex for useful GUI features such as visualization. For everyday development, I usually use Pi to reduce the defensive programming tendencies I encounter with Codex.</span></td><td><a href="https://openai.com/codex/">openai.com/codex</a></td></tr>
+<tr><td>Claude Code</td><td><span lang="zh-CN">能力比较全面，适用面广，但终端界面的使用体验不一定理想。</span><span lang="en">I find Claude Code versatile and useful across a broad range of tasks, though its terminal interface is not always ideal to use.</span></td><td><a href="https://code.claude.com/docs/en/overview">code.claude.com</a></td></tr>
+<tr><td>Magpie</td><td><span lang="zh-CN">统一管理多个 Agent 的模型与供应商，通过本机网关适配不同 API。可为 Codex、Pi、Claude Code 等选择模型，并维护对应配置与模型规格。</span><span lang="en">Manage models and providers across agents through a local gateway that translates between APIs. Choose models for Codex, Pi, Claude Code, and other agents, and maintain their configuration and model specifications.</span></td><td><a href="https://usemagpie.ai/">usemagpie.ai</a></td></tr>
+<tr><td>OpenLess</td><td><span lang="zh-CN">语音输入工具：通过全局快捷键把口述转成文字，按所选风格润色后插入当前光标位置。支持将口述整理为 AI 提示词，方便向 Agent 说明需求、补充上下文和反馈修改意见。</span><span lang="en">A voice-input tool that turns speech into text with a global hotkey, polishes it in your chosen style, and inserts it at the cursor. Its AI-prompt mode helps turn spoken thoughts into requests, context, and feedback for agents.</span></td><td><a href="https://openless.top/">openless.top</a> · <a href="https://github.com/Open-Less/openless">GitHub</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section id="orca"><div class="section-no">03 / ORCA</div><h2><span lang="zh-CN">Orca · 多 Agent 并行开发工作台</span><span lang="en">Orca · A workspace for parallel agent development</span></h2>
+<p><a href="https://onorca.dev/"><span lang="zh-CN">官网</span><span lang="en">Website</span></a> · <a href="https://www.onorca.dev/docs/"><span lang="zh-CN">官方文档</span><span lang="en">Documentation</span></a> · <a href="https://github.com/stablyai/orca">GitHub</a></p>
+<p><span lang="zh-CN">Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Agent 管理、Git Worktree、终端、浏览器、代码编辑与审阅整合在同一个工作区。</span><span lang="en">Orca is an integrated development environment (ADE) designed for AI coding agents, bringing multi-agent management, Git worktrees, terminals, browsers, code editing, and review into one workspace.</span></p>
+<h3><span lang="zh-CN">一、多 Agent 并行与任务管理</span><span lang="en">I. Parallel agents and task management</span></h3>
+<ul>
+<li><span lang="zh-CN"><strong>统一管理不同的 Coding Agent：</strong>支持 Claude Code、Codex、Pi、Gemini、OpenCode 等 CLI Agent，直接使用已有订阅和账号，在同一应用中运行、切换和管理。</span><span lang="en"><strong>Manage different coding agents together: </strong>Supports CLI agents including Claude Code, Codex, Pi, Gemini, and OpenCode. Use existing subscriptions and accounts to run, switch between, and manage them in one application.</span></li>
+<li><span lang="zh-CN"><strong>Worktree 原生任务隔离：</strong>每项任务拥有独立 Git 工作树、终端和浏览器，多个 Agent 可以同时修改同一个仓库而互不干扰。支持让不同 Agent 并行解决同一问题，比较实现结果后选择合适方案。</span><span lang="en"><strong>Native worktree isolation: </strong>Each task has its own Git worktree, terminal, and browser, allowing multiple agents to work on the same repository in isolated environments. Different agents can tackle the same problem in parallel so you can compare implementations and choose the best fit.</span></li>
+<li><span lang="zh-CN"><strong>集中跟踪多个任务：</strong>按项目和工作树组织 Agent 会话，查看执行状态、历史记录与任务上下文，支持恢复会话、休眠 Agent 和跨工作树搜索。</span><span lang="en"><strong>Track multiple tasks in one place: </strong>Organize agent sessions by project and worktree, inspect execution status, history, and task context, resume sessions, hibernate agents, and search across worktrees.</span></li>
+<li><span lang="zh-CN"><strong>Agent 自主操作工作区：</strong>通过 Orca CLI 创建和管理工作树、获取浏览器快照、点击与填写页面，让 Agent 可以直接使用 Orca 提供的工作环境。</span><span lang="en"><strong>Let agents operate the workspace: </strong>Through the Orca CLI, agents can create and manage worktrees, capture browser snapshots, click elements, and fill in pages, directly using the environment Orca provides.</span></li>
+</ul>
+<h3><span lang="zh-CN">二、浏览器与可视化开发</span><span lang="en">II. Browser and visual development</span></h3>
+<ul>
+<li><span lang="zh-CN"><strong>每个工作树拥有独立浏览器：</strong>内置 Chromium 浏览器，方便在对应任务环境中打开、检查和调试实际运行的网页。</span><span lang="en"><strong>A dedicated browser for each worktree: </strong>The built-in Chromium browser lets you open, inspect, and debug running pages in the corresponding task environment.</span></li>
+<li><span lang="zh-CN"><strong>Design Mode · 可视化指出页面问题：</strong>直接选中页面元素，将对应 HTML、CSS 和局部截图发送给 Agent。适合 UI 调整、视觉还原和前端问题修复，省去手动截图、查找元素和描述位置。</span><span lang="en"><strong>Design Mode · Point out page issues visually: </strong>Select a page element and send its HTML, CSS, and a cropped screenshot to the agent. Useful for UI adjustments, matching designs, and fixing frontend issues, without manually taking screenshots, locating elements, or describing their position.</span></li>
+<li><span lang="zh-CN"><strong>灵活分屏与完整终端：</strong>自由组合 Agent、终端、浏览器、代码、Diff 等面板；终端支持 GPU 加速渲染、历史搜索及重启后恢复滚动记录。</span><span lang="en"><strong>Flexible splits and a full terminal: </strong>Arrange agent, terminal, browser, code, and diff panels freely. The terminal supports GPU-accelerated rendering, history search, and restored scrollback after restart.</span></li>
+</ul>
+<h3><span lang="zh-CN">三、代码审阅与研发流程</span><span lang="en">III. Code review and development workflows</span></h3>
+<ul>
+<li><span lang="zh-CN"><strong>逐行审阅 AI 代码修改：</strong>内置 Diff Viewer，支持直接在代码差异行添加 Markdown 批注，并批量发送给 Agent 修改。</span><span lang="en"><strong>Review AI code changes line by line: </strong>The built-in diff viewer supports Markdown comments on individual changed lines, which can be sent to the agent as a batch for revision.</span></li>
+<li><span lang="zh-CN"><strong>GitHub 与 Linear 原生集成：</strong>直接查看 Issue、PR、项目看板和 CI 状态，从任务创建工作树，完成代码审阅、冲突处理、提交及 PR 操作。</span><span lang="en"><strong>Native GitHub and Linear integration: </strong>View issues, pull requests, project boards, and CI status directly; create worktrees from tasks; and review code, resolve conflicts, commit changes, and manage pull requests.</span></li>
+<li><span lang="zh-CN"><strong>内置编辑器与文件预览：</strong>提供基于 VS Code 编辑器技术的代码编辑、自动保存、文件快速打开，以及 Markdown、图片、PDF 等内容预览。支持拖拽文件和图片为 Agent 提供上下文。</span><span lang="en"><strong>Built-in editor and file previews: </strong>Provides code editing based on VS Code editor technology, autosave, quick-open, and previews for Markdown, images, PDFs, and other content. Drag files and images into the workspace to give agents context.</span></li>
+</ul>
+<h3><span lang="zh-CN">四、远程开发与移动办公</span><span lang="en">IV. Remote development and mobile work</span></h3>
+<ul>
+<li><span lang="zh-CN"><strong>SSH 与远程工作树：</strong>在远程服务器上运行 Agent，同时保留文件编辑、Git、终端和浏览器等工作能力，支持自动重连、端口转发和 SSH 密钥口令缓存。</span><span lang="en"><strong>SSH and remote worktrees: </strong>Run agents on remote servers while retaining file editing, Git, terminal, and browser capabilities, with automatic reconnection, port forwarding, and SSH key passphrase caching.</span></li>
+<li><span lang="zh-CN"><strong>iOS / Android 移动端：</strong>离开电脑后仍可查看 Agent 状态、用量与执行情况，切换账号、连接工作区并继续操作终端。</span><span lang="en"><strong>iOS / Android companion apps: </strong>Away from your computer, check agent status, usage, and execution progress, switch accounts, connect to workspaces, and continue using the terminal.</span></li>
+<li><span lang="zh-CN"><strong>账号用量与限额管理：</strong>统一查看 Claude、Codex 的使用量和限额重置时间，支持快速切换 Codex 账号。</span><span lang="en"><strong>Account usage and limit management: </strong>See Claude and Codex usage and limit reset times together, with quick switching between Codex accounts.</span></li>
+</ul>
+<p><span lang="zh-CN"><strong>免费、开源、跨平台：</strong>采用 MIT 许可证，支持 macOS、Windows 和 Linux。</span><span lang="en"><strong>Free, open source, and cross-platform:</strong> MIT-licensed, with support for macOS, Windows, and Linux.</span></p>
+<div class="source-actions"><a href="reference/skills/README.md#orca" class="source-button"><span lang="zh-CN">Orca 技能名单与来源 →</span><span lang="en">Orca skills and sources →</span></a></div></section>
+
+<section id="rules"><div class="section-no">04 / INSTRUCTIONS</div><h2><span lang="zh-CN">工作哲学与模型行为纠偏</span><span lang="en">Working philosophy and model behavior</span></h2>
+<div lang="zh-CN"><div class="source-heading"><h3>General · 个人工作规范</h3>
+<a href="rules/PRINCIPLES.general.md" class="source-button">阅读 General 完整规范 →</a></div><ul>
+<li><strong>以第一性原理追求极简与卓越：</strong>贯彻第一性原理、奥卡姆剃刀、MECE、金字塔原理、正交与解耦、Less is More、Show, Don't Tell；主动借鉴全球顶尖从业者与创业者的前沿实践，拒绝惯性思维和不必要的复杂性。</li>
+<li><strong>QoL 与 DX 至上：</strong>将人的认知负担与操作负担作为最重要的工程优化目标。激进地合并、精简、复用和自动化，减少阅读、记忆、等待、上下文切换、重复操作与人工搬运。</li>
+<li><strong>Agent Swarm 自主驱动与高效协同：</strong>主 Agent 负责目标、拆解、委派、依赖、资源、验收和集成；子 Agent 自主推进调查、设计、实现与验证。最大化合理并行，减少串行等待、沟通开销与人为介入。</li>
+<li><strong>Worktree 任务隔离与自主集成：</strong>以独立工作树隔离任务，保持主工作树始终位于集成分支。Agent 自主完成开发、验证、接回、提交与清理，形成无需人工搬运的完整任务生命周期。</li>
+<li><strong>外部创新优先，反对重复造轮子：</strong>新增能力前，主动研究全球成熟产品、开源生态、行业标准与最新创新实践，优先复用已有实现和平台能力。是否自行开发，由实际收益、适配程度和成本决定。</li>
+<li><strong>快速闭环，务实平衡技术债：</strong>从真实用户需求出发，尽早跑通端到端的可运行功能。优先解决实际问题，平衡交付速度、长期维护成本与技术债，反对过度设计、过度抽象和为完美而完美。</li>
+<li><strong>反对过度防御与形式主义：</strong>不将核验、审计、证明、流程和风险控制本身当作工作成果。根据实际风险和错误代价采取必要措施，避免无限扩大验证范围、设置人为门槛或将局部不确定性变成全局阻塞。</li>
+<li><strong>接受 AI 的不完美，优化整体收益：</strong>模型质量以整体效果为准，允许合理的语义误差与局部退步。重视召回与精度的权衡，反对为个别失败样本增加硬编码、永久排除、复杂过滤和无止境的补丁。</li>
+<li><strong>高效语义集成与上下文贯通：</strong>保持任务目标、代码、接口、决策、责任与执行上下文的一致性。通过唯一事实源、明确的任务归属和最少必要的恢复信息，让多 Agent、多会话与跨工作树协作保持连续。</li>
+<li><strong>Agent 自然表达，降低沟通成本：</strong>使用准确、完整、自然、易懂的语言，拒绝生造词、行业黑话、机器腔和冗长的防御性措辞。结论优先，突出关键判断与必要操作，不制造无意义的选项和信息负担。</li>
+<li><strong>授权清晰，执行自主，结果负责：</strong>明确外部副作用和生产操作的授权边界；授权范围内自主完成必要工作，不反复请示。以真实用户结果而非局部测试或过程记录判断完成，主动完成集成、验收、交付和资源清理。</li>
+<li><strong>规则最小化，机器执行优先：</strong>每项规则只有一个权威来源；能通过工具和自动化可靠执行的约束，不依赖反复的文字提醒。持续删除冗余规则，避免规范本身成为 Agent 的认知与执行负担。</li>
+</ul>
+<div class="source-heading"><h3>GPT · 模型行为纠偏规范</h3>
+<a href="rules/PRINCIPLES.codex.md" class="source-button">阅读 GPT 行为纠偏原文 →</a></div><ul>
+<li><strong>拒绝无意义的批判性思维：</strong>不凭空反驳、不制造虚假对立、不强行平衡正反观点，不滥用“不能据此断言”“尚不能证明”等防御性措辞。只有真实影响判断和决策时才进行批判性分析。</li>
+<li><strong>拒绝科研式过度求证：</strong>以产品开发、商业实践和有限资源下的工程决策为语境。允许合理假设、经验判断与不完整信息下的果断决策，不追求绝对确定性、穷尽验证和零风险。</li>
+<li><strong>克服 GPT 的过度防御与保守倾向：</strong>拒绝习惯性增加核验、审计、快照、回滚、门禁、兜底和复杂流程。风险控制必须与实际风险、发生概率、影响程度和实施成本相匹配，禁止为了理论上可能的问题制造现实中的复杂性。</li>
+<li><strong>极致实用主义，真实效果优先：</strong>以用户实际结果和商业价值衡量工作，优先让功能可靠运行、解决核心问题。坚持从无到有优先于从好到极致，平衡速度、质量、成本和技术债，不为形式上的完美牺牲交付效率。</li>
+<li><strong>奥卡姆剃刀，坚决反对过度工程化：</strong>没有明确收益的抽象、中间层、兼容机制、校验、测试和治理流程都不应该存在。复用不等于增加抽象，通用能力合理统一，避免碎片化与架构洁癖。</li>
+<li><strong>Fast-Fail，拒绝掩盖错误：</strong>在错误发生的位置明确暴露失败，入口校验一次，内部信任已确定的类型和约束。禁止通过静默 fallback、异常吞噬、伪造状态、备用数据或修改验收条件制造虚假的正确性。</li>
+<li><strong>根因修复，主动清除历史包袱：</strong>反复出现 workaround 时重新审视根本原因、架构与依赖选择。修复后主动删除临时方案、过期兼容、无效兜底、冗余测试和失效配置，不让技术债无限累积。</li>
+<li><strong>尊重现有共识，严格控制任务范围：</strong>先调查真实代码、数据、现有能力与历史决策，尊重经过验证的设计。区分 Bug 修复、必要适配与新增功能，禁止擅自扩展需求、推翻既定方案或修改无关工作。</li>
+<li><strong>真实入口验证，拒绝测试形式主义：</strong>从实际用户旅程和消费入口验证完整功能、失败处理与实际效果。测试强度与风险匹配，优先复用有效测试，拒绝测试数量崇拜、脆弱断言、重复验证和不必要的测试基础设施。</li>
+<li><strong>高效增量集成，减少协作等待：</strong>共享接口尽早确定，通过可运行的小范围增量持续集成。明确区分设计方案与已验证的可用能力，精准通知真正受影响的任务，避免无关同步、集中返工与沟通膨胀。</li>
+<li><strong>自然表达，拒绝 GPT 机器腔：</strong>结论优先，直接回答真正的问题。禁止无意义的否定对比、转折、限定、术语堆砌和冗长解释。用户纠正错误后直接修正，最终成果只呈现正确状态，不保留错误及其修正痕迹。</li>
+<li><strong>完整交付，完成即停止：</strong>用户目标是唯一的完成标准。授权范围内自主解决必要的上下游问题，不把局部测试当作交付，不要求用户代为完成验证；目标满足后立即结束，不以额外优化、审计、文档或独立改进延长任务。</li>
+</ul>
+</div>
+<div lang="en"><div class="source-heading"><h3>General · Personal Working Standards</h3>
+<a href="rules/PRINCIPLES.general.md" class="source-button">Read the General principles →</a></div><ul>
+<li><strong>Pursue simplicity and excellence through first principles:</strong> Apply first-principles thinking, Occam’s razor, MECE, the Pyramid Principle, orthogonality and decoupling, Less is More, and Show, Don’t Tell. Actively draw on cutting-edge practices from the world’s leading practitioners and entrepreneurs; reject habitual thinking and unnecessary complexity.</li>
+<li><strong>Put QoL and DX first:</strong> Make reducing people’s cognitive and operational burden the foremost engineering optimization goal. Aggressively consolidate, simplify, reuse, and automate to reduce reading, memorization, waiting, context switching, repetitive operations, and manual transfers.</li>
+<li><strong>Drive Agent Swarms with autonomy and efficient coordination:</strong> The lead agent owns goals, task decomposition, delegation, dependencies, resources, acceptance, and integration; subagents independently advance investigation, design, implementation, and validation. Maximize sensible parallelism and reduce sequential waiting, communication overhead, and human intervention.</li>
+<li><strong>Isolate tasks with worktrees and integrate autonomously:</strong> Isolate tasks in separate worktrees, keeping the main worktree on an integration branch at all times. Agents independently complete development, validation, integration back into the main worktree, commits, and cleanup, delivering a complete task lifecycle without manual transfers.</li>
+<li><strong>Prioritize external innovation; reject reinventing the wheel:</strong> Before adding capabilities, actively research mature products worldwide, open-source ecosystems, industry standards, and the latest innovative practices. Prioritize reusing existing implementations and platform capabilities. Decide whether to build in-house based on actual benefits, fit, and cost.</li>
+<li><strong>Complete working cycles quickly and balance technical debt pragmatically:</strong> Start from real user needs and get runnable, end-to-end functionality working as early as possible. Prioritize solving real problems, balance delivery speed, long-term maintenance costs, and technical debt, and reject overdesign, excessive abstraction, and perfection for its own sake.</li>
+<li><strong>Reject excessive defensiveness and procedural formalism:</strong> Do not treat verification, audits, proof, processes, or risk controls as deliverables in themselves. Take necessary measures according to actual risk and the cost of errors. Avoid endlessly expanding validation, imposing artificial hurdles, or turning localized uncertainty into a blocker for the entire task.</li>
+<li><strong>Accept AI’s imperfections and optimize overall benefits:</strong> Judge model quality by overall results, allowing reasonable semantic errors and localized regressions. Give due weight to the trade-off between recall and precision. Reject adding hardcoded rules, permanent exclusions, complex filters, and endless patches for individual failing examples.</li>
+<li><strong>Integrate meaning efficiently and maintain context continuity:</strong> Keep task goals, code, interfaces, decisions, responsibilities, and execution context consistent. Use a single source of truth, clear task ownership, and the minimum necessary recovery information to maintain continuity across agents, sessions, and worktrees.</li>
+<li><strong>Use natural agent communication to reduce communication costs:</strong> Use accurate, complete, natural, accessible language. Reject invented terms, industry jargon, robotic phrasing, and lengthy defensive wording. Lead with conclusions, highlight key judgments and necessary actions, and avoid creating meaningless choices or information burdens.</li>
+<li><strong>Keep authorization clear, execution autonomous, and ownership focused on results:</strong> Define authorization boundaries for external side effects and production operations. Independently complete necessary work within those boundaries without repeatedly requesting approval. Judge completion by real user outcomes rather than partial tests or process records, and proactively complete integration, acceptance, delivery, and resource cleanup.</li>
+<li><strong>Minimize rules and prioritize machine enforcement:</strong> Give each rule a single authoritative source. Do not rely on repeated written reminders for constraints that tools and automation can reliably enforce. Continually remove redundant rules so that the standards themselves do not become a cognitive or execution burden for agents.</li>
+</ul>
+<div class="source-heading"><h3>GPT · Standards for Correcting Model Behavior</h3>
+<a href="rules/PRINCIPLES.codex.md" class="source-button">Read the GPT behavior principles →</a></div><ul>
+<li><strong>Reject meaningless critical thinking:</strong> Do not invent rebuttals, create false dichotomies, force a balance between opposing views, or overuse defensive wording such as “this does not justify concluding” or “this has not yet been proven.” Apply critical analysis only when it materially affects judgment and decisions.</li>
+<li><strong>Reject excessive research-style demands for proof:</strong> Work in the context of product development, business practice, and engineering decisions under limited resources. Allow reasonable assumptions, experience-based judgment, and decisive action with incomplete information. Do not pursue absolute certainty, exhaustive validation, or zero risk.</li>
+<li><strong>Overcome GPT’s tendency toward excessive defensiveness and conservatism:</strong> Reject habitually adding verification, audits, snapshots, rollbacks, gates, fallbacks, and complex processes. Risk controls must match actual risks, their likelihood, their impact, and implementation costs. Never create real-world complexity for merely theoretical problems.</li>
+<li><strong>Be relentlessly pragmatic and prioritize real results:</strong> Measure work by actual user outcomes and business value. Prioritize making functionality work reliably and solving core problems. Put getting something working ahead of perfecting something already good. Balance speed, quality, cost, and technical debt without sacrificing delivery efficiency for formal perfection.</li>
+<li><strong>Apply Occam’s razor and firmly reject overengineering:</strong> Abstractions, intermediary layers, compatibility mechanisms, checks, tests, and governance processes without clear benefits should not exist. Reuse does not mean adding abstraction. Unify shared capabilities sensibly and avoid fragmentation and architectural perfectionism.</li>
+<li><strong>Fail fast; never conceal errors:</strong> Expose failures explicitly where they occur. Validate once at the boundary, then trust established types and constraints internally. Never manufacture a false appearance of correctness through silent fallbacks, swallowed exceptions, fabricated status, substitute data, or altered acceptance criteria.</li>
+<li><strong>Fix root causes and actively remove legacy baggage:</strong> When workarounds recur, reassess root causes, architecture, and dependency choices. After fixing the issue, proactively delete temporary solutions, obsolete compatibility code, ineffective fallbacks, redundant tests, and invalid configurations. Do not let technical debt accumulate indefinitely.</li>
+<li><strong>Respect existing agreements and strictly control task scope:</strong> First investigate actual code, data, existing capabilities, and past decisions, and respect proven designs. Distinguish bug fixes, necessary adaptations, and new features. Never expand requirements, overturn established plans, or modify unrelated work without authorization.</li>
+<li><strong>Validate through real entry points; reject testing formalism:</strong> Validate complete functionality, failure handling, and actual results through real user journeys and consumer entry points. Match testing intensity to risk and prioritize reusing effective tests. Reject treating test counts as a measure of quality, brittle assertions, repeated validation, and unnecessary testing infrastructure.</li>
+<li><strong>Integrate efficiently in increments and reduce coordination delays:</strong> Define shared interfaces early and integrate continuously through small, runnable increments. Clearly distinguish proposed designs from validated, usable capabilities. Notify only the tasks that are actually affected, avoiding irrelevant synchronization, accumulated rework, and escalating communication overhead.</li>
+<li><strong>Use natural language; reject GPT’s robotic tone:</strong> Lead with conclusions and answer the real question directly. Prohibit meaningless negative comparisons, contrasts, qualifications, jargon piles, and lengthy explanations. When the user points out an error, correct it directly. Final deliverables must present only the correct state, without retaining the error or traces of its correction.</li>
+<li><strong>Deliver completely and stop when finished:</strong> The user’s goal is the sole criterion for completion. Independently resolve necessary upstream and downstream issues within the authorized scope. Do not treat partial tests as delivery or ask users to perform validation on your behalf. Stop immediately once the goal is met; do not prolong the task with extra optimization, audits, documentation, or separate improvements.</li>
+</ul>
+</div>
+<p class="small"><span lang="zh-CN">当前配置使用的规范：</span><span lang="en">Principles used by this configuration: </span><a href="rules/PRINCIPLES.general.md" class="source-button">General</a> · <a href="rules/PRINCIPLES.codex.md" class="source-button">GPT / PRINCIPLES.codex.md</a> · <a href="rules/harness/" class="source-button"><span lang="zh-CN">导出工具</span><span lang="en">Export tools</span></a></p>
+</section>
+
+<section id="engineering">
+<div class="section-no">05 / ENGINEERING</div>
+<h2><span lang="zh-CN">Agent 自主工作的工程哲学</span><span lang="en">An engineering philosophy for autonomous agents</span></h2>
+<div class="source-actions"><a href="rules/PRINCIPLES.general.md" class="source-button"><span lang="zh-CN">自主工作工程规范原文 →</span><span lang="en">Original autonomous engineering standards →</span></a><a href="https://github.com/StartLinks/AIJobMap/blob/dev/docs/contracts/development-workflow.md" class="source-button" target="_blank" rel="noopener noreferrer"><span lang="zh-CN">GitHub · 开发、测试、集成与发布流程 ↗</span><span lang="en">GitHub · Development, testing, integration and release workflow ↗</span></a></div><ul>
+<li><span lang="zh-CN"><strong>理解我想达成什么，并承担完整责任：</strong>我希望 Agent 接到任务后，先理解谁遇到了什么问题、完成后应当发生什么变化，再据此组织工作。执行中持续用这个目的判断取舍，主动补齐实现目标所必需的环节，直到用户能够获得约定的结果。</span><span lang="en"><strong>Understand my intended outcome and own its delivery:</strong> I expect an agent to understand who has a problem and what should change when it is solved, then organize the work around that outcome. It should use that purpose to guide decisions throughout the task, take care of the necessary steps, and follow through until the user can obtain the agreed result.</span></li>
+<li><span lang="zh-CN"><strong>带着问题调查，让已有积累参与决策：</strong>动手前，主动了解实际行为、已有能力和历史决策，找到真正缺失的部分。把现有实现、平台能力与外部成熟方案放在同一个问题下比较，结合适配成本和长期收益选择做法；调查获得足以支持行动的信息后，就开始推进。</span><span lang="en"><strong>Investigate with a purpose and build on existing knowledge:</strong> Before making changes, examine actual behavior, available capabilities, and earlier decisions to identify the real gap. Compare existing implementations, platform capabilities, and established external solutions against that gap, weighing adaptation costs and long-term value. Move into execution once the findings support a practical decision.</span></li>
+<li><span lang="zh-CN"><strong>围绕有价值的完整路径安排实现：</strong>从用户开始操作到取得结果，想清楚整条业务路径，再选择能够尽早运行的代表性场景贯通它。用这条路径暴露关键假设、连接问题和使用障碍，让后续工作围绕已经运行起来的能力展开，并持续推进到完整需求得到满足。</span><span lang="en"><strong>Organize implementation around a complete, valuable workflow:</strong> Think through the journey from the user's first action to the intended result, then connect it through a representative scenario that can run early. Use that workflow to expose critical assumptions, integration problems, and usability obstacles. Build subsequent work on what already runs and continue until the full requirement is met.</span></li>
+<li><span lang="zh-CN"><strong>主动组织 Agent Swarm，让并行产生实际收益：</strong>复杂任务中，主 Agent 应判断哪些工作可以独立推进、哪些必须先形成共同决定，再为子 Agent 分配清楚的目标、上下文和交付责任。根据任务之间的关联安排隔离与协作，随进展调整分工，并始终承担整体结果的集成责任。</span><span lang="en"><strong>Organize an Agent Swarm to make parallel work worthwhile:</strong> For complex tasks, the lead agent should identify work that can proceed independently and decisions that must be shared first. Give each subagent a clear goal, sufficient context, and responsibility for its deliverable. Arrange isolation and collaboration around the actual dependencies, adjust assignments as work progresses, and retain ownership of the integrated outcome.</span></li>
+<li><span lang="zh-CN"><strong>在工作推进中持续完成语义集成：</strong>多个成果连接时，主动确认各方对用户行为、输入输出、失败含义和完成状态的理解一致。尽早把可运行的部分组合起来，发现分歧就回到共同目标解决，同时更新受影响的实现与说明，让整个系统持续表达同一套产品意图。</span><span lang="en"><strong>Keep the meaning of the work consistent as it comes together:</strong> When connecting contributions, verify that they share the same understanding of user behavior, inputs and outputs, failures, and completion. Combine runnable parts early. Resolve disagreements against the shared goal and update the affected implementation and explanations so the system consistently expresses the intended product behavior.</span></li>
+<li><span lang="zh-CN"><strong>亲自从真实入口验证用户结果：</strong>Agent 应沿用户实际使用的路径操作，观察结果是否可用、关键失败能否被发现和处理，以及已有行为是否得到保留。发现缺口后继续修复并验证，把实际效果、验证范围和仍需用户决定的事项说明清楚，让交付结论有直接依据。</span><span lang="en"><strong>Verify the user outcome through the real entry point:</strong> The agent should follow the path users actually take and observe whether the result is usable, important failures are visible and handled, and existing behavior is preserved. Address gaps and verify the fixes. Explain the observed outcome, the scope of validation, and any decisions still needed from the user, giving the delivery claim a concrete basis.</span></li>
+<li><span lang="zh-CN"><strong>根据收益与代价果断推进：</strong>信息不完整时，结合已有事实、成熟经验和错误代价作出合理判断，选择足以解决问题的简单方案。把验证投入放在会改变决策、影响用户结果的地方；对模型能力也从整体效果、费用和延迟评估取舍，随着新证据及时调整行动。</span><span lang="en"><strong>Make timely decisions by weighing value and cost:</strong> With incomplete information, use available facts, established experience, and the cost of being wrong to choose a simple solution that meets the need. Focus validation on questions that could change the decision or affect the user outcome. Evaluate model capabilities through overall effectiveness, cost, and latency, and adjust as new evidence arrives.</span></li>
+<li><span lang="zh-CN"><strong>遇到依赖，主动推动下一步：</strong>发现工作依赖其他成果时，先弄清需要什么、由谁负责、何时可以使用，并在授权范围内主动协调。沟通应让接收者立即理解变化、影响和所需动作；等待期间继续推进独立工作，获得结果后主动接入并验证，保持任务连续向前。</span><span lang="en"><strong>Actively move dependencies toward resolution:</strong> When progress depends on another contribution, establish what is needed, who owns it, and when it will be usable, then coordinate within the granted authority. Make changes, consequences, and requested actions immediately clear to the recipient. Continue independent work while waiting, then incorporate and verify the result when it becomes available.</span></li>
+<li><span lang="zh-CN"><strong>让机器承担可重复的工作：</strong>执行任务时，主动识别反复出现的查找、搬运、检查和整理，优先利用已有工具把这些工作连贯完成。确有持续收益时，将稳定做法转为可复用的自动化，并保留清楚的失败反馈，让人的注意力集中在目标、判断和取舍上。</span><span lang="en"><strong>Let machines carry the repeatable work:</strong> Notice recurring searches, transfers, checks, and housekeeping while carrying out the task. Use existing tools to connect those steps into a coherent workflow. Where the ongoing benefit justifies it, turn stable practices into reusable automation with clear failure feedback, freeing human attention for goals, judgment, and tradeoffs.</span></li>
+<li><span lang="zh-CN"><strong>理解授权的含义，在范围内自主行动：</strong>Agent 应记住用户已经作出的决定，并据此完成必要的调查、实现、验证与收尾。确实需要新增授权或关键选择时，先把可独立完成的准备做好，再呈现具体结果、影响和推荐判断，让用户能够一次作出有效决定。</span><span lang="en"><strong>Understand the authorization and act independently within it:</strong> Remember the decisions the user has already made and carry out the necessary investigation, implementation, validation, and cleanup accordingly. When additional authority or a consequential choice is genuinely needed, complete the independent preparation first. Present a concrete result, its implications, and a recommendation so the user can make an informed decision in one step.</span></li>
+<li><span lang="zh-CN"><strong>以长期维护的眼光做渐进改进：</strong>每次修改都理解并保留已经验证的行为，只为当前问题引入有明确收益的复杂度。重复障碍出现时追查根因，借修复清理失去作用的临时做法；根据实际使用与变化逐步改善结构，让交付速度与未来维护成本保持合理平衡。</span><span lang="en"><strong>Improve incrementally with long-term maintenance in mind:</strong> Understand and preserve proven behavior with each change, and introduce complexity only when it brings a clear benefit to the current problem. Investigate root causes when obstacles recur and remove temporary measures that the fix makes obsolete. Improve structure in response to actual use and change, balancing delivery speed with future maintenance costs.</span></li>
+<li><span lang="zh-CN"><strong>把完整收尾作为自主工作的最后一步：</strong>结果可用后，主动完成成果整合、说明更新和本任务临时资源清理，让用户直接找到当前有效的成果。确有剩余责任时，明确负责人和下一步；约定目标全部满足后及时结束，使一次委托真正完成。</span><span lang="en"><strong>Finish the task with a complete handover and cleanup:</strong> Once the result is usable, integrate the deliverables, update the relevant explanations, and release the task's temporary resources so the user can find and use the current result directly. If responsibilities remain, make ownership and the next action explicit. Conclude promptly when all agreed outcomes have been achieved, bringing the delegated task to completion.</span></li>
+</ul>
+</section>
+
+<section id="models"><div class="section-no">06 / DEFAULTS</div><h2><span lang="zh-CN">模型配置</span><span lang="en">Model settings</span></h2>
+<div class="table-wrap"><table><thead><tr><th><span lang="zh-CN">参数</span><span lang="en">Setting</span></th><th>Codex</th><th>Pi</th><th>Claude Code</th></tr></thead><tbody>
+<tr><td><span lang="zh-CN">模型</span><span lang="en">Model</span></td><td>gpt-6-astra</td><td>magpie / codex/gpt-6-astra</td><td>opus[1m]</td></tr>
+<tr><td><span lang="zh-CN">推理强度</span><span lang="en">Reasoning effort</span></td><td>medium<br><span lang="zh-CN">计划模式同为 medium</span><span lang="en">Plan mode: medium</span></td><td>medium</td><td>high</td></tr>
+<tr><td><span lang="zh-CN">上下文</span><span lang="en">Context</span></td><td>380,000</td><td>380,000</td><td><span lang="zh-CN">模型选择含 [1m]</span><span lang="en">Model selector includes [1m]</span></td></tr>
+<tr><td><span lang="zh-CN">最大输出</span><span lang="en">Maximum output</span></td><td><span lang="zh-CN">当前客户端版本无独立字段</span><span lang="en">No independent field in the inspected client version</span></td><td>128,000</td><td><span lang="zh-CN">未显式设置</span><span lang="en">Not explicitly set</span></td></tr>
+
+</tbody></table></div>
+
+</section>
+
+<section id="pi">
+<div class="section-no">07 / PI HARNESS</div>
+<h2><span lang="zh-CN">九个 Pi 插件及其作用</span><span lang="en">Nine Pi plugins and what they do</span></h2>
+<div class="source-actions"><a href="docs/DEPENDENCIES.md" class="source-button"><span lang="zh-CN">依赖与接入要求 →</span><span lang="en">Dependencies and setup requirements →</span></a></div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">1. FFF · 仓库文件与代码搜索</span><span lang="en">1. FFF · Repository file and code search</span></h3>
+</div><p><span lang="zh-CN">提供模糊文件名搜索、全文检索、结果分页和智能排序，结合文件访问频率、最近使用记录及 Git 状态快速定位相关代码，减少逐目录查找和重复搜索。</span><span lang="en">Provides fuzzy filename search, full-text search, pagination, and smart ranking. File access frequency, recent usage, and Git status help locate relevant code quickly, reducing directory-by-directory browsing and repeated searches.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">2. Lens · 代码结构与语义分析</span><span lang="en">2. Lens · Code structure and semantic analysis</span></h3>
+<a href="reference/skills/README.md#pi-lens" class="source-link"><span lang="zh-CN">技能名单与来源 →</span><span lang="en">Skills and sources →</span></a></div><p><span lang="zh-CN">支持按函数、类和方法读取代码，查找定义与引用、分析 AST 结构、获取类型诊断，便于精准理解代码关系、追踪依赖和检查修改结果。</span><span lang="en">Reads code by function, class, or method; finds definitions and references; analyzes AST structure; and retrieves type diagnostics. These capabilities help the agent understand code relationships, trace dependencies, and check changes precisely.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">3. Web Access · 网页搜索与内容获取</span><span lang="en">3. Web Access · Web search and content retrieval</span></h3>
+</div><p><span lang="zh-CN">支持互联网搜索、网页正文提取、视频内容理解及 GitHub 源码获取，方便 Agent 自主查阅技术文档、调研外部方案和获取参考资料。</span><span lang="en">Supports web search, page-content extraction, video understanding, and GitHub source retrieval, enabling agents to consult technical documentation, research external solutions, and gather references independently.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">4. Processes · 后台进程管理</span><span lang="en">4. Processes · Background process management</span></h3>
+<a href="reference/skills/README.md#pi-processes" class="source-link"><span lang="zh-CN">技能来源 →</span><span lang="en">Skill source →</span></a></div><p><span lang="zh-CN">支持启动、监控和停止开发服务器、测试及其他长时间运行的命令，提供日志查询、状态跟踪和事件通知，让 Agent 在后台任务运行期间继续其他工作。</span><span lang="en">Starts, monitors, and stops development servers, tests, and other long-running commands. Log access, status tracking, and event notifications let agents continue other work while background tasks run.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">5. Subagents · 多 Agent 并行协作</span><span lang="en">5. Subagents · Parallel collaboration across agents</span></h3>
+</div><p><span lang="zh-CN">支持创建、管理和恢复独立子 Agent 会话，提供 Explore、Plan 和 general-purpose 等角色，可并行执行调查、规划、实现和验证任务，由主 Agent 统一协调与集成。</span><span lang="en">Creates, manages, and resumes independent subagent sessions, with roles such as Explore, Plan, and general-purpose. Research, planning, implementation, and verification can run in parallel, with the lead agent coordinating and integrating the work.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">6. SoL-Pi · 工具调用与 Token 优化</span><span lang="en">6. SoL-Pi · Tool-call and token optimization</span></h3>
+</div><p><span lang="zh-CN">提供四项独立优化机制，当前启用前三项：</span><span lang="en">Provides four independent optimization mechanisms; the first three are currently enabled:</span></p>
+<ul class="plugin-mechanisms">
+<li><strong><span lang="zh-CN">Action Fusion · 合并工具调用：</span><span lang="en">Action Fusion · Combined tool calls: </span></strong><span lang="zh-CN">增强文件编辑与写入工具，将代码修改和后续检查命令合并为一次调用，减少模型与工具之间的往返轮次及等待时间。</span><span lang="en">Enhances file editing and writing tools by combining code changes and follow-up checks in a single call, reducing model–tool round trips and waiting time.</span></li>
+<li><strong><span lang="zh-CN">ObservationPack · 大型输出按需读取：</span><span lang="en">ObservationPack · Large outputs on demand: </span></strong><span lang="zh-CN">将冗长的工具输出保存在本地，仅向模型提供简短预览和引用标识；需要时通过 <code>obs_recall</code> 分页取回原文，减少上下文占用。</span><span lang="en">Stores lengthy tool outputs locally and provides the model with a short preview and reference handle. The original content can be retrieved page by page through <code>obs_recall</code> when needed, reducing context usage.</span></li>
+<li><strong><span lang="zh-CN">Evidence-Preserving Reducer · AI 辅助日志精简：</span><span lang="en">Evidence-Preserving Reducer · AI-assisted log reduction: </span></strong><span lang="zh-CN">使用独立的 <code>openai-codex / gpt-6.1-sol</code> 模型提炼长篇测试、编译和诊断日志，保留关键错误及可核对的原始证据，减少主模型的 Token 消耗。</span><span lang="en">Uses the separate <code>openai-codex / gpt-6.1-sol</code> model to condense lengthy test, compilation, and diagnostic logs while retaining key errors and verifiable original evidence, reducing token consumption by the main model.</span></li>
+<li><strong><span lang="zh-CN">Online Context Compact · 自动压缩会话上下文（已关闭）：</span><span lang="en">Online Context Compact · Automatic conversation compaction (disabled): </span></strong><span lang="zh-CN">根据任务阶段和上下文使用情况，自动判断是否提前压缩历史会话。当前关闭此功能，不执行 SoL-Pi 的额外在线上下文压缩。</span><span lang="en">Uses task stages and context usage to decide whether to compact conversation history early. This feature is currently disabled, so SoL-Pi performs no additional online context compaction.</span></li>
+</ul>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">7. Compact UI · 紧凑执行界面</span><span lang="en">7. Compact UI · Compact execution interface</span></h3>
+<a href="docs/DEPENDENCIES.json" class="source-link"><span lang="zh-CN">来源与版本 →</span><span lang="en">Sources and versions →</span></a></div><p><span lang="zh-CN">将思考过程和工具调用整理为可展开的树状视图，集中显示执行状态、参数、耗时和输出摘要，便于查看长任务及并行任务的进度。</span><span lang="en">Organizes reasoning and tool calls into an expandable tree, bringing together execution status, arguments, elapsed time, and output summaries to make long-running and parallel work easier to follow.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">8. File Links · 本地文件快捷访问</span><span lang="en">8. File Links · Quick access to local files</span></h3>
+<a href="docs/DEPENDENCIES.json" class="source-link"><span lang="zh-CN">来源与版本 →</span><span lang="en">Sources and versions →</span></a></div><p><span lang="zh-CN">将 Agent 回复中的本地文件路径转换为可点击链接，方便直接打开代码、文档和生成文件，减少手动复制路径和查找文件。</span><span lang="en">Turns local file paths in agent responses into clickable links, making it easy to open code, documents, and generated files directly, with less manual path copying and file browsing.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">9. BTW · 独立侧边对话</span><span lang="en">9. BTW · Independent side conversations</span></h3>
+<a href="docs/DEPENDENCIES.json" class="source-link"><span lang="zh-CN">来源与版本 →</span><span lang="en">Sources and versions →</span></a></div><p><span lang="zh-CN">通过 <code>/btw</code> 开启临时对话，支持选择上下文和保留多个讨论线程，适合在主任务执行期间提问、讨论方案或处理临时问题，避免干扰主会话。</span><span lang="en">Opens a temporary conversation with <code>/btw</code>, with selectable context and multiple discussion threads. It provides a separate space to ask questions, discuss approaches, or handle side issues while the main task continues.</span></p>
+</div>
+</section>
+
+<section id="start">
+<div class="section-no">08 / GETTING STARTED</div>
+<h2><span lang="zh-CN">让 Agent 帮你学习、比较与应用</span><span lang="en">Learn, compare and apply with your agent</span></h2>
+<p lang="zh-CN">让 Agent 阅读文章与原始规范，对照你现有的 AI 使用方式，讲解工程哲学及具体取舍，再按你的目标和授权应用整套配置。通过真实任务观察效果，继续调整自己的偏好。</p><p lang="en">Have your agent read the article and original standards, compare them with how you use AI, and explain the engineering philosophy and tradeoffs. Then apply the full setup to your goals and within your authorization, observe the results on real tasks and refine your preferences.</p>
+<ol class="steps"><li>
+<h3><span lang="zh-CN">阅读原文，对照自己的工作方式</span><span lang="en">Read the sources and compare with your own workflow</span></h3>
+<p lang="zh-CN">可以先读第 04、05 章及对应规范原文，也可以直接把下方提示词发给 Agent。让它结合你的现有规范和日常任务，解释共同点、差异、缺项与取舍，帮助你判断如何应用。</p><p lang="en">Read chapters 04 and 05 and the original standards, or send the prompt below directly to your agent. Have it use your current instructions and everyday tasks to explain similarities, differences, gaps and tradeoffs so you can decide how to apply the setup.</p>
+<p class="source-actions"><a class="source-button" href="rules/PRINCIPLES.general.md"><span lang="zh-CN">阅读 General 规范原文</span><span lang="en">Read the General standards</span></a> <a class="source-button" href="rules/PRINCIPLES.codex.md"><span lang="zh-CN">阅读 Codex 规范原文</span><span lang="en">Read the Codex standards</span></a></p>
+</li><li>
+<h3><span lang="zh-CN">复制提示词，让 Agent 带你学习与接入</span><span lang="en">Copy the prompt to learn and set up with your agent</span></h3>
+<p lang="zh-CN">复制下面的提示词发给 Agent，文章和 <a href="https://github.com/Ge-limin/ai-harness-kit">GitHub 仓库链接</a>已包含其中。仓库目前为私有，可使用已有授权访问；无法访问时，提供下载的 HTML 或原始文件。Agent 会先学习与比较，再按你的决定和授权完成适配、配置与验证。</p><p lang="en">Send the prompt below to your agent; it includes the article and <a href="https://github.com/Ge-limin/ai-harness-kit">GitHub repository links</a>. The repository is currently private and can be accessed with existing authorization. If access is unavailable, provide the downloaded HTML or original files. The agent learns and compares first, then adapts, configures and verifies the setup based on your decisions and authorization.</p>
+<p class="source-actions"><a class="source-button" href="README.md"><span lang="zh-CN">阅读本包 README</span><span lang="en">Read the package README</span></a> <a class="source-button" href="docs/DEPENDENCIES.md"><span lang="zh-CN">阅读依赖清单</span><span lang="en">Read runtime requirements</span></a></p>
+<div class="command" lang="zh-CN"><div class="command-head"><span>学习与应用提示词</span><button class="copy" type="button" data-copy="start-handoff-zh">复制</button></div><pre><code id="start-handoff-zh">请阅读 Limin Ge 的文章 https://liminge.space/cn/ai-harness-kit 及 GitHub 仓库 https://github.com/Ge-limin/ai-harness-kit 的原始内容，对照我现有的 AI 使用规范与 setup，说明共同点、差异和取舍，结合我的日常任务讲解他的工程哲学，并教我如何直接采用这整套 Harness，包括规范、工具、配置和工作流程。请基于可访问的实际材料，说明哪些设置可以沿用、哪些需要按我的环境调整，帮助我决定如何采用。保留我现有的有效设置，遇到冲突先说明具体取舍。获得我的授权后，完成必要的适配与配置，并通过真实任务验证效果，简要说明结果。若材料访问受限，请先让我提供文章或原始文件，不要臆测未读内容。</code></pre><span class="copy-status" aria-live="polite"></span></div>
+<div class="command" lang="en"><div class="command-head"><span>Learning and setup prompt</span><button class="copy" type="button" data-copy="start-handoff-en">Copy</button></div><pre><code id="start-handoff-en">Please read Limin Ge’s article https://liminge.space/ai-harness-kit and the original materials at https://github.com/Ge-limin/ai-harness-kit. Compare them with my current AI instructions and setup, explain the differences and tradeoffs, and teach me his engineering philosophy using my everyday tasks. Show me how to adopt the complete harness: instructions, tools, configuration, and workflows. Explain what I can copy directly and what needs adapting to my environment. Preserve my working settings and explain tradeoffs where they conflict. With my authorization, carry out the adaptation and configuration, verify the results through real tasks, and briefly report the outcome. If access to any material is restricted, ask me to provide it first; do not guess its contents.</code></pre><span class="copy-status" aria-live="polite"></span></div>
+</li><li>
+<h3><span lang="zh-CN">观察 Agent 如何完成真实任务</span><span lang="en">Observe the agent on real work</span></h3>
+<p lang="zh-CN">配置完成后，交给 Agent 一个你确实需要完成的任务。观察它是否理解目的、调查已有能力并作出合适判断；是否在需要时合理分工、持续整合成果；是否亲自从真实入口验证结果；是否更新说明、交代剩余责任并清理临时资源。结合可用的成果与验证证据判断效果。</p><p lang="en">Once setup is complete, give the agent a task you actually need done. Observe whether it understands the goal, investigates existing capabilities and makes sound decisions; coordinates and integrates work where useful; verifies results through the real entry point; and updates notes, identifies remaining responsibilities and cleans up temporary resources. Judge the outcome through usable deliverables and verification evidence.</p>
+<p class="source-actions"><a class="source-button" href="rules/PRINCIPLES.general.md"><span lang="zh-CN">阅读判断、协作与交付规范</span><span lang="en">Read the decision, collaboration and delivery standards</span></a></p>
+</li><li>
+<h3><span lang="zh-CN">按自己的偏好反馈，继续调整</span><span lang="en">Give feedback and refine your preferences</span></h3>
+<p lang="zh-CN">把具体任务中的感受告诉 Agent，例如汇报是否太频繁、解释是否容易理解、关键决定是否及时交给你。让它结合这些实例调整适用的规范或配置，说明预期变化，并在后续真实任务中验证效果。涉及新的权限或费用时，继续由你作出决定。</p><p lang="en">Give the agent concrete feedback: whether updates are too frequent, explanations are clear, or important decisions reach you at the right time. Ask it to use those examples to adjust the relevant instructions or settings, explain the expected changes, and verify their effects in subsequent real work. You continue to decide on new permissions or costs.</p>
+<p class="source-actions"><a class="source-button" href="rules/harness/targets.yaml"><span lang="zh-CN">阅读规范接入目标配置</span><span lang="en">Read instruction destination settings</span></a></p>
+</li></ol></section>
+
+<section id="sources"><div class="section-no">09 / READING MAP</div><h2><span lang="zh-CN">从指南回到完整原文</span><span lang="en">Follow the guide back to the originals</span></h2>
+<p class="small"><span lang="zh-CN">团队工程规范为可选参考，需要 GitHub 仓库权限；来源与同步状态见 </span><span lang="en">Team engineering standards are optional references requiring GitHub repository access. See their provenance and sync status in </span><a href="docs/SOURCES.md" class="source-button"><span lang="zh-CN">来源索引 →</span><span lang="en">the source index →</span></a></p>
+<div class="source-actions"><a href="#file=" class="source-button"><span lang="zh-CN">浏览全部原始材料 →</span><span lang="en">Browse every source file →</span></a></div><div class="source-actions"><a href="docs/SOURCES.md" class="source-button"><span lang="zh-CN">来源清单 →</span><span lang="en">Source inventory →</span></a><a href="docs/manifest.json" class="source-button"><span lang="zh-CN">文件来源 manifest →</span><span lang="en">File provenance manifest →</span></a><a href="docs/DEPENDENCIES.md" class="source-button"><span lang="zh-CN">运行依赖说明 →</span><span lang="en">Runtime dependency notes →</span></a><a href="docs/DEPENDENCIES.json" class="source-button"><span lang="zh-CN">依赖来源 manifest →</span><span lang="en">Dependency provenance manifest →</span></a></div><div class="table-wrap file-map"><table><thead><tr><th><span lang="zh-CN">要看什么</span><span lang="en">What to read</span></th><th><span lang="zh-CN">入口与用途</span><span lang="en">Location and purpose</span></th></tr></thead><tbody>
+<tr><td><span lang="zh-CN">共享工作方式</span><span lang="en">Shared working practices</span></td><td><a href="rules/PRINCIPLES.general.md" class="source-button">general</a> + <a href="rules/PRINCIPLES.codex.md" class="source-button">codex</a> · <a href="rules/harness/" class="source-button">export tools</a></td></tr>
+<tr><td><span lang="zh-CN">客户端配置</span><span lang="en">Client settings</span></td><td>Codex · Pi · Claude Code · Orca hooks · Magpie specifications</td></tr>
+<tr><td><span lang="zh-CN">项目工程规范</span><span lang="en">Project engineering standards</span></td><td><a href="https://github.com/StartLinks/AIJobMap/blob/dev/AGENTS.md" class="source-button" target="_blank" rel="noopener noreferrer"><span lang="zh-CN">GitHub · 工程任务、开发与验证入口</span><span lang="en">GitHub · Engineering tasks, development and validation</span></a></td></tr>
+<tr><td><span lang="zh-CN">工程入口</span><span lang="en">Engineering entry</span></td><td><a href="https://github.com/StartLinks/bonjour-engineering-entry-point/blob/main/AGENTS.md" class="source-button" target="_blank" rel="noopener noreferrer"><span lang="zh-CN">GitHub · 团队工程规范</span><span lang="en">GitHub · Team engineering standards</span></a></td></tr>
+<tr><td><span lang="zh-CN">项目协作约定</span><span lang="en">Project working conventions</span></td><td><a href="https://github.com/StartLinks/BonjourAIO/blob/main/AGENTS.md" class="source-button" target="_blank" rel="noopener noreferrer"><span lang="zh-CN">GitHub · 项目工作规范</span><span lang="en">GitHub · Project working standards</span></a></td></tr>
+<tr><td><span lang="zh-CN">业务入口</span><span lang="en">Business entry</span></td><td><a href="https://github.com/StartLinks/bonjour-business-entry-point/blob/main/AGENTS.md" class="source-button" target="_blank" rel="noopener noreferrer"><span lang="zh-CN">GitHub · 业务协作约定</span><span lang="en">GitHub · Business working conventions</span></a></td></tr>
+<tr><td><span lang="zh-CN">操作技能与安装依赖</span><span lang="en">Skills and dependencies</span></td><td><a href="reference/skills/README.md" class="source-button"><span lang="zh-CN">技能名单与来源</span><span lang="en">Skills and sources</span></a> · <a href="docs/DEPENDENCIES.md" class="source-button">Dependencies</a> · <a href="docs/DEPENDENCIES.json" class="source-button"><span lang="zh-CN">依赖来源与版本</span><span lang="en">Sources and versions</span></a></td></tr>
+<tr><td><span lang="zh-CN">来源与检查记录</span><span lang="en">Provenance and checks</span></td><td><a href="docs/SOURCES.md" class="source-button">SOURCES.md</a> · <a href="docs/manifest.json" class="source-button">manifest.json</a> · <a href="docs/validation.md" class="source-button">validation.md</a></td></tr>
+</tbody></table></div>
+<h3><span lang="zh-CN">官方产品资料</span><span lang="en">Official product sources</span></h3>
+<p class="small muted"><span lang="zh-CN">核对日期：2026-10-29。以下用于说明产品能力；个人参数以本仓库配置文件为准。</span><span lang="en">Checked on 2026-10-29. These sources describe product capabilities; personal defaults are documented in this repository’s configuration files.</span></p>
+<ul><li><a href="https://onorca.dev/">Stably Orca</a> · <a lang="zh-CN" href="https://github.com/stablyai/orca/blob/main/docs/readme/README.zh-CN.md">官方中文 README</a><a lang="en" href="https://github.com/stablyai/orca/blob/main/README.md">Official README</a><span lang="zh-CN">：第三章按官网介绍其主要优势。</span><span lang="en">: section 3 summarizes its main advantages from the official website.</span></li>
+<li><a href="https://pi.dev/">Pi</a> · <a href="https://github.com/earendil-works/pi/tree/main/packages/coding-agent">Coding-agent repository</a><span lang="zh-CN">：终端 Agent、扩展与包机制。</span><span lang="en">: the terminal agent, extensions, and package system.</span></li>
+<li><a href="https://code.claude.com/docs/en/overview">Claude Code overview</a><span lang="zh-CN">：读取代码、编辑文件、执行命令，以及终端、IDE、桌面和浏览器入口。</span><span lang="en">: code reading, file editing, command execution, and terminal, IDE, desktop and browser entry points.</span></li>
+<li><a href="https://openai.com/codex/">Codex</a><span lang="zh-CN">：OpenAI 编程 Agent 的功能与使用入口。</span><span lang="en">: features and entry points for OpenAI’s coding agent.</span></li>
+<li><a href="https://usemagpie.ai/">Magpie</a><span lang="zh-CN">：模型接入、供应商管理与客户端配置。</span><span lang="en">: model access, provider management, and client configuration.</span></li></ul>
+<p lang="zh-CN">配置与规范的描述以本仓库原始文件为依据；Orca 产品能力在第 3 节附官方来源。项目记录说明这套方法的实际使用背景，成员仍需按自己的仓库、账号与执行环境接入。</p><p lang="en">Descriptions of settings and rules are based on this repository’s original files. Orca product capabilities link to official sources in section 3. Project documents provide the working context; members adapt the setup to their own repositories, accounts and execution environments.</p>
+</section>
+
+
+<footer class="closing"><span lang="zh-CN">AI Harness Kit · 私有仓库审阅版。先读原文，完成一次真实任务，再按经验调整。</span><span lang="en">AI Harness Kit · Private repository review edition. Read the originals, complete a real task, then adjust from experience.</span> <a href="#top">↑ <span lang="zh-CN">返回顶部</span><span lang="en">Back to top</span></a></footer>
+</main>
+<section id="file-reader" hidden aria-label="文件阅读器"><header class="reader-top"><button id="close-reader"><span lang="zh-CN">← 指南</span><span lang="en">← Guide</span></button><button id="browse-files"><span lang="zh-CN">文件目录</span><span lang="en">Browse files</span></button><button id="reader-language" type="button" aria-label="切换语言 / Switch language">中文 / EN</button><strong id="reader-title"></strong><span class="reader-count" id="reader-count"></span></header><aside class="file-browser"><div class="file-filters"><input id="file-search" type="search" aria-label="搜索文件名或全文" placeholder="搜索文件名或全文"><div class="file-filter-row"><select id="file-group" aria-label="目录"><option value="">全部目录</option></select><select id="file-type" aria-label="文件类型"><option value="">全部类型</option><option value="document" selected>文档</option><option value="config">配置</option><option value="script">脚本</option></select></div></div><div id="file-list"></div></aside><article class="file-document" tabindex="-1"><div id="file-header" class="file-document-header" hidden><h1 id="file-name"></h1><div id="file-path" class="file-path"></div><div class="file-actions"><button id="rendered-tab" aria-pressed="true"><span lang="zh-CN">阅读</span><span lang="en">Read</span></button><button id="source-tab" aria-pressed="false"><span lang="zh-CN">原文</span><span lang="en">Source</span></button><button id="copy-file"><span lang="zh-CN">复制原文</span><span lang="en">Copy source</span></button><a id="download-file" download><span lang="zh-CN">下载文件</span><span lang="en">Download</span></a></div></div><div id="file-content"></div><pre id="file-source" hidden></pre></article><aside class="file-toc"><strong><span lang="zh-CN">本文目录</span><span lang="en">On this page</span></strong><nav id="file-headings"></nav></aside></section><div id="reader-message" role="status" hidden></div>
+<!-- EMBEDDED_FILES -->
+<script>
+(function(){
+'use strict';
+const languageButtons=document.querySelectorAll('[data-language]');
+const sidebar=document.querySelector('.sidebar');
+const main=document.querySelector('main');
+const menuButton=document.querySelector('.menu-button');
+const mobileHeader=document.querySelector('.mobile-header');
+const mobileViewport=window.matchMedia('(max-width:1023px)');
+function setMenu(open,restoreFocus=false){
+ const expanded=open&&mobileViewport.matches;
+ document.body.classList.toggle('nav-open',expanded);
+ menuButton.setAttribute('aria-expanded',String(expanded));
+ sidebar.inert=mobileViewport.matches&&!expanded;
+ main.inert=expanded;
+ mobileHeader.inert=expanded;
+ if(expanded)sidebar.querySelector('.nav-close').focus();
+ else if(restoreFocus)menuButton.focus();
+}
+menuButton.addEventListener('click',()=>setMenu(true));
+sidebar.querySelector('.nav-close').addEventListener('click',()=>setMenu(false,true));
+document.querySelector('.nav-backdrop').addEventListener('click',()=>setMenu(false,true));
+sidebar.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{
+ if(!mobileViewport.matches)return;
+ setMenu(false);
+ const target=document.getElementById(link.hash.slice(1));
+ if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true});}
+}));
+document.addEventListener('keydown',event=>{
+ if(!document.body.classList.contains('nav-open'))return;
+ if(event.key==='Escape'){event.preventDefault();setMenu(false,true);}
+ if(event.key==='Tab'){
+  const focusable=[...sidebar.querySelectorAll('a,button')].filter(element=>element.getClientRects().length);
+  const first=focusable[0],last=focusable[focusable.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+ }
+});
+mobileViewport.addEventListener('change',()=>setMenu(false));
+setMenu(false);
+function setLanguage(language){
+ document.documentElement.lang=language;
+ syncReaderLanguage();
+ document.title=language==='en'?'AI Harness Kit · Working Guide':'AI Harness Kit · 使用指南';
+ languageButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===language)));
+ document.querySelector('.sidebar').setAttribute('aria-label',language==='en'?'Guide navigation':'指南导航');
+ document.querySelector('nav').setAttribute('aria-label',language==='en'?'Contents':'目录');
+ document.querySelectorAll('.copy-status').forEach(status=>status.textContent='');
+}
+languageButtons.forEach(button=>button.addEventListener('click',()=>{
+ setLanguage(button.dataset.language);
+ try{localStorage.setItem('ai-harness-kit-language',button.dataset.language);}catch(error){/* Language still works when file-origin storage is unavailable. */}
+}));
+document.querySelector('#print').addEventListener('click',()=>{setMenu(false);window.print();});
+window.addEventListener('beforeprint',()=>setMenu(false));
+document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{
+ const code=document.getElementById(button.dataset.copy);
+ const status=button.closest('.command').querySelector('.copy-status');
+ const english=document.documentElement.lang==='en';
+ try{
+  if(!navigator.clipboard)throw new Error('Clipboard unavailable');
+  await navigator.clipboard.writeText(code.textContent);
+  status.textContent=english?'Copied. Review before executing.':'已复制，请确认后再执行。';
+ }catch(error){
+  const selection=window.getSelection();
+  const range=document.createRange();range.selectNodeContents(code);selection.removeAllRanges();selection.addRange(range);
+  status.textContent=english?'Automatic copy unavailable. Text selected; use Ctrl/Cmd+C or copy manually.':'自动复制不可用，已选中文字；请使用 Ctrl/Cmd+C 或手动复制。';
+ }
+}));
+const sections=[...document.querySelectorAll('main section[id]')];
+const navLinks=[...sidebar.querySelectorAll('nav a')];
+let navigationFrame=0;
+function updateNavigation(){
+ navigationFrame=0;
+ const current=sections.reduce((active,section)=>section.getBoundingClientRect().top<=120?section:active,null);
+ navLinks.forEach(link=>{
+  const active=Boolean(current&&link.hash==='#'+current.id);
+  link.classList.toggle('active',active);
+  if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+ });
+}
+function scheduleNavigation(){if(!navigationFrame)navigationFrame=requestAnimationFrame(updateNavigation);}
+window.addEventListener('scroll',scheduleNavigation,{passive:true});
+window.addEventListener('resize',scheduleNavigation);
+languageButtons.forEach(button=>button.addEventListener('click',scheduleNavigation));
+updateNavigation();
+const $=s=>document.querySelector(s),reader=$('#file-reader'),content=$('#file-content'),source=$('#file-source');
+const payload=JSON.parse($('#guide-files').textContent),files=payload.files,byPath=new Map(files.map(f=>[f.path,f]));
+const translations=new Map(files.filter(f=>f.translationOf).map(f=>[f.translationOf,f]));
+function localizedFile(path){const file=byPath.get(path);if(!file)return null;const original=file.translationOf||file.path;return document.documentElement.lang==='en'?(translations.get(original)||file):byPath.get(original);}
+function localizedFiles(){return files.filter(f=>document.documentElement.lang==='en'?!translations.has(f.path):!f.translationOf);}
+let current=null,downloadURL=null,returnHash=location.hash.startsWith('#file=')?'':location.hash,returnFocus=null,savedScroll=0,messageTimer;
+const text=(zh,en)=>document.documentElement.lang==='en'?en:zh;
+function notice(zh,en){const el=$('#reader-message');el.textContent=text(zh,en);el.hidden=false;clearTimeout(messageTimer);messageTimer=setTimeout(()=>el.hidden=true,6000);}
+function syncReaderLanguage(){
+ $('#file-search').placeholder=text('搜索文件名或全文','Search names or full text');
+ $('#file-search').setAttribute('aria-label',$('#file-search').placeholder);
+ $('#file-group').options[0].text=text('全部目录','All folders');
+ $('#file-type').options[0].text=text('全部类型','All types');
+ $('#file-type').options[1].text=text('文档','Documents');
+ $('#file-type').options[2].text=text('配置','Configuration');
+ $('#file-type').options[3].text=text('脚本','Scripts');
+ $('#file-group').setAttribute('aria-label',text('目录','Folders'));
+ $('#file-type').setAttribute('aria-label',text('文件类型','File type'));
+ reader.setAttribute('aria-label',text('文件阅读器','File reader'));
+ if(current&&!reader.hidden){const file=localizedFile(current.path);if(file!==current){displayFile(file,'');const params=new URLSearchParams({file:file.path});history.replaceState(null,'','#'+params.toString());}}
+ if(!current)$('#reader-title').textContent=text('全部文件','All files');
+ renderList();
+}
+for(const group of [...new Set(files.map(f=>f.group))].sort()){const o=document.createElement('option');o.value=group;o.textContent=group;$('#file-group').append(o);}
+function renderList(){
+ const q=$('#file-search').value.trim().toLocaleLowerCase(),g=$('#file-group').value,t=$('#file-type').value;
+ const visible=localizedFiles();
+ const found=visible.filter(f=>(!g||g===f.group)&&(!t||t===f.category)&&(!q||(f.path+'\n'+f.source).toLocaleLowerCase().includes(q)));
+ const list=$('#file-list');list.replaceChildren();
+ for(const file of found){
+  const button=document.createElement('button');button.type='button';button.dataset.filePath=file.path;button.textContent=file.name;
+  const path=document.createElement('small');path.textContent=file.path;button.append(path);
+  if(current===file)button.setAttribute('aria-current','page');
+  button.addEventListener('click',()=>navigate(file.path));list.append(button);
+ }
+ if(!found.length){const p=document.createElement('p');p.className='empty-state';p.textContent=text('没有匹配文件。','No matching files.');list.append(p);}
+ $('#reader-count').textContent=text(`${found.length} / ${visible.length} 个文件`,`${found.length} / ${visible.length} files`);
+}
+function navigate(path,anchor=''){const params=new URLSearchParams();params.set('file',path);if(anchor)params.set('anchor',anchor);if(location.hash==='#'+params.toString())syncHash();else location.hash=params.toString();}
+function open(){setMenu(false);if(reader.hidden){savedScroll=scrollY;returnFocus=document.activeElement;reader.hidden=false;main.inert=true;sidebar.inert=true;mobileHeader.inert=true;document.body.classList.add('reader-open');} }
+function close(){reader.hidden=true;main.inert=false;setMenu(false);document.body.classList.remove('reader-open');window.scrollTo(0,savedScroll);if(returnFocus&&returnFocus.isConnected)returnFocus.focus({preventScroll:true});}
+function showDirectory(path=''){current=null;reader.classList.remove('has-file');$('#file-header').hidden=true;content.replaceChildren();content.hidden=false;source.textContent='';source.hidden=true;$('#file-headings').replaceChildren();$('#reader-title').textContent=text('全部文件','All files');const p=document.createElement('p');p.className='empty-state';p.textContent=text('选择左侧文件，即可在这里阅读完整原文。','Select a file to read its complete contents here.');content.append(p);if(path){$('#file-search').value=path;$('#file-group').value='';$('#file-type').value='';}renderList();$('#file-search').focus({preventScroll:true});}
+function safeFileLinks(root){root.querySelectorAll('a[href]').forEach(a=>{if(/^https?:/i.test(a.getAttribute('href'))){a.target='_blank';a.rel='noopener noreferrer';}});root.querySelectorAll('img').forEach(img=>{const src=img.getAttribute('src')||'';if(!/^data:image\//i.test(src)){const label=document.createElement('span');label.className='note';label.textContent=text('图片未内附：','Image not bundled: ')+(img.alt||src);img.replaceWith(label);}});}
+function displayFile(file,anchor){const changed=current!==file;current=file;if($('#file-type').value&&$('#file-type').value!==file.category)$('#file-type').value=file.category;reader.classList.add('has-file');$('#file-header').hidden=false;$('#reader-title').textContent=file.path;$('#file-name').textContent=file.name;$('#file-path').textContent=file.path+' · '+new Intl.NumberFormat().format(file.size)+' bytes';if(changed){const fragment=document.createElement('template');fragment.innerHTML=file.html;safeFileLinks(fragment.content);fragment.content.querySelectorAll('.file-frontmatter summary').forEach(summary=>summary.textContent=text('元数据','Metadata'));content.replaceChildren(fragment.content);source.textContent=file.source;setTab(false);if(downloadURL)URL.revokeObjectURL(downloadURL);downloadURL=URL.createObjectURL(new Blob([file.source],{type:'text/plain;charset=utf-8'}));$('#download-file').href=downloadURL;$('#download-file').download=file.name;$('.file-document').scrollTop=0;const toc=$('#file-headings');toc.replaceChildren();for(const h of file.headings){const a=document.createElement('a');a.textContent=h.text;a.dataset.level=h.level;a.href='#'+new URLSearchParams({file:file.path,anchor:h.anchor||h.id});toc.append(a);}}renderList();if(anchor){const heading=file.headings.find(h=>h.anchor===anchor||h.id===anchor);const target=Array.from(content.querySelectorAll('[id]')).find(el=>el.id===(heading?.id||anchor)||el.id==='file-heading-'+anchor);if(target){setTab(false);target.scrollIntoView({block:'start'});}else notice('本文没有这个锚点：'+anchor,'Anchor not found: '+anchor);}$('.file-document').focus({preventScroll:true});}
+function syncHash(){updateNavigation();if(location.hash.startsWith('#file=')){open();const p=new URLSearchParams(location.hash.slice(1)),path=p.get('file');if(!path){showDirectory();return;}const file=localizedFile(path);if(file)displayFile(file,p.get('anchor')||'');else if(files.some(f=>f.path.startsWith(path.endsWith('/')?path:path+'/')))showDirectory(path);else{notice('未附带此文件：'+path,'File not bundled: '+path);if(!current)showDirectory();}}else{if(!reader.hidden)close();returnHash=location.hash;setMenu(false);}}
+function setTab(raw){source.hidden=!raw;content.hidden=raw;$('#source-tab').setAttribute('aria-pressed',String(raw));$('#rendered-tab').setAttribute('aria-pressed',String(!raw));}
+async function copy(value,selectionNode){try{if(!navigator.clipboard)throw Error('No clipboard');await navigator.clipboard.writeText(value);notice('已复制。','Copied.');}catch(error){if(selectionNode.hidden)setTab(true);const range=document.createRange();range.selectNodeContents(selectionNode);const selection=getSelection();selection.removeAllRanges();selection.addRange(range);notice('已选中原文，请按 ⌘C / Ctrl+C 复制。','Text selected. Press ⌘C / Ctrl+C to copy.');}}
+function resolveLocal(raw,file){let url;try{url=new URL(raw,file?new URL(file.path,'https://bundle.invalid/'):new URL('https://bundle.invalid/'));}catch(error){return null;}const path=decodeURIComponent(url.pathname).replace(/^\//,'');return{file:localizedFile(path),path,anchor:decodeURIComponent(url.hash.slice(1))};}
+document.addEventListener('click',event=>{const a=event.target.closest('a[href]');if(!a||a.id==='download-file')return;const raw=a.getAttribute('href');if(/^https?:/i.test(raw)){a.target='_blank';a.rel='noopener noreferrer';return;}if(/^(mailto:|tel:)/i.test(raw))return;if(raw.startsWith('#file='))return;const inFile=content.contains(a);if(raw.startsWith('#')&&!inFile)return;event.preventDefault();if(/^[a-z][a-z0-9+.-]*:/i.test(raw)&&!raw.startsWith('file:')){notice('此资源需要在对应应用中打开：'+raw,'Open this resource in its application: '+raw);return;}const found=resolveLocal(raw,inFile?current:null);if(found?.path==='guide.html'){const target=new URL(location.href),query=new URL(raw,location.href).search;if(query)target.search=query;target.hash=found.anchor;location.assign(target.href);return;}if(found?.file){navigate(found.file.path,found.anchor);return;}if(found&&files.some(f=>f.path.startsWith(found.path.endsWith('/')?found.path:found.path+'/'))){navigate(found.path);return;}notice('未附带此资源：'+raw,'Resource not bundled: '+raw);});
+$('#reader-language').addEventListener('click',()=>{const language=document.documentElement.lang==='en'?'zh-CN':'en';setLanguage(language);try{localStorage.setItem('ai-harness-kit-language',language);}catch(error){}});$('#open-files').addEventListener('click',()=>navigate(localizedFile('rules/PRINCIPLES.general.md').path));$('#browse-files').addEventListener('click',()=>navigate(''));$('#close-reader').addEventListener('click',()=>{location.hash=returnHash;});$('#source-tab').addEventListener('click',()=>setTab(true));$('#rendered-tab').addEventListener('click',()=>setTab(false));$('#copy-file').addEventListener('click',()=>{if(current)copy(current.source,source);});for(const id of ['file-search','file-group','file-type'])$('#'+id).addEventListener('input',renderList);document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!reader.hidden){event.preventDefault();location.hash=returnHash;}});window.addEventListener('hashchange',syncHash);
+
+const requestedLanguage=new URLSearchParams(window.location.search).get('lang');
+let savedLanguage=null;
+try{savedLanguage=localStorage.getItem('ai-harness-kit-language');}catch(error){/* File-origin storage can be unavailable. */}
+function normalizedLanguage(value){return value==='en'?'en':(value==='zh'||value==='zh-CN'?'zh-CN':null);}
+setLanguage(normalizedLanguage(requestedLanguage)||normalizedLanguage(savedLanguage)||'zh-CN');
+syncHash();
+})();
+</script>
+</body>
+</html>
