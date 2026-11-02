@@ -81,7 +81,7 @@
 | --- | --- | --- |
 | Orca | Agent 工作区：把多个 Agent、Git 工作树、终端、浏览器和代码审阅放在同一个应用里。 | [onorca.dev](https://onorca.dev/) |
 | Pi | 可扩展的终端 Agent：连接模型，读取和修改文件、执行命令，并通过插件补充搜索、子任务等能力。 | [pi.dev](https://pi.dev/) |
-| Codex | Codex GUI 的一些功能很好用，例如可视化，因此仍然保留。日常开发通常用 Pi 替代，以减少 Codex 的防御性编程倾向。 | [openai.com/codex](https://openai.com/codex/) |
+| Codex | 保留 Codex GUI 的可视化等功能，通过 CodexHost 将 Pi 接入 Codex Desktop，由 Pi 执行日常开发任务，减少 Codex 的防御性编程倾向。需要浏览器操作时，可委派原生 Codex 并收回结果。 | [openai.com/codex](https://openai.com/codex/) · [CodexHost](https://github.com/BytePioneer-AI/codex-host) |
 | Claude Code | 能力比较全面，适用面广，但终端界面的使用体验不一定理想。 | [code.claude.com](https://code.claude.com/docs/en/overview) |
 | Magpie | 统一管理多个 Agent 的模型与供应商，通过本机网关适配不同 API。可为 Codex、Pi、Claude Code 等选择模型，并维护对应配置与模型规格。 | [usemagpie.ai](https://usemagpie.ai/) |
 | OpenLess | 语音输入工具：通过全局快捷键把口述转成文字，按所选风格润色后插入当前光标位置。支持将口述整理为 AI 提示词，方便向 Agent 说明需求、补充上下文和反馈修改意见。 | [openless.top](https://openless.top/) · [GitHub](https://github.com/Open-Less/openless) |
@@ -282,6 +282,23 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
    把具体任务中的感受告诉 Agent，例如汇报是否太频繁、解释是否容易理解、关键决定是否及时交给你。让它结合这些实例调整适用的规范或配置，说明预期变化，并在后续真实任务中验证效果。涉及新的权限或费用时，继续由你作出决定。
 
    [阅读规范接入目标配置](rules/harness/targets.yaml)
+
+<a id="codex-desktop-pi"></a>
+
+### 在 Codex Desktop 中使用 Pi
+
+这套组合保留 Codex 的桌面界面，由 Pi 执行任务：**Codex Desktop → CodexHost → Pi**。接入组件来自第三方项目 [BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host)，由该项目维护。
+
+1. 先安装 Codex Desktop，并确认已配置好的 Pi 能在终端正常工作；让接入 Agent 检查 Node.js/npm 环境。
+2. 保存正在进行的工作，在允许重启桌面应用时，安装并运行上游入口：
+
+   ```text
+   npm install -g @codexhost/cli
+   codexhost
+   ```
+3. 在打开的 Codex Desktop 中新建聊天，从 Agent／Model 选择器选择 Pi，再用一个真实任务检查聊天、文件操作和续聊。
+
+本机已实测聊天与续聊、文件读写、Pi 子代理，以及委派原生 Codex 完成浏览器任务并收回结果。验收基于带兼容修复的本地版本；上面的命令安装上游发行版，接入 Agent 仍需核对其兼容情况。Pi 直接使用 Codex 的电脑操作工具、图片在 GUI 中显示与重开恢复，不在本次通过范围内。
 
 <a id="sources"></a>
 

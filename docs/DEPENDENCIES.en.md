@@ -35,6 +35,7 @@ Target paths in `rules/harness/targets.yaml` may use `~`: `resolve_path()` in th
 | `sol-pi`, `pi-local-file-links` | Obtain matching customized implementations from their maintainers and fill in the paths above; runtime implementations are not included. |
 | Orca hooks | The host supplies platform-specific scripts, session environment variables and event services; configurations preserve events, invocations and platform branches. |
 | Claude status line | The included [statusline.sh](../configs/claude/statusline.sh) requires Bash, jq, awk, Git, date, basename and the client's stdin JSON. |
+| Pi inside Codex Desktop | The third-party [CodexHost](https://github.com/BytePioneer-AI/codex-host) package `@codexhost/cli`, Codex Desktop and a working Pi configuration; see [installation and launch](../README.md#codex-desktop-pi). Local verification used a compatibility-patched build; check the upstream release in the target environment. |
 | Codex `context7`, `playwright` | Node/npm/npx on PATH and the corresponding npm packages; original arguments, including `@latest`, are retained. |
 | Codex `codegraph` | The `codegraph` command on PATH, its compatible Node runtime and an index of the target repository; arguments are `serve --mcp`. |
 | Codex official developer documentation | The official MCP URL `https://developers.openai.com/mcp` is retained. |

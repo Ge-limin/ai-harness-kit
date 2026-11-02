@@ -81,7 +81,7 @@ Optional reference: team engineering standards are listed in the [source index](
 | --- | --- | --- |
 | Orca | An agent workspace that brings agents, Git worktrees, terminals, a browser, and code review into one app. | [onorca.dev](https://onorca.dev/) |
 | Pi | An extensible terminal agent that connects to models, reads and edits files, runs commands, and adds capabilities such as search and subagents through extensions. | [pi.dev](https://pi.dev/) |
-| Codex | I keep Codex for useful GUI features such as visualization. For everyday development, I usually use Pi to reduce the defensive programming tendencies I encounter with Codex. | [openai.com/codex](https://openai.com/codex/) |
+| Codex | I keep Codex’s GUI and visualization features, using CodexHost to run Pi inside Codex Desktop for everyday development and reduce the defensive programming tendencies I encounter with Codex. Browser work can be delegated to native Codex, with results returned to Pi. | [openai.com/codex](https://openai.com/codex/) · [CodexHost](https://github.com/BytePioneer-AI/codex-host) |
 | Claude Code | I find Claude Code versatile and useful across a broad range of tasks, though its terminal interface is not always ideal to use. | [code.claude.com](https://code.claude.com/docs/en/overview) |
 | Magpie | Manage models and providers across agents through a local gateway that translates between APIs. Choose models for Codex, Pi, Claude Code, and other agents, and maintain their configuration and model specifications. | [usemagpie.ai](https://usemagpie.ai/) |
 | OpenLess | A voice-input tool that turns speech into text with a global hotkey, polishes it in your chosen style, and inserts it at the cursor. Its AI-prompt mode helps turn spoken thoughts into requests, context, and feedback for agents. | [openless.top](https://openless.top/) · [GitHub](https://github.com/Open-Less/openless) |
@@ -282,6 +282,23 @@ Have your agent read the article and original standards, compare them with how y
    Give the agent concrete feedback: whether updates are too frequent, explanations are clear, or important decisions reach you at the right time. Ask it to use those examples to adjust the relevant instructions or settings, explain the expected changes, and verify their effects in subsequent real work. You continue to decide on new permissions or costs.
 
    [Read instruction destination settings](rules/harness/targets.yaml)
+
+<a id="codex-desktop-pi"></a>
+
+### Pi inside Codex Desktop
+
+This combination keeps the Codex desktop interface while Pi executes tasks: **Codex Desktop → CodexHost → Pi**. The integration is maintained by the third-party project [BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host).
+
+1. Install Codex Desktop and confirm that your configured Pi works in the terminal. Have your setup agent check Node.js/npm.
+2. Save ongoing work. When restarting the desktop app is appropriate, install and run the upstream entry point:
+
+   ```text
+   npm install -g @codexhost/cli
+   codexhost
+   ```
+3. Start a new chat in Codex Desktop, select Pi in the Agent / Model picker, and use a real task to check chat, file operations and continuation.
+
+Local checks covered chat and continuation, file reads and writes, Pi subagents, and browser tasks delegated to native Codex with results returned. These checks used a locally patched compatibility build. The commands above install the upstream release, whose compatibility your setup agent still needs to verify. Direct access from Pi to Codex’s computer-use tools, and displaying or restoring images in the GUI, were not validated as working.
 
 <a id="sources"></a>
 

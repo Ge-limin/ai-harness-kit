@@ -35,6 +35,7 @@ JSON/TOML 中的 `<...>` 是需要接入 Agent 替换的占位符，不能直接
 | `sol-pi`、`pi-local-file-links` | 向维护者获取匹配版本的定制实现并填写上述路径；运行实现未包含在本包中。 |
 | Orca hooks | 宿主提供平台对应的 hook 脚本、会话环境变量和事件服务；配置保留事件、调用方式和平台分支。 |
 | Claude 状态栏 | 随包提供 [statusline.sh](../configs/claude/statusline.sh)，运行需要 Bash、jq、awk、Git、date、basename 和客户端 stdin JSON。 |
+| Codex Desktop 中运行 Pi | 第三方 [CodexHost](https://github.com/BytePioneer-AI/codex-host) 的 `@codexhost/cli`、Codex Desktop，以及已配置可用的 Pi；[安装与启动步骤](../README.zh-CN.md#codex-desktop-pi)。本机验收使用带兼容修复的版本，上游发行版需在目标环境核对。 |
 | Codex `context7`、`playwright` | PATH 中的 Node/npm/npx 及对应 npm 包；保留原参数，包括 `@latest`。 |
 | Codex `codegraph` | PATH 中的 `codegraph` 命令、匹配的 Node 运行环境和目标仓库索引；启动参数为 `serve --mcp`。 |
 | Codex 官方开发文档 | 保留 `https://developers.openai.com/mcp` 官方地址。 |

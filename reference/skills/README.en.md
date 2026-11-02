@@ -15,9 +15,9 @@ Source: [Orca documentation](https://www.onorca.dev/docs/) · [Orca app releases
 
 ## CodexHost
 
-Source: [BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host). Distributed with `@codexhost/cli`.
+Source: [BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host). Distributed with `@codexhost/cli`. CodexHost runs Pi and other harnesses inside Codex Desktop; see the [guide’s setup steps](../../README.md#codex-desktop-pi) for installation, launch and the scope of local verification.
 
-- `codexhost-delegation`: Delegate agent tasks and read or follow up on external sessions.
+- `codexhost-delegation`: Delegate agent tasks and read or follow up on external sessions through this desktop integration. Local checks covered Pi delegating browser tasks to native Codex and receiving the results.
 
 ## Lark CLI
 
