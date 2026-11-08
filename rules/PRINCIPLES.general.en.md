@@ -52,6 +52,7 @@
 - Quality of Life and developer experience are the most important engineering goals.
 - Always reduce the developer's burden of reading, understanding, remembering, and executing; always consolidate, simplify, and reuse; always orchestrate concurrency sensibly to complete tasks quickly.
 - Proactively reduce unnecessary waiting, repeated operations, context switching, and manual transfers.
+- Do not use unnecessary secondary explanatory text or auxiliary labels. Prefer to explain functionality through layout, hierarchy, spacing, and the interactions themselves. If extra text is needed to make the interface understandable, the design has a problem; improve the design before adding explanations. Do not generate slogan-style copy or turn the interface into an instruction manual.
 - Error messages must identify the cause of failure, and recovery instructions must point to the exact target.
 
 ### 3.5 Implementation Scope and Lasting Fixes
