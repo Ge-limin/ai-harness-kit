@@ -36,6 +36,10 @@
 
 ## III. Solution Design and Implementation Scope
 
+### 3.1 Complete Solution Design
+
+- During design and refactoring, proactively identify implicit state machines within the current scope, making their states and transitions clear, consistent, and verifiable.
+
 ### 3.2 New Capabilities and Research into External Solutions
 
 - Before adding middleware, libraries, frameworks, services, platform capabilities, tools, infrastructure, or any other capability, examine the repository's existing implementations, standard libraries, and platform capabilities alongside mature commercial products, open-source projects, standard industry practices, and innovative industry practices, including new solutions that have emerged within the past year.
@@ -47,9 +51,9 @@
 - Before refactoring, identify the behaviors that must be preserved by examining the original code, relevant user journeys, and product agreements.
 - Highlight any changes to product behavior, UI, or copy visible to users in the final delivery, including changes indirectly caused by backend implementation.
 
-### 3.4 Quality of Life and Developer Experience
+### 3.4 User, Developer, and Agent Experience
 
-- Quality of Life and developer experience are the most important engineering goals.
+- User experience (UX), developer experience (DX), and agent experience (AX) are the most important engineering goals. Every design and decision should improve all three, making systems more intuitive, easier to understand, operate, and evolve, while keeping existing capabilities reliable and usable.
 - Always reduce the developer's burden of reading, understanding, remembering, and executing; always consolidate, simplify, and reuse; always orchestrate concurrency sensibly to complete tasks quickly.
 - Proactively reduce unnecessary waiting, repeated operations, context switching, and manual transfers.
 - Do not use unnecessary secondary explanatory text or auxiliary labels. Prefer to explain functionality through layout, hierarchy, spacing, and the interactions themselves. If extra text is needed to make the interface understandable, the design has a problem; improve the design before adding explanations. Do not generate slogan-style copy or turn the interface into an instruction manual.
