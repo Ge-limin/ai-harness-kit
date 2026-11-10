@@ -1,5 +1,5 @@
 codex/gpt-6-astra
-  context    380k               yours · --context auto goes back to the vendor's list
+  context    320k               yours · --context auto goes back to the vendor's list
   max output 128k               yours · --output auto goes back to the vendor's list
   vision     on                 the vendor's list / models.dev
   reasoning  low,medium,high,xhigh,max,ultra the vendor's list / models.dev

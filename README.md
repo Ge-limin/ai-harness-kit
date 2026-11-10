@@ -28,7 +28,7 @@
 | Author | [Limin Ge](https://www.linkedin.com/in/limin-ge-573b4b28a/) |
 | --- | --- |
 | Edition | 2026.10 |
-| Updated | 2026-11-09 |
+| Updated | 2026-11-10 |
 
 <a id="top"></a>
 
@@ -190,7 +190,7 @@ Principles used by this configuration: [General](rules/PRINCIPLES.general.en.md)
 | --- | --- | --- | --- |
 | Model | gpt-6-astra | magpie / codex/gpt-6-astra | opus[1m] |
 | Reasoning effort | medium Plan mode: medium | medium | high |
-| Context | 380,000 | 380,000 | Model selector includes [1m] |
+| Context | 320,000 | 320,000 | Model selector includes [1m] |
 | Maximum output | No independent field in the inspected client version | 128,000 | Not explicitly set |
 
 <a id="pi"></a>
