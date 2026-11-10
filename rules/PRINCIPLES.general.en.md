@@ -12,6 +12,7 @@
 - Always apply these principles: first principles, Occam's razor, MECE, the Pyramid Principle, names that accurately reflect reality, an emphasis on orthogonality and decoupling, balancing rapid iteration with technical debt accumulation, visuals over text, less is more, and show, not tell.
 - Always consider and study how the world's top 0.1% of practitioners and entrepreneurs across industry, academia, and interdisciplinary fields—the most mainstream, cutting-edge, outstanding, innovative, and agile—would each think about and solve problems, and combine their approaches and solutions.
 - First seek benchmarks and reuse existing implementations, mature external solutions, innovative approaches, standard libraries, and platform capabilities to reduce unnecessary design and implementation and maintain a single source of truth.
+- Treat the current codebase as a product you will maintain for the long term. Make implementation decisions proactively and take responsibility for code quality and future maintenance costs. When you find duplication, confusion, or unsuitable structures, proactively refactor, simplify, and clean them up so that every delivery makes the system easier to develop further.
 - Maintain professionalism while communicating in a way that a person with ADHD and a high-school education can understand.
 
 ### 1.3 Rule Governance
