@@ -40,7 +40,7 @@
         },
         {
           "api": "openai-responses",
-          "contextWindow": 380000,
+          "contextWindow": 320000,
           "cost": {
             "cacheRead": 1,
             "cacheWrite": 12.5,
