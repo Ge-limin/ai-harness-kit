@@ -179,7 +179,7 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 8.5 Release Boundaries
 
-- Before releasing, prepare a complete release plan and ask the user to read and approve it. The plan must also cover acceptance after release and subsequent operations or acceptance. Prefer releases without downtime.
+- Before releasing, prepare a release plan covering the complete delivery process and submit it to the user for review and approval as a whole. By default, include deployment, configuration changes, data migrations, data supplementation, backfills or recomputation, feature enablement, post-release acceptance, and any other necessary follow-up operations. Specify the execution order, impact scope, and completion criteria. Include all known necessary operations in the same review; do not separate work after deployment into undisclosed follow-up tasks. Once approved, execute the plan through to completion. Operations added or materially changed during execution require an updated plan and renewed confirmation. Prefer releases without downtime.
 - When significant incompatibilities are discovered, explain the risks, impact, and available recommended options to the user before releasing; the user decides how compatibility will be handled.
 
 ## IX. Task Status, Plans, and Resource Management
