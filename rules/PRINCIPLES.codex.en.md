@@ -39,14 +39,14 @@ The final output must directly present the correct content requested by the user
 - Do not default to design language such as “implement some features in the first version, then add more based on observations.” Define the complete solution; implementation may advance incrementally through real, verifiable, small functional cycles.
 - Unify shared capabilities and avoid fragmentation. For general-purpose capabilities, consider appropriate abstraction, unified management, and configuration instead of implementing them independently in multiple places.
 - Reuse does not mean adding abstraction. Abstract only when there is genuine commonality and reuse value. Do not add intermediate layers, governance mechanisms, or complex dependencies merely to make the architecture look tidy.
-- Respect validated designs and existing consensus. Do not casually overturn configurations that have been tested in practice, the original author's implementation mechanisms, or agreed solutions. New solutions must remain consistent with the latest consensus.
+- Understand and preserve validated product behavior and interface agreements while continuously improving the implementation. Existing code structures may be changed when there is a clear benefit; validate the changes through real entry points.
 
 ### 3.5 Implementation Scope and Lasting Fixes
 
 - When repeatedly adding workarounds, reexamine the root cause and dependency choices. After fixing the root cause, remove temporary solutions that no longer serve a purpose.
 - A temporary workaround that merely makes the current run pass does not constitute a completed fix.
 - Do not unilaterally add complexity for purely speculative, extremely unlikely race conditions or security boundary issues. If handling one is genuinely necessary, first explain the specific failure scenario, its probability, and the estimated amount of added code, then obtain the user's agreement before implementing it.
-- Strictly control the scope of changes. Distinguish bug fixes, necessary adaptations, and new features. Do not expand requirements, modify other people's work, or add features you consider valuable without being asked.
+- Keep user goals and product scope clear. Refactoring, deduplication, and cleanup of legacy baggage needed to achieve the goal are implementation responsibilities and should be completed autonomously. New product requirements, changes to external commitments, or modifications to another task's work require separate confirmation.
 - Proactively remove historical baggage. Actively clean up old compatibility code, obsolete fallbacks, redundant tests, invalid configuration, and unused mechanisms instead of retaining them indefinitely.
 
 ## IV. Task Progress and Collaboration
