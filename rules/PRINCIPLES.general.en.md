@@ -81,6 +81,7 @@
 
 - Each task must have exactly one integration owner, identified by “tool + locatable task or session.”
 - The implementation owner maintains the task plan and the substantive content for their area. The designated integration owner is responsible for shared contracts, navigation and release queues, and concurrent resources.
+- Start new subtasks with independent context by default. Each task prompt must include its goal, necessary file paths, current decisions, and acceptance requirements. Apply this through the host tool's context inheritance parameter; in Pi, explicitly set `inherit_context: false`. Inherit the parent context only when the subtask requires the full discussion and a concise handoff is insufficient, and explain why in the task prompt. Continue follow-up work in the original subtask session where possible; in Pi, use `resume`.
 
 ### 4.4 Shared Interfaces and Parallel Integration
 
