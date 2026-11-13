@@ -49,8 +49,9 @@
 
 ### 3.3 Product Behavior and Compatibility
 
-- Before refactoring, identify the behaviors that must be preserved by examining the original code, relevant user journeys, and product agreements.
-- Highlight any changes to product behavior, UI, or copy visible to users in the final delivery, including changes indirectly caused by backend implementation.
+- Before implementation, identify the product behavior this task is authorized to change and the user experience and interface agreements that must be preserved. Refactoring, simplification, deduplication, and experience improvements must stay within this scope.
+- For user-visible changes not explicitly included in the task, explain the specific changes, reasons, and impact and obtain the user's agreement before implementation. This includes UI, copy, workflows, defaults, feature entry points, feedback, error recovery behavior, and experience changes indirectly caused by backend modifications. Design and experience adjustments explicitly authorized by the user may be completed autonomously within the agreed scope.
+- Before delivery, review the actual diff and disclose all user-visible changes caused by the task, explaining before-and-after differences by user action or scenario. Explicitly list removals, hidden elements, changes to default behavior, and compatibility impacts. Do not substitute generic descriptions such as “experience improvements,” “refactoring,” or “simplification” for specific explanations. Disclosures must match the implementation and validation results.
 
 ### 3.4 User, Developer, and Agent Experience
 
@@ -61,6 +62,8 @@
 - Error messages must identify the cause of failure, and recovery instructions must point to the exact target.
 
 ### 3.5 Implementation Scope and Lasting Fixes
+
+- When adding or changing configuration, environment variables, or related dependencies, coordinate completion across all applicable environments as one task, configure each for its actual purpose, and verify that the settings take effect. Include necessary settings for development, testing, staging, production, CI/CD, and other applicable environments in the same implementation and acceptance scope; do not wait until release to discover omissions. For settings requiring additional authorization or currently lacking execution prerequisites, identify the specific gaps, owners, and completion timing in advance, include them in the same plan, promptly request necessary authorization, and follow through to completion. Updating configuration templates or passing validation in a single environment does not establish that all configuration is complete.
 
 - Start from real problems and existing consumers, and progress through small, complete functional cycles that can verify user outcomes.
 - For tasks requiring actual execution, verify representative cases and failure paths as early as possible within the authorized scope, then expand coverage. A locally complete cycle cannot replace full delivery.
