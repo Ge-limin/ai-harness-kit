@@ -140,6 +140,8 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 7.4 Verification Evidence and Reuse
 
+- Prefer to accumulate and reuse initialization data, test data, edge cases, and defect reproduction samples prepared during development. Retain reusable material long term through the project's existing local data or testing entry points. Do not habitually discard it when a task ends, and do not require a definite plan for its next use. Organize, deduplicate, and retire data as appropriate, considering the cost of preparing it again, maintenance costs, and practical uses.
+
 - Records affecting acceptance, recovery, or handoff must identify the executed command, source version or diff, working directory, target environment, and exit status.
 
 ## VIII. Git, Worktrees, Commits, and Releases
@@ -221,7 +223,7 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 - Perform cleanup through the resource's own controller or the official Git worktree interface, targeting the exact object.
 - Follow the relevant project's standards for resource types, capacity limits, retention policies, reuse methods, and cleanup commands. Do not directly apply one project's environment model to other projects.
-- Task copies may be destroyed by default. When a task is completed or abandoned, the main agent is responsible for cleaning up workspaces, browsers, and auxiliary processes belonging to the task and its subtasks.
+- Task copies may be destroyed by default. When a task is completed or abandoned, the main agent is responsible for cleaning up workspaces, browsers, and auxiliary processes belonging to the task and its subtasks. When cleaning up workspaces or resetting environments, look for data worth reusing and preserve it according to section 7.4.
 - “It might be reviewed later,” previously generated paid results, or an unknown state are not sufficient reasons to retain an entire working directory. Preserve necessary inputs, results, ledgers, and execution identities.
 - Temporarily retain and explain specific resources with unclear ownership or activity status, while continuing to clean up other resources whose status can be confirmed.
 - Do not shut down in-flight tasks, perform a global prune, or expand cleanup to cloud resources, production, or other projects.
