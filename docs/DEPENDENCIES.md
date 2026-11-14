@@ -29,6 +29,8 @@ JSON/TOML 中的 `<...>` 是需要接入 Agent 替换的占位符，不能直接
 
 ## 外部依赖
 
+工程协作要求可用的 Orca CLI，由其管理工作树和多 Agent Run；Pi subagent 扩展独立安装不会自动注册 Run 任务。工程入口由项目声明，任务环境、日常环境和固定 candidate 的发布验收通过该入口执行。Limin 的重测试默认使用已有 Air 入口，其他成员可使用各自环境；本包不附带公司私有执行实现。
+
 | 配置引用 | 接入要求 |
 |---|---|
 | Pi 的七个 npm 包 | `configs/pi/settings.json` 使用 Pi 支持的 `npm:包名@版本` 格式，保留原版本与顺序。具体来源、获取地址和完整性值见 [DEPENDENCIES.json](DEPENDENCIES.json)。 |

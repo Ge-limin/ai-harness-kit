@@ -10,8 +10,10 @@
 | --- | --- |
 | `orca-cli` | 工作树、终端、嵌入式浏览器与任务交接 |
 | `computer-use` | 操作可见的本机应用窗口 |
-| `orchestration` | 多 Agent 任务编排与通信 |
+| `orchestration` | Orca Run 的多 Agent 分派、依赖、阶段汇报与通信 |
 | `orca-linear` | 通过 Orca 操作 Linear 工单 |
+
+主会话留在项目约定的工程入口，工作树统一由 `orca-cli` 管理；仅修改仓库文件时需要任务工作树。受监督任务使用 Orca Run，Pi `subagent` 不会自动进入任务图。技能使用时读取当前 Orca CLI 提供的版本匹配说明。
 
 ## CodexHost
 
