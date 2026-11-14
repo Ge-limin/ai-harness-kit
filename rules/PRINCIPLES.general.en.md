@@ -57,7 +57,7 @@
 
 - User experience (UX), developer experience (DX), and agent experience (AX) are the most important engineering goals. Every design and decision should improve all three, making systems more intuitive, easier to understand, operate, and evolve, while keeping existing capabilities reliable and usable.
 - Always reduce the developer's burden of reading, understanding, remembering, and executing; always consolidate, simplify, and reuse; always orchestrate concurrency sensibly to complete tasks quickly.
-- Proactively reduce unnecessary waiting, repeated operations, context switching, and manual transfers.
+- Proactively reduce unnecessary waiting, repeated operations, context switching, and manual transfers. Consolidate usable entry points, steps, and duplicate versions where appropriate. Provide a simple, complete default workflow, with one action for common operations wherever possible; retain modes and options only for real differences in use.
 - Do not use unnecessary secondary explanatory text or auxiliary labels. Prefer to explain functionality through layout, hierarchy, spacing, and the interactions themselves. If extra text is needed to make the interface understandable, the design has a problem; improve the design before adding explanations. Do not generate slogan-style copy or turn the interface into an instruction manual.
 - Error messages must identify the cause of failure, and recovery instructions must point to the exact target.
 
@@ -111,23 +111,27 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 - When checking status, prioritize the project's existing status commands, Git information, and specific tools explicitly provided by the repository.
 
-## VII. Testing, Model Quality, and Verification
+## VII. Testing and Verification
 
-### 7.1 Basic Testing Requirements
+### 7.1 Testing Investment and Long-Term Value
 
-- Tests must target the real implementation. Do not duplicate business logic in test code.
-- Tests directly verify executable authoritative sources such as code, configuration, schema, and manifest files.
-- Human-facing documents are maintained through review. Automated checks cover only structural requirements such as paths, links, indexes, and a single authoritative source.
-- For deterministic documents produced by generators, the generated output may be verified. Extract examples that need to execute into scripts or fixtures.
-- Do not stop after an initial implementation and ask the user to perform the testing themselves.
-- Do not create falsely correct results by adding workarounds solely to pass tests.
+- Distinguish current verification from long-term tests. Assume that functionality, implementation, and strategies will change rapidly. Every change must receive verification matched to its actual risks, but does not require permanent new tests by default. One-off scripts, experiments, manual operations, and temporary checks can all provide evidence for the current change; only parts worth maintaining belong in long-term regression testing.
+- Decide additions, retention, and deletion by sustained value. Consider useful lifetime, unique protection, maintenance costs, failure investigation costs, and execution waits together. Test counts, coverage percentages, age, change frequency, and directory classification cannot individually determine retention. Delete tests whose benefits fall below their ongoing costs, without requiring one-for-one replacements.
+- Prioritize stable, important outcomes. Long-term tests should prioritize important user journeys, external interface contracts, permissions, money, data persistence, repeat execution, failure recovery, and resource ownership. Prefer retaining tests that have uncovered real defects and can independently identify regressions. Do not freeze internal structure, wiring, call order, current copy, or exploratory strategies into long-term constraints by default.
 
-### 7.2 Behavioral Regression and Real Entry Points
+### 7.2 Verification Entry Points and Execution
 
-- When deleting existing behavioral tests or changing their expectations, explain the corresponding business rationale during diff review.
-- Fully perform any end-to-end acceptance explicitly requested by the user.
+- Verify through real consumer entry points and reduce duplicate protection. Target actual implementations and user outcomes directly, covering necessary success and failure paths. Give the most direct, effective entry point primary responsibility for each risk; add tests at other layers only when they provide unique value. Do not duplicate business logic in tests and use that duplicate to prove the implementation correct.
+- Match verification intensity to the risks of the change. Prefer existing entry points and choose the smallest effective scenarios that expose the current problem; when fixing a defect, prefer existing test cases and confirm they expose the original defect. For shared state, database migrations, or lifecycle behavior, verify relevant combinations and execution orders; passing isolated runs cannot replace explicitly required combined verification. Once necessary checks pass, do not repeat or expand testing without new changes or unresolved issues. Do not use this as a reason to unilaterally expand general testing frameworks or add comprehensive gates.
+- Assess the value of CI blocking separately. Run fast, relevant, reliable checks in daily CI; schedule expensive verification according to actual change risks and release stages. Blocking checks must have clear protection targets and actionable failures. Proactively reduce repeated runs, repeated environment setup, and unnecessary advance planning and intermediate artifacts.
+- Clean up the entire dependency chain when deleting tests. Remove fixtures, helpers, scripts, CI jobs, release validators, and current documentation references that have lost their consumers; preserve independently reusable data under §7.4. Verify through actual execution entry points that selection, failure propagation, and summaries remain correct, avoiding situations where a workflow has been removed but other validators still require it.
+- Fix real problems and keep verification honest. When tests fail, first distinguish product defects, test defects, and environment problems. Do not conceal problems by deleting valid protection, loosening correct expectations, ignoring failures, or modifying correct production code. Tests must clean up temporary data created by the current run, restore shared state they changed, and release resources occupied by the run on abnormal exit, preventing one failure from contaminating subsequent results.
+- Tests directly verify executable authoritative sources such as code, configuration, schema, and manifest files. Maintain human-facing documents through review; automated checks cover only structural requirements such as paths, links, indexes, and a single authoritative source. Do not read human-facing documents to lock in natural-language wording or example implementations, or bind checks to frequently changing hashes, version numbers, specific text, or styles. For deterministic documents produced by generators, generated output may be verified; extract examples that need to execute into scripts or fixtures.
+- Fully perform any end-to-end acceptance explicitly requested by the user. Do not stop after an initial implementation and ask the user to perform the testing themselves.
 
 ### 7.3 Evaluating Model Output Quality
+
+- Allow reasonable error and do not pursue false precision. Systems with inherent uncertainty, such as randomized large-model outputs, recommendation rankings, and statistical estimates, should not be held to unrealistic absolute correctness. Focus on identifying systemic problems.
 
 - Model quality aims for overall benefits to outweigh harms.
 - Semantic judgments by models are uncertain; respect the imperfection of model outputs.
@@ -142,6 +146,8 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 - Prefer to accumulate and reuse initialization data, test data, edge cases, and defect reproduction samples prepared during development. Retain reusable material long term through the project's existing local data or testing entry points. Do not habitually discard it when a task ends, and do not require a definite plan for its next use. Organize, deduplicate, and retire data as appropriate, considering the cost of preparing it again, maintenance costs, and practical uses.
 
+- The implementation owner explains important coverage tradeoffs during diff review, using existing verification entry points without adding test ledgers, approval layers, or coverage goals.
+- Distinguish verification evidence from repository checks, local databases, external read-only checks, and production execution.
 - Records affecting acceptance, recovery, or handoff must identify the executed command, source version or diff, working directory, target environment, and exit status.
 
 ## VIII. Git, Worktrees, Commits, and Releases
