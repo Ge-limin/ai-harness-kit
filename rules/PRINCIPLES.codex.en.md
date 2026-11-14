@@ -99,23 +99,6 @@ The final output must directly present the correct content requested by the user
 - Lens diagnostics are valid evidence only after coverage has been confirmed. An empty cache, `unconfirmed`, and `inconclusive` must never be treated as a pass.
 - Run the project's type checks and tests when necessary. Ordinary file reading does not require additional diagnostics.
 
-## VII. Testing, Model Quality, and Verification
-
-### 7.1 Basic Testing Requirements
-
-- Do not read human-facing documents to lock in natural-language wording or example implementations; do not bind checks to frequently changing objects such as hashes, version numbers, specific text, or particular styles.
-- Match verification intensity to risk. There is no need to run a full test matrix, repeated checks, hash verification, or a complex release process for every small change. Verify only what relates to the actual changes and risks.
-- Allow reasonable error and do not pursue false precision. Systems with inherent uncertainty, such as randomized large-model outputs, recommendation rankings, and statistical estimates, should not be held to unrealistic absolute correctness. Focus on identifying systemic problems.
-- Tests should emphasize effective coverage, not quantity. Remove meaningless, duplicate, and excessively granular tests; retain tests that can actually uncover significant defects. Do not use the number of tests as a quality metric.
-
-### 7.2 Behavioral Regression and Real Entry Points
-
-- Behavioral regression verification must check user outcomes and failure handling through the affected real consumer entry points. Do not test only helpers or change expected results in step with a new implementation.
-- When fixing a defect, prefer reusing existing test cases and confirm that the tests can expose the original defect.
-- Select test scenarios according to the current risks. Do not use this as a reason to unilaterally expand general testing frameworks or add comprehensive gates.
-- Distinguish verification evidence from repository checks, local databases, external read-only checks, and production execution.
-- Verify practical effects, not just formal correctness. Focus on whether real entry points are usable, the complete flow works, users can complete their tasks, and the actual effects before and after the change.
-
 ## X. Completion Criteria, Delivery, and Document Governance
 
 ### 10.1 Determining Completion
