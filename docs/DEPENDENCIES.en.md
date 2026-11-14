@@ -29,6 +29,8 @@ Target paths in `rules/harness/targets.yaml` may use `~`: `resolve_path()` in th
 
 ## External dependencies
 
+Engineering collaboration requires a working Orca CLI to manage worktrees and multi-agent Runs. Installing the Pi subagent extension alone does not register Run tasks. Each project declares its engineering entry point, which manages task environments, daily environments, and release acceptance pinned to a candidate. Limin defaults to the existing Air entry point for heavy tests; other members may use their own environments. Private company execution implementations are not bundled.
+
 | Reference | Integration requirement |
 |---|---|
 | Seven Pi npm packages | `configs/pi/settings.json` uses Pi's supported `npm:package@version` syntax, preserving versions and order. See [DEPENDENCIES.json](DEPENDENCIES.json) for sources, acquisition URLs and integrity values. |

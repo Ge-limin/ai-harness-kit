@@ -10,8 +10,10 @@ Source: [Orca documentation](https://www.onorca.dev/docs/) · [Orca app releases
 | --- | --- |
 | `orca-cli` | Worktrees, terminals, embedded browser, and handoffs |
 | `computer-use` | Control visible local application windows |
-| `orchestration` | Multi-agent task coordination and messaging |
+| `orchestration` | Multi-agent dispatch, dependencies, intermediate reports, and messaging in Orca Runs |
 | `orca-linear` | Work with Linear issues through Orca |
+
+Keep the main session at the project's engineering entry point and manage worktrees through `orca-cli`; task worktrees are needed only for repository edits. Use Orca Runs for supervised tasks; Pi `subagent` calls do not automatically join the task graph. Read the version-matched skill guidance served by the current Orca CLI.
 
 ## CodexHost
 

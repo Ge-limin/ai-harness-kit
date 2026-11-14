@@ -6,6 +6,8 @@ The source table below lists English editions and shared files. See [manifest.js
 
 ## Company references
 
+The principles originate in limin-vault's `06_Metadata/PRINCIPLES.general.md` and `PRINCIPLES.codex.md`. Chinese copies match the source verbatim; English editions preserve the same meaning. Client exports are comparison targets; trace new rules to user authorization before restoring them to the source. Teams use their project's designated engineering entry point. This package links to the company entry point without distributing private controller implementations.
+
 These repositories are private. Open the links with a GitHub account that has read access. Each link points to the document on its remote branch. Personal setup uses the bundled principles and configuration independently of these company references.
 
 | Repository | Document | Status |
@@ -60,7 +62,7 @@ Plugin sources, versions and licenses are in [DEPENDENCIES.json](DEPENDENCIES.js
 | `Bilingual package documentation / docs/SOURCES.md` · `aba2be79b117` | [docs/SOURCES.en.md](../docs/SOURCES.en.md) | translated |
 | `Bilingual package documentation / docs/validation.md` · `aba2be79b117` | [docs/validation.en.md](../docs/validation.en.md) | translated |
 | `Package documentation / README.zh-CN.md` | [README.md](../README.md) | translated |
-| `Personal standards / PRINCIPLES.general.md` | [rules/PRINCIPLES.general.en.md](../rules/PRINCIPLES.general.en.md) | translated |
-| `Personal standards / PRINCIPLES.codex.md` | [rules/PRINCIPLES.codex.en.md](../rules/PRINCIPLES.codex.en.md) | translated |
+| `limin-vault / 06_Metadata/PRINCIPLES.general.md` | [rules/PRINCIPLES.general.en.md](../rules/PRINCIPLES.general.en.md) | translated |
+| `limin-vault / 06_Metadata/PRINCIPLES.codex.md` | [rules/PRINCIPLES.codex.en.md](../rules/PRINCIPLES.codex.en.md) | translated |
 | `Personal settings / claude/commands/hand-off.md` | [configs/claude/commands/hand-off.en.md](../configs/claude/commands/hand-off.en.md) | translated |
 <!-- SOURCES:END -->

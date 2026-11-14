@@ -6,6 +6,8 @@
 
 ## 公司资料
 
+规范源为 limin-vault 的 `06_Metadata/PRINCIPLES.general.md` 与 `PRINCIPLES.codex.md`；本包中文逐字同步，英文维护对应语义。客户端导出文件仅用于差异核对，新增规则先追溯用户授权再补回源。团队使用各项目声明的统一工程入口；本包仅链接公司入口，私有控制器实现不随包分发。
+
 以下仓库为私有仓库，请使用有相应读取权限的 GitHub 账号打开。链接指向远端分支中的正文；公司资料不作为个人配置接入的前置条件。
 
 | 仓库 | 文件 | 状态 |
@@ -39,8 +41,8 @@
 <!-- SOURCES:START -->
 | 原始来源 | 包内文件 | 状态 |
 |---|---|---|
-| `个人工作规范 / PRINCIPLES.general.md` | [rules/PRINCIPLES.general.md](../rules/PRINCIPLES.general.md) | original |
-| `个人工作规范 / PRINCIPLES.codex.md` | [rules/PRINCIPLES.codex.md](../rules/PRINCIPLES.codex.md) | original |
+| `limin-vault / 06_Metadata/PRINCIPLES.general.md` | [rules/PRINCIPLES.general.md](../rules/PRINCIPLES.general.md) | original |
+| `limin-vault / 06_Metadata/PRINCIPLES.codex.md` | [rules/PRINCIPLES.codex.md](../rules/PRINCIPLES.codex.md) | original |
 | `个人工作规范 / harness/sync.py` | [rules/harness/sync.py](../rules/harness/sync.py) | adapted |
 | `个人工作规范 / harness/sync.sh` | [rules/harness/sync.sh](../rules/harness/sync.sh) | original |
 | `个人工作规范 / harness/targets.yaml` | [rules/harness/targets.yaml](../rules/harness/targets.yaml) | adapted |
