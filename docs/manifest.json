@@ -1,17 +1,17 @@
 [
   {
-    "source": "Personal standards / PRINCIPLES.general.md",
+    "source": "limin-vault / 06_Metadata/PRINCIPLES.general.md",
     "package": "rules/PRINCIPLES.general.md",
     "status": "original",
     "redacted_fields": [],
-    "source_zh": "个人工作规范 / PRINCIPLES.general.md"
+    "source_zh": "limin-vault / 06_Metadata/PRINCIPLES.general.md"
   },
   {
-    "source": "Personal standards / PRINCIPLES.codex.md",
+    "source": "limin-vault / 06_Metadata/PRINCIPLES.codex.md",
     "package": "rules/PRINCIPLES.codex.md",
     "status": "original",
     "redacted_fields": [],
-    "source_zh": "个人工作规范 / PRINCIPLES.codex.md"
+    "source_zh": "limin-vault / 06_Metadata/PRINCIPLES.codex.md"
   },
   {
     "source": "Personal standards / harness/sync.py",
@@ -223,19 +223,19 @@
     "redacted_fields": []
   },
   {
-    "source": "Personal standards / PRINCIPLES.general.md",
+    "source": "limin-vault / 06_Metadata/PRINCIPLES.general.md",
     "package": "rules/PRINCIPLES.general.en.md",
     "status": "translated",
     "redacted_fields": [],
-    "source_zh": "个人工作规范 / PRINCIPLES.general.md",
+    "source_zh": "limin-vault / 06_Metadata/PRINCIPLES.general.md",
     "translation_of": "rules/PRINCIPLES.general.md"
   },
   {
-    "source": "Personal standards / PRINCIPLES.codex.md",
+    "source": "limin-vault / 06_Metadata/PRINCIPLES.codex.md",
     "package": "rules/PRINCIPLES.codex.en.md",
     "status": "translated",
     "redacted_fields": [],
-    "source_zh": "个人工作规范 / PRINCIPLES.codex.md",
+    "source_zh": "limin-vault / 06_Metadata/PRINCIPLES.codex.md",
     "translation_of": "rules/PRINCIPLES.codex.md"
   },
   {

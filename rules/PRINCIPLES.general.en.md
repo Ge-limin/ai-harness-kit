@@ -84,14 +84,15 @@
 ### 4.2 Subtask Creation and Responsibility
 
 - Each task must have exactly one integration owner, identified by “tool + locatable task or session.”
-- The implementation owner maintains the task plan and the substantive content for their area. The designated integration owner is responsible for shared contracts, navigation and release queues, and concurrent resources.
+- The implementation owner maintains the existing task entry and the substantive content for their area. The designated integration owner is responsible for shared contracts, navigation and release queues, and concurrent resources.
+- Use Orca Runs to manage multi-agent dispatches, dependencies, messages, and intermediate results; the Run records task and dispatch identities. Pi `subagent` calls do not automatically join the Orca task graph. Dispatch through Orca when supervised collaboration is required.
 - Start new subtasks with independent context by default. Each task prompt must include its goal, necessary file paths, current decisions, and acceptance requirements. Apply this through the host tool's context inheritance parameter; in Pi, explicitly set `inherit_context: false`. Inherit the parent context only when the subtask requires the full discussion and a concise handoff is insufficient, and explain why in the task prompt. Continue follow-up work in the original subtask session where possible; in Pi, use `resume`.
 
 ### 4.4 Shared Interfaces and Parallel Integration
 
 - Orchestrate tasks sensibly to avoid unnecessary communication, rework, and repeated integration.
 - Before modifying shared interfaces in parallel, establish inputs and outputs, failure semantics, and the integration owner, then divide and coordinate the work.
-- For shared boundaries that keep changing, record the depended-on content or implementation, baseline, semantics to be changed, affected owners, integration conditions, and combined verification only in the relevant task plans.
+- For changing shared boundaries, add only dependencies, semantic changes, owners, and integration conditions missing from machine records to the existing task entry. Assign one owner to shared rules; other tasks reference that source.
 - For generated documents, consolidate the sources first, then regenerate. Do not automatically use the `ours` or `union` merge strategy for state or contract files.
 
 ## V. Code Implementation Standards
@@ -110,6 +111,7 @@ Unless a clause sets a stricter requirement, the following operations are permit
 ### 6.3 Tool Selection
 
 - When checking status, prioritize the project's existing status commands, Git information, and specific tools explicitly provided by the repository.
+- Do not use Computer Use to operate Rancher, including login, API key creation or revocation, configuration, or cluster administration. The user performs Rancher UI operations with precise instructions from the agent; do not bypass this restriction with other browser automation. Authorized official API and CLI operations remain subject to existing permission rules.
 
 ## VII. Testing and Verification
 
@@ -154,10 +156,10 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 8.1 Git Working Principles
 
-- The main worktree must always use a local integration branch such as `dev` or `main`; other worktrees used for task isolation use temporary `feat` branches. Repository ownership does not change this working model.
-- If currently in the main worktree, move to a separate worktree before the first write, complete independently verifiable work, integrate it back into the original workspace serially, complete integration acceptance, commit by task, clean up the temporary worktree, and delete the local temporary branch.
-- If currently outside the main worktree, confirm that this worktree is up to date with the main worktree's head, then work in this worktree. Proactively integrate back into the main worktree when everything is complete.
-- New Git worktrees must be created in the parent directory of the current repository root, alongside the repository, with names that identify both project and task.
+- Keep the main session at the project's designated engineering entry point for coordination, integration, and acceptance. Agents manage business-repository worktrees through Orca; users need not switch sessions or directories. Each project declares its own entry point; do not impose company-private paths on other projects.
+- Keep the main worktree on a local integration branch such as `dev` or `main`. Create or reuse a task worktree only when repository files need modification; queries, discussions, and remote operations do not require a new worktree.
+- Orca is the sole interface for creating, associating, and cleaning up worktrees. Follow Orca's configured locations; do not bypass Orca with raw Git commands to create or remove worktrees.
+- At startup, confirm the task baseline and relevant main-worktree changes, preserve other tasks' uncommitted changes, and integrate qualifying commits promptly under §8.3.
 - Worktrees isolate tasks. Subsequent sessions for the same task must reuse the existing worktree.
 - Subagents decide whether to share the task worktree or create a separate one according to actual coupling and file responsibilities.
 - Do not proactively push, create PRs, or change PR status without authorization.
@@ -168,18 +170,20 @@ Unless a clause sets a stricter requirement, the following operations are permit
 - When a process must run, determine whether it can run independently based on the source code, dependencies, configuration, ports, databases, queues, and worker consumption scope it actually uses.
 - Prefer running independently runnable processes in the task worktree.
 - When depending on services in the original workspace, fixed domains, or shared runtime resources, coordinate with the resource owner first, then choose between running in place and performing integration acceptance after integrating back.
-- If the user specifies running in place, or actual conditions require it, record the reason in the plan.
+- If the user specifies running in place, or actual conditions require it, add the reason to the existing task entry.
+- Task environments support development and isolated verification; daily environments support post-integration use and combined verification. Pin release acceptance to an exact candidate commit and its build, so acceptance cannot drift with the daily branch. Select and manage environments through the project's existing engineering entry point.
+- Limin defaults to the project's existing Air entry point for heavy tests; lightweight static checks may run locally. Other members use their own project environments; Air is not a team-wide prerequisite.
 - Before integrating back, establish a single modification location and owner. Do not modify the same task code simultaneously in the original workspace and the task worktree.
 
 ### 8.3 Integrating Back and Cleanup
 
-- After completing applicable verification, the main agent must proactively integrate the task's changes back into the local integration branch of the main worktree, regardless of repository ownership. Owner approval is not a prerequisite for local integration.
+- Once an independently verifiable commit passes applicable checks, the worker immediately reports the commit, usable scope, and verification results. The main session arranges serial background integration of qualifying commits into the local integration branch and may delegate execution to an integration task, without waiting for the entire task to finish. The main session remains responsible for combined acceptance, remaining work, and final delivery; intermediate reports do not end that responsibility. Repository-owner approval is not a prerequisite for local integration.
 - Do not use `git stash` in the original workspace, because all worktrees share the stash list.
 - Remote integration branches such as `dev` and `main` must always be updated through PRs; direct pushes are prohibited. When remote delivery is needed, create a delivery branch from the target commit on the local integration branch, push that branch, and create a PR; keep the local main worktree on the integration branch. Handle owner and platform-required approvals at the remote PR stage.
-- Before integrating back, recheck the target branch, concurrent diffs, and runtime resources.
+- Before integrating, verify the target branch and relevant runtime resources. The later integrator reviews only concurrent semantics and combined behavior relevant to the change; unrelated commits do not require rechecking every task.
 - Preserve commit boundaries that allow changes to be traced by task when integrating back. Do not leave multiple independent tasks mixed together as uncommitted changes for extended periods.
 - The task owner remains responsible for acceptance when integrating back early and must commit promptly after completion.
-- After successfully integrating back, completing integration acceptance, and committing, the main agent must proactively remove the task's temporary worktree and local temporary branch.
+- Once the task and delivery are complete and no active references remain, the main agent cleans up its temporary worktree and local temporary branch through Orca. Reuse the worktree while the task continues; integrating an intermediate commit does not trigger deletion.
 - If cleanup cannot be performed safely, retain the resources and explain the reason, owner, and next step.
 - If the user explicitly requests no commits, preserve a recoverable baseline, exact diff, and new files.
 - Branches the user asks to retain, and worktrees and branches belonging to other tasks, are outside the cleanup scope.
@@ -198,21 +202,17 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 9.1 Single Source of Task Status
 
-- Keep only one current responsibility entry point for each goal. Before starting a new plan, search for existing plans by goal, task ID, and source commit.
-- Before taking over an existing task, verify the current plan, worktree, unfinished responsibilities, and valid authorization.
+- Reuse one current responsibility entry for each goal, preferably an existing Linear issue, Orca Run, or project task entry. Do not create plans, reports, or evidence documents by default.
+- Before taking over, use the existing entry to verify authorization, owners, unfinished responsibilities, and relevant worktrees. Reference facts already recorded by Git, CI, and Orca directly.
 
 ### 9.2 Work Plan Contents
 
-- Plans record only information that machines cannot directly provide, including goals, decisions, authorization scope and source, open questions, owners, and the original workspace, original branch, exact starting point, and integration owner needed to resume work.
-- When creating a plan, record the date, the creating agent's name or role and locatable identifier, host name, full session/task/thread ID, initial scope, and authorization source.
-- Record the current owner and session ID separately. Subagents must also record their parent session ID, along with their own session ID if one exists.
-- Git tracks ordinary edit history. Do not overwrite existing participants' attribution records.
+- Human records add only decisions, authorization, dependencies, and handoff information missing from existing entries. Do not duplicate status, identities, commits, or execution records already available in Linear, Orca, Git, or CI.
+- Create a minimal supplementary record only when existing entries cannot support resuming the work, and reference the task entry and owner. Git tracks ordinary edit history.
 
 ### 9.3 Pausing and Resuming Tasks
 
-- For long tasks, save the minimum recovery information when intentionally pausing, handing off a phase, or anticipating an imminent context switch.
-- Recovery information includes the goal, constraints and authorization, current step, next step, remaining responsibilities, what or whom the task is waiting for, pending decisions, evidence entry points, and external operations whose outcomes remain unconfirmed.
-- Subtasks retain full session IDs and original record paths as needed.
+- On pause or handoff, add only unrecorded next steps, waiting dependencies, open decisions, and external operations with unconfirmed outcomes to the existing task entry. Resume from that entry and its linked Git, CI, and Orca state.
 
 ### 9.4 Resource Use and Autonomous Cleanup
 
@@ -227,7 +227,7 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 9.5 Temporary Resource Cleanup
 
-- Perform cleanup through the resource's own controller or the official Git worktree interface, targeting the exact object.
+- Clean up exact resources through their owning controllers; manage worktree cleanup exclusively through Orca.
 - Follow the relevant project's standards for resource types, capacity limits, retention policies, reuse methods, and cleanup commands. Do not directly apply one project's environment model to other projects.
 - Task copies may be destroyed by default. When a task is completed or abandoned, the main agent is responsible for cleaning up workspaces, browsers, and auxiliary processes belonging to the task and its subtasks. When cleaning up workspaces or resetting environments, look for data worth reusing and preserve it according to section 7.4.
 - “It might be reviewed later,” previously generated paid results, or an unknown state are not sufficient reasons to retain an entire working directory. Preserve necessary inputs, results, ledgers, and execution identities.
@@ -246,7 +246,7 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 10.2 Review Before Delivery
 
-- Before delivery, review the plans, explanations, reports, handoff records, and reference relationships associated with this task.
+- Before delivery, review the content actually changed and affected references. Maintain any existing supplementary task records without creating a new review document.
 - Before committing, verify actual behavior against current agreements, ensure related documents have no duplication or contradictions, and remove outdated explanations and temporary solutions.
 - Readers must be able to determine the next action from the current records.
 
@@ -257,9 +257,8 @@ Unless a clause sets a stricter requirement, the following operations are permit
 
 ### 10.4 Closing Plans and Transferring Responsibility
 
-- Before the final report, and after the outcome of the task's merge, release, or handoff is clear, the main agent must complete the corresponding plan maintenance and cleanup.
-- The cleanup task itself must also follow the plan lifecycle rules.
-- In the final response, briefly state whether the plan was deleted or transferred, or why it was retained, and provide the single current entry point.
+- Report completion or transfer in the existing task entry. Maintain only supplementary records that actually exist and still carry responsibility; delete completed plans without continuing value.
+- The final report references commits, verification results, and real gaps. Provide a current task entry only when responsibility remains.
 
 ### 10.5 Final Delivery
 

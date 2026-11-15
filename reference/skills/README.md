@@ -10,14 +10,16 @@
 | --- | --- |
 | `orca-cli` | 工作树、终端、嵌入式浏览器与任务交接 |
 | `computer-use` | 操作可见的本机应用窗口 |
-| `orchestration` | 多 Agent 任务编排与通信 |
+| `orchestration` | Orca Run 的多 Agent 分派、依赖、阶段汇报与通信 |
 | `orca-linear` | 通过 Orca 操作 Linear 工单 |
+
+主会话留在项目约定的工程入口，工作树统一由 `orca-cli` 管理；仅修改仓库文件时需要任务工作树。受监督任务使用 Orca Run，Pi `subagent` 不会自动进入任务图。技能使用时读取当前 Orca CLI 提供的版本匹配说明。
 
 ## CodexHost
 
-来源：[BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host)，由 `@codexhost/cli` 提供。
+来源：[BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host)，由 `@codexhost/cli` 提供。CodexHost 将 Pi 等 Harness 接入 Codex Desktop；安装、启动与本机验收范围见[指南接入步骤](../../README.zh-CN.md#codex-desktop-pi)。
 
-- `codexhost-delegation`：委派 Agent 任务、读取及跟进外部会话。
+- `codexhost-delegation`：在这套桌面接入中委派 Agent 任务、读取及跟进外部会话；本机已验证 Pi 委派原生 Codex 执行浏览器任务并收回结果。
 
 ## Lark CLI
 

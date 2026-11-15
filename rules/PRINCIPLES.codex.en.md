@@ -119,7 +119,7 @@ The final output must directly present the correct content requested by the user
 
 ### 10.2 Review Before Delivery
 
-- Keep current responsibilities only in the corresponding plan or release queue. Historical evidence describes only the facts at that time.
+- Keep current responsibilities in the existing task entry or release queue and reference facts in Linear, Orca Runs, Git, and CI directly. Follow §9 for the scope of human additions. Historical evidence describes only the facts at that time.
 - Canceled or transferred work must no longer appear in current content as “next steps,” “still to be completed,” or similar statements.
 - Confirm that there is one current conclusion, remaining items are real, owners are locatable, and final evidence is accessible from the original entry point.
 - Use the complete result requested by the user as the delivery standard. Do not omit confirmed requirements, treat a partial implementation as complete delivery, or substitute intermediate processes for final results. Reports must clearly state what was completed, its effect, and which issues genuinely remain to be addressed.
@@ -134,4 +134,4 @@ The final output must directly present the correct content requested by the user
 
 ### 10.4 Closing Plans and Transferring Responsibility
 
-- Delete completed plans that have no continuing maintenance value; plans with remaining responsibilities must clearly identify the current owner, remaining items, and evidence entry point.
+- When supplementary plans exist, delete completed plans without continuing maintenance value. Records with remaining responsibilities retain the current owner, remaining items, and original evidence entry point.

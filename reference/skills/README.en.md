@@ -10,14 +10,16 @@ Source: [Orca documentation](https://www.onorca.dev/docs/) · [Orca app releases
 | --- | --- |
 | `orca-cli` | Worktrees, terminals, embedded browser, and handoffs |
 | `computer-use` | Control visible local application windows |
-| `orchestration` | Multi-agent task coordination and messaging |
+| `orchestration` | Multi-agent dispatch, dependencies, intermediate reports, and messaging in Orca Runs |
 | `orca-linear` | Work with Linear issues through Orca |
+
+Keep the main session at the project's engineering entry point and manage worktrees through `orca-cli`; task worktrees are needed only for repository edits. Use Orca Runs for supervised tasks; Pi `subagent` calls do not automatically join the task graph. Read the version-matched skill guidance served by the current Orca CLI.
 
 ## CodexHost
 
-Source: [BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host). Distributed with `@codexhost/cli`.
+Source: [BytePioneer-AI/codex-host](https://github.com/BytePioneer-AI/codex-host). Distributed with `@codexhost/cli`. CodexHost runs Pi and other harnesses inside Codex Desktop; see the [guide’s setup steps](../../README.md#codex-desktop-pi) for installation, launch and the scope of local verification.
 
-- `codexhost-delegation`: Delegate agent tasks and read or follow up on external sessions.
+- `codexhost-delegation`: Delegate agent tasks and read or follow up on external sessions through this desktop integration. Local checks covered Pi delegating browser tasks to native Codex and receiving the results.
 
 ## Lark CLI
 
