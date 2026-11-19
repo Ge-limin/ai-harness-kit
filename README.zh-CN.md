@@ -28,7 +28,7 @@
 | 作者 | [Limin Ge](https://www.linkedin.com/in/limin-ge-573b4b28a/) |
 | --- | --- |
 | 版本 | 2026.10 |
-| 更新日期 | 2026-11-15 |
+| 更新日期 | 2026-11-19 |
 
 <a id="top"></a>
 
@@ -189,7 +189,7 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 
 | 参数 | Codex | Pi | Claude Code |
 | --- | --- | --- | --- |
-| 模型 | gpt-6-astra | magpie / codex/gpt-6-astra | opus[1m] |
+| 模型 | gpt-6.2-astra | magpie / codex/gpt-6.2-astra | opus[1m] |
 | 推理强度 | medium 计划模式同为 medium | medium | high |
 | 上下文 | 320,000 | 320,000 | 模型选择含 [1m] |
 | 最大输出 | 当前客户端版本无独立字段 | 128,000 | 未显式设置 |

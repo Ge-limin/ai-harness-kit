@@ -1,4 +1,4 @@
-codex/gpt-6-astra
+codex/gpt-6.2-astra
   context    320k               yours · --context auto goes back to the vendor's list
   max output 128k               yours · --output auto goes back to the vendor's list
   vision     on                 the vendor's list / models.dev
