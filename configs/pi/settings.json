@@ -2,7 +2,7 @@
   "lastChangelogVersion": "1.4.0",
   "theme": "light",
   "defaultProvider": "magpie",
-  "defaultModel": "codex/gpt-6-astra",
+  "defaultModel": "codex/gpt-6.2-astra",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access@0.44.0",

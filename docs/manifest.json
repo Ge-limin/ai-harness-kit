@@ -133,11 +133,11 @@
     "source_zh": "个人配置 / claude/commands/hand-off.md"
   },
   {
-    "source": "Personal settings / magpie/codex-gpt-6-astra.spec.txt",
-    "package": "configs/magpie/codex-gpt-6-astra.spec.txt",
+    "source": "Personal settings / magpie/codex-gpt-6.2-astra.spec.txt",
+    "package": "configs/magpie/codex-gpt-6.2-astra.spec.txt",
     "status": "original",
     "redacted_fields": [],
-    "source_zh": "个人配置 / magpie/codex-gpt-6-astra.spec.txt"
+    "source_zh": "个人配置 / magpie/codex-gpt-6.2-astra.spec.txt"
   },
   {
     "source": "Bilingual package documentation / reference/skills/README.md",

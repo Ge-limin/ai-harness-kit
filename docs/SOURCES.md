@@ -59,7 +59,7 @@
 | `个人配置 / claude/settings.json` | [configs/claude/settings.json](../configs/claude/settings.json) | adapted |
 | `个人配置 / claude/statusline.sh` | [configs/claude/statusline.sh](../configs/claude/statusline.sh) | original |
 | `个人配置 / claude/commands/hand-off.md` | [configs/claude/commands/hand-off.md](../configs/claude/commands/hand-off.md) | original |
-| `个人配置 / magpie/codex-gpt-6-astra.spec.txt` | [configs/magpie/codex-gpt-6-astra.spec.txt](../configs/magpie/codex-gpt-6-astra.spec.txt) | original |
+| `个人配置 / magpie/codex-gpt-6.2-astra.spec.txt` | [configs/magpie/codex-gpt-6.2-astra.spec.txt](../configs/magpie/codex-gpt-6.2-astra.spec.txt) | original |
 | `包内双语说明 / reference/skills/README.md` · `aba2be79b117` | [reference/skills/README.md](../reference/skills/README.md) | adapted |
 | `包内双语说明 / docs/DEPENDENCIES.md` · `aba2be79b117` | [docs/DEPENDENCIES.md](../docs/DEPENDENCIES.md) | adapted |
 | `包内双语说明 / docs/SOURCES.md` · `aba2be79b117` | [docs/SOURCES.md](../docs/SOURCES.md) | adapted |

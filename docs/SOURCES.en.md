@@ -56,7 +56,7 @@ Plugin sources, versions and licenses are in [DEPENDENCIES.json](DEPENDENCIES.js
 | `Personal settings / pi/web-search.json` | [configs/pi/web-search.json](../configs/pi/web-search.json) | original |
 | `Personal settings / claude/settings.json` | [configs/claude/settings.json](../configs/claude/settings.json) | adapted |
 | `Personal settings / claude/statusline.sh` | [configs/claude/statusline.sh](../configs/claude/statusline.sh) | original |
-| `Personal settings / magpie/codex-gpt-6-astra.spec.txt` | [configs/magpie/codex-gpt-6-astra.spec.txt](../configs/magpie/codex-gpt-6-astra.spec.txt) | original |
+| `Personal settings / magpie/codex-gpt-6.2-astra.spec.txt` | [configs/magpie/codex-gpt-6.2-astra.spec.txt](../configs/magpie/codex-gpt-6.2-astra.spec.txt) | original |
 | `Bilingual package documentation / reference/skills/README.md` · `aba2be79b117` | [reference/skills/README.en.md](../reference/skills/README.en.md) | translated |
 | `Bilingual package documentation / docs/DEPENDENCIES.md` · `aba2be79b117` | [docs/DEPENDENCIES.en.md](../docs/DEPENDENCIES.en.md) | translated |
 | `Bilingual package documentation / docs/SOURCES.md` · `aba2be79b117` | [docs/SOURCES.en.md](../docs/SOURCES.en.md) | translated |
