@@ -1,6 +1,6 @@
 # Verification
 
-This principles sync checks verbatim Chinese source parity and corresponding English rules and guide updates. All three `sync.sh --dry-run` targets and the seven public-shell unit tests pass; global clients remain untouched. `tools/build-guide.py` generates the READMEs and guide, followed by embedded-byte, manifest-target, and local-link checks. This change uses generation and static checks; the browser coverage below comes from the existing review.
+This principles sync checks verbatim Chinese source parity and corresponding English rules and guide updates. All four `sync.sh --dry-run` targets and the seven public-shell unit tests pass; global clients remain untouched. `tools/build-guide.py` generates the READMEs and guide, followed by embedded-byte, manifest-target, and local-link checks. This change uses generation and static checks; the browser coverage below comes from the existing review.
 
 Local review coverage:
 

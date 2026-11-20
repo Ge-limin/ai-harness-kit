@@ -33,7 +33,7 @@ JSON/TOML 中的 `<...>` 是需要接入 Agent 替换的占位符，不能直接
 
 | 配置引用 | 接入要求 |
 |---|---|
-| Pi 的七个 npm 包 | `configs/pi/settings.json` 使用 Pi 支持的 `npm:包名@版本` 格式，保留原版本与顺序。具体来源、获取地址和完整性值见 [DEPENDENCIES.json](DEPENDENCIES.json)。 |
+| Pi 的八个 npm 包 | `configs/pi/settings.json` 使用 Pi 支持的 `npm:包名@版本` 格式，保留原版本与顺序。具体来源、获取地址和完整性值见 [DEPENDENCIES.json](DEPENDENCIES.json)。 |
 | `sol-pi`、`pi-local-file-links` | 向维护者获取匹配版本的定制实现并填写上述路径；运行实现未包含在本包中。 |
 | Orca hooks | 宿主提供平台对应的 hook 脚本、会话环境变量和事件服务；配置保留事件、调用方式和平台分支。 |
 | Claude 状态栏 | 随包提供 [statusline.sh](../configs/claude/statusline.sh)，运行需要 Bash、jq、awk、Git、date、basename 和客户端 stdin JSON。 |
@@ -44,11 +44,12 @@ JSON/TOML 中的 `<...>` 是需要接入 Agent 替换的占位符，不能直接
 | Codex Computer Use、`node_repl`、notify 与本地插件市场 | 对应宿主应用及其匹配组件，由接入 Agent 填写路径；保留版本字段、插件开关及 Computer Use MCP 的禁用状态。 |
 | Codex `datagrip` | 本机 DataGrip MCP Server；`http://127.0.0.1:64402/stream` 保留为本地端口示例。 |
 | 本地模型服务 | `127.0.0.1:3425` 的服务需支持相应 API 和模型；官方模型服务地址保留，凭据由使用者提供。 |
+| Pi 按模型加载规范 | 运行 `bash rules/harness/sync.sh` 导出 General 和 Astra 补充文件，将 `configs/pi/proper-model-prompts.json` 复制到 `~/.pi/agent/`，并执行 `pi install npm:proper-model-prompts@0.2.1`。已有会话执行 `/reload`。 |
 | Pi 子 Agent | Pi、Subagents、角色定义及角色使用的扩展；[并发配置](../configs/pi/subagents.json) 保留最大并发 10 和整体中断行为。 |
 
 ## 来源与许可
 
-[DEPENDENCIES.json](DEPENDENCIES.json) 记录九个插件的版本、上游来源、作者、运行依赖、获取方式和已有的六份许可全文。七个 npm 来源有版本、获取地址和完整性记录；本次未重新下载或执行这些插件。`sol-pi` 没有可移植来源记录；`pi-local-file-links` 虽声明 Git 仓库，但没有对应定制版本的提交记录，需要向维护者获取匹配实现。该插件声明的 Pi 兼容范围是 `>=0.86.0 <0.88.0`，需在接入环境确认兼容性。
+[DEPENDENCIES.json](DEPENDENCIES.json) 记录十个插件的版本、上游来源、作者、运行依赖、获取方式和已有的七份许可全文。八个 npm 来源有版本、获取地址和完整性记录。`sol-pi` 没有可移植来源记录；`pi-local-file-links` 虽声明 Git 仓库，但没有对应定制版本的提交记录，需要向维护者获取匹配实现。该插件声明的 Pi 兼容范围是 `>=0.86.0 <0.88.0`，需在接入环境确认兼容性。
 
 `@aliou/pi-processes` 和 `@ff-labs/pi-fff` 仅有 MIT 声明，许可全文需从分发来源获取。`pi-compact-ui` 有 npm 获取记录，原 manifest 未声明 repository/license，许可状态待确认。已有作者、版权信息和上游来源完整保留。
 

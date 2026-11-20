@@ -19,7 +19,7 @@
 - [04 · Working principles](#rules)
 - [05 · Engineering philosophy](#engineering)
 - [06 · Model settings](#models)
-- [07 · Nine Pi extensions](#pi)
+- [07 · Pi extensions](#pi)
 - [08 · Agent-led setup](#start)
 - [09 · Files and sources](#sources)
 - [10 · General · Personal working principles](rules/PRINCIPLES.general.en.md)
@@ -28,7 +28,7 @@
 | Author | [Limin Ge](https://www.linkedin.com/in/limin-ge-573b4b28a/) |
 | --- | --- |
 | Edition | 2026.10 |
-| Updated | 2026-11-19 |
+| Updated | 2026-11-20 |
 
 <a id="top"></a>
 
@@ -196,7 +196,7 @@ Principles used by this configuration: [General](rules/PRINCIPLES.general.en.md)
 
 <a id="pi"></a>
 
-## 07 · Nine Pi plugins and what they do
+## 07 · Pi plugins and what they do
 
 [Dependencies and setup requirements →](docs/DEPENDENCIES.en.md)
 
@@ -250,6 +250,10 @@ Turns local file paths in agent responses into clickable links, making it easy t
 [Sources and versions →](docs/DEPENDENCIES.json)
 
 Opens a temporary conversation with `/btw`, with selectable context and multiple discussion threads. It provides a separate space to ask questions, discuss approaches, or handle side issues while the main task continues.
+
+### 10. Proper Model Prompts · Model-specific instructions
+
+Every model loads General. At the start of each run, Astra also loads the Codex supplement. Switch models with `/model` and the next run uses the selected model’s instructions.
 
 <a id="start"></a>
 

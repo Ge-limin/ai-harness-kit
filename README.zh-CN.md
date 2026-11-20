@@ -19,7 +19,7 @@
 - [04 · 两份工作规范](#rules)
 - [05 · 工程哲学与自主工作](#engineering)
 - [06 · 模型配置](#models)
-- [07 · Pi 的九个扩展](#pi)
+- [07 · Pi 扩展](#pi)
 - [08 · 交给 Agent 接入](#start)
 - [09 · 资料地图与来源](#sources)
 - [10 · General · 个人工作规范](rules/PRINCIPLES.general.md)
@@ -28,7 +28,7 @@
 | 作者 | [Limin Ge](https://www.linkedin.com/in/limin-ge-573b4b28a/) |
 | --- | --- |
 | 版本 | 2026.10 |
-| 更新日期 | 2026-11-19 |
+| 更新日期 | 2026-11-20 |
 
 <a id="top"></a>
 
@@ -196,7 +196,7 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 
 <a id="pi"></a>
 
-## 07 · 九个 Pi 插件及其作用
+## 07 · Pi 插件及其作用
 
 [依赖与接入要求 →](docs/DEPENDENCIES.md)
 
@@ -250,6 +250,10 @@ Orca 是专为 AI 编程 Agent 设计的集成开发环境（ADE），将多 Age
 [来源与版本 →](docs/DEPENDENCIES.json)
 
 通过 `/btw` 开启临时对话，支持选择上下文和保留多个讨论线程，适合在主任务执行期间提问、讨论方案或处理临时问题，避免干扰主会话。
+
+### 10. Proper Model Prompts · 按模型加载规则
+
+所有模型都读取 General。每轮开始时，Astra 额外读取 Codex 补充规则。在同一会话中使用 `/model` 切换模型后，下一轮采用新模型对应的规则。
 
 <a id="start"></a>
 

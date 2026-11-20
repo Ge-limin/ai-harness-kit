@@ -33,7 +33,7 @@ Engineering collaboration requires a working Orca CLI to manage worktrees and mu
 
 | Reference | Integration requirement |
 |---|---|
-| Seven Pi npm packages | `configs/pi/settings.json` uses Pi's supported `npm:package@version` syntax, preserving versions and order. See [DEPENDENCIES.json](DEPENDENCIES.json) for sources, acquisition URLs and integrity values. |
+| Eight Pi npm packages | `configs/pi/settings.json` uses Pi's supported `npm:package@version` syntax, preserving versions and order. See [DEPENDENCIES.json](DEPENDENCIES.json) for sources, acquisition URLs and integrity values. |
 | `sol-pi`, `pi-local-file-links` | Obtain matching customized implementations from their maintainers and fill in the paths above; runtime implementations are not included. |
 | Orca hooks | The host supplies platform-specific scripts, session environment variables and event services; configurations preserve events, invocations and platform branches. |
 | Claude status line | The included [statusline.sh](../configs/claude/statusline.sh) requires Bash, jq, awk, Git, date, basename and the client's stdin JSON. |
@@ -44,11 +44,12 @@ Engineering collaboration requires a working Orca CLI to manage worktrees and mu
 | Codex Computer Use, `node_repl`, notify and local marketplaces | Matching host applications and components, with paths supplied by the integrating agent; version fields, plugin toggles and the disabled Computer Use MCP state are preserved. |
 | Codex `datagrip` | A local DataGrip MCP Server; `http://127.0.0.1:64402/stream` is retained as a local-port example. |
 | Local model service | A service on `127.0.0.1:3425` must support the configured APIs and models; official provider URLs are retained and users supply credentials. |
+| Model-specific Pi rules | Run `bash rules/harness/sync.sh` to export General and the Astra supplement. Copy `configs/pi/proper-model-prompts.json` into `~/.pi/agent/` and run `pi install npm:proper-model-prompts@0.2.1`. Use `/reload` in an existing session. |
 | Pi subagents | Pi, Subagents, role definitions and their extensions; the [concurrency configuration](../configs/pi/subagents.json) retains a maximum of 10 concurrent agents and the original global interrupt behavior. |
 
 ## Provenance and licensing
 
-[DEPENDENCIES.json](DEPENDENCIES.json) records nine plugins, their versions, upstream sources, authors, runtime dependencies, acquisition methods and all six available license texts. Seven npm sources have recorded versions, URLs and integrity values; the plugins were not downloaded again or executed during this preparation. No portable source is recorded for `sol-pi`. Although `pi-local-file-links` declares a Git repository, no revision identifies the customized version; obtain the matching implementation from its maintainer. Its declared Pi compatibility range is `>=0.86.0 <0.88.0` and needs confirmation in the target environment.
+[DEPENDENCIES.json](DEPENDENCIES.json) records ten plugins, their versions, upstream sources, authors, runtime dependencies, acquisition methods and all seven available license texts. Eight npm sources have recorded versions, URLs and integrity values. No portable source is recorded for `sol-pi`. Although `pi-local-file-links` declares a Git repository, no revision identifies the customized version; obtain the matching implementation from its maintainer. Its declared Pi compatibility range is `>=0.86.0 <0.88.0` and needs confirmation in the target environment.
 
 `@aliou/pi-processes` and `@ff-labs/pi-fff` declare MIT; their full license texts must be obtained from their distribution sources. `pi-compact-ui` has an npm acquisition record, but its manifest declares neither repository nor license, so licensing remains unconfirmed. Existing authorship, copyright notices and upstream sources are preserved.
 

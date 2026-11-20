@@ -156,7 +156,7 @@ main .source-link{font-size:13px;font-weight:400;line-height:1.5;color:inherit;t
 <a href="#rules"><span class="navnum">04</span><span lang="zh-CN">两份工作规范</span><span lang="en">Working principles</span></a>
 <a href="#engineering"><span class="navnum">05</span><span lang="zh-CN">工程哲学与自主工作</span><span lang="en">Engineering philosophy</span></a>
 <a href="#models"><span class="navnum">06</span><span lang="zh-CN">模型配置</span><span lang="en">Model settings</span></a>
-<a href="#pi"><span class="navnum">07</span><span lang="zh-CN">Pi 的九个扩展</span><span lang="en">Nine Pi extensions</span></a>
+<a href="#pi"><span class="navnum">07</span><span lang="zh-CN">Pi 扩展</span><span lang="en">Pi extensions</span></a>
 <a href="#start"><span class="navnum">08</span><span lang="zh-CN">交给 Agent 接入</span><span lang="en">Agent-led setup</span></a>
 
 <a href="#sources"><span class="navnum">09</span><span lang="zh-CN">资料地图与来源</span><span lang="en">Files and sources</span></a>
@@ -342,7 +342,7 @@ main .source-link{font-size:13px;font-weight:400;line-height:1.5;color:inherit;t
 
 <section id="pi">
 <div class="section-no">07 / PI HARNESS</div>
-<h2><span lang="zh-CN">九个 Pi 插件及其作用</span><span lang="en">Nine Pi plugins and what they do</span></h2>
+<h2><span lang="zh-CN">Pi 插件及其作用</span><span lang="en">Pi plugins and what they do</span></h2>
 <div class="source-actions"><a href="docs/DEPENDENCIES.md" class="source-button"><span lang="zh-CN">依赖与接入要求 →</span><span lang="en">Dependencies and setup requirements →</span></a></div>
 <div class="plugin-entry">
 <div class="plugin-heading"><h3><span lang="zh-CN">1. FFF · 仓库文件与代码搜索</span><span lang="en">1. FFF · Repository file and code search</span></h3>
@@ -385,6 +385,10 @@ main .source-link{font-size:13px;font-weight:400;line-height:1.5;color:inherit;t
 <div class="plugin-entry">
 <div class="plugin-heading"><h3><span lang="zh-CN">9. BTW · 独立侧边对话</span><span lang="en">9. BTW · Independent side conversations</span></h3>
 <a href="docs/DEPENDENCIES.json" class="source-link"><span lang="zh-CN">来源与版本 →</span><span lang="en">Sources and versions →</span></a></div><p><span lang="zh-CN">通过 <code>/btw</code> 开启临时对话，支持选择上下文和保留多个讨论线程，适合在主任务执行期间提问、讨论方案或处理临时问题，避免干扰主会话。</span><span lang="en">Opens a temporary conversation with <code>/btw</code>, with selectable context and multiple discussion threads. It provides a separate space to ask questions, discuss approaches, or handle side issues while the main task continues.</span></p>
+</div>
+<div class="plugin-entry">
+<div class="plugin-heading"><h3><span lang="zh-CN">10. Proper Model Prompts · 按模型加载规则</span><span lang="en">10. Proper Model Prompts · Model-specific instructions</span></h3></div>
+<p lang="zh-CN">所有模型都读取 General。每轮开始时，Astra 额外读取 Codex 补充规则。在同一会话中使用 <code>/model</code> 切换模型后，下一轮采用新模型对应的规则。</p><p lang="en">Every model loads General. At the start of each run, Astra also loads the Codex supplement. Switch models with <code>/model</code> and the next run uses the selected model’s instructions.</p>
 </div>
 </section>
 
