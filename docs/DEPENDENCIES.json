@@ -374,5 +374,36 @@
       "resolved": "https://registry.npmjs.org/@narumitw/pi-btw/-/pi-btw-0.62.0.tgz",
       "integrity": "sha512-9bifAqcnQSeV7E0hBQ87h1CTmxbqVVTRVeB2QGIyKlPR7YbXoOG1z3gbAbogJLWY5ffOjSuHpTMYZ/5TPdr8AA=="
     }
+  },
+  {
+    "name": "proper-model-prompts",
+    "version": "0.2.1",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/sharaf-nassar/proper-pi-extensions.git",
+      "directory": "proper-model-prompts"
+    },
+    "license": "MIT",
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "peerDependencies": {
+      "@earendil-works/pi-coding-agent": ">=0.87.0"
+    },
+    "pi": {
+      "extensions": [
+        "./model-prompts.ts"
+      ]
+    },
+    "runtime_bundled": false,
+    "private": false,
+    "license_text": "MIT License\n\nCopyright (c) 2026 mamba\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "license_status": "text_preserved",
+    "acquisition": {
+      "method": "npm",
+      "package_spec": "proper-model-prompts@0.2.1",
+      "resolved": "https://registry.npmjs.org/proper-model-prompts/-/proper-model-prompts-0.2.1.tgz",
+      "integrity": "sha512-hm/4DdhpKEwSPiKSzqt2d6eONlqyC4W3waPRck6LRRjSyw6EQD8CazoyfYOvwIe56PqnSzN7tNwJ/xscfy29+Q=="
+    }
   }
 ]

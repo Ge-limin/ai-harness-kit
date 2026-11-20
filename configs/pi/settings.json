@@ -13,7 +13,8 @@
     "<SOL_PI_INSTALL_PATH>",
     "npm:pi-compact-ui@0.1.3",
     "<PI_LOCAL_FILE_LINKS_INSTALL_PATH>",
-    "npm:@narumitw/pi-btw@0.62.0"
+    "npm:@narumitw/pi-btw@0.62.0",
+    "npm:proper-model-prompts@0.2.1"
   ],
   "tuiMode": "fullscreen"
 }

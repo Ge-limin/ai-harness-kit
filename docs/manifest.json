@@ -74,6 +74,13 @@
     "source_zh": "个人配置 / pi/settings.json"
   },
   {
+    "source": "Personal settings / pi/proper-model-prompts.json",
+    "package": "configs/pi/proper-model-prompts.json",
+    "status": "adapted",
+    "redacted_fields": [],
+    "source_zh": "个人配置 / pi/proper-model-prompts.json"
+  },
+  {
     "source": "Personal settings / pi/models.json",
     "package": "configs/pi/models.json",
     "status": "adapted",

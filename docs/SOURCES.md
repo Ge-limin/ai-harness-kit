@@ -51,6 +51,7 @@
 | `个人配置 / codex/config.toml` | [configs/codex/config.toml](../configs/codex/config.toml) | adapted |
 | `个人配置 / codex/hooks.json` | [configs/codex/hooks.json](../configs/codex/hooks.json) | original |
 | `个人配置 / pi/settings.json` | [configs/pi/settings.json](../configs/pi/settings.json) | adapted |
+| `个人配置 / pi/proper-model-prompts.json` | [configs/pi/proper-model-prompts.json](../configs/pi/proper-model-prompts.json) | adapted |
 | `个人配置 / pi/models.json` | [configs/pi/models.json](../configs/pi/models.json) | adapted |
 | `个人配置 / pi/subagents.json` | [configs/pi/subagents.json](../configs/pi/subagents.json) | original |
 | `个人配置 / pi/pi-fff.json` | [configs/pi/pi-fff.json](../configs/pi/pi-fff.json) | original |

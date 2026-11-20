@@ -3,12 +3,17 @@
 # Relative paths are resolved from this configuration file's directory
 
 targets:
-  - name: pi-codex
+  - name: pi
     sources:
       - ../PRINCIPLES.general.md
-      - ../PRINCIPLES.codex.md
     path: ~/.pi/agent/AGENTS.md
-    note: Pi-Codex harness uses general + codex
+    note: Pi loads General for all models
+
+  - name: pi-astra-supplement
+    sources:
+      - ../PRINCIPLES.codex.md
+    path: ~/.pi/agent/model-prompts/PRINCIPLES.codex.md
+    note: proper-model-prompts appends this file for Astra
 
   - name: codex
     sources:

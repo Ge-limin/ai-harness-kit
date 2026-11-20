@@ -1,0 +1,10 @@
+{
+  "defaults": false,
+  "offerForegroundSubagents": false,
+  "prompts": [
+    {
+      "models": ["gpt-*-astra", "*/gpt-*-astra"],
+      "file": "model-prompts/PRINCIPLES.codex.md"
+    }
+  ]
+}

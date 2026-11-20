@@ -49,6 +49,7 @@ Plugin sources, versions and licenses are in [DEPENDENCIES.json](DEPENDENCIES.js
 | `Personal settings / codex/config.toml` | [configs/codex/config.toml](../configs/codex/config.toml) | adapted |
 | `Personal settings / codex/hooks.json` | [configs/codex/hooks.json](../configs/codex/hooks.json) | original |
 | `Personal settings / pi/settings.json` | [configs/pi/settings.json](../configs/pi/settings.json) | adapted |
+| `Personal settings / pi/proper-model-prompts.json` | [configs/pi/proper-model-prompts.json](../configs/pi/proper-model-prompts.json) | adapted |
 | `Personal settings / pi/models.json` | [configs/pi/models.json](../configs/pi/models.json) | adapted |
 | `Personal settings / pi/subagents.json` | [configs/pi/subagents.json](../configs/pi/subagents.json) | original |
 | `Personal settings / pi/pi-fff.json` | [configs/pi/pi-fff.json](../configs/pi/pi-fff.json) | original |
